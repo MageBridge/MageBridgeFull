@@ -395,7 +395,7 @@ index.php
 joomla.xml
 *.txt
 
-# MageBridge specific files
+# MageBridge symlinks
 administrator/language/en-GB/en-GB.plg_community_magebridge.ini
 administrator/language/en-GB/en-GB.plg_magebridge_magebridge.sys.ini
 administrator/language/en-GB/en-GB.plg_search_magebridge.sys.ini
