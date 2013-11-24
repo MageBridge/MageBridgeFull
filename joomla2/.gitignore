@@ -462,6 +462,7 @@ language/en-GB/en-GB.mod_magebridge_newsletter.sys.ini
 language/en-GB/en-GB.mod_magebridge_widget.ini
 language/en-GB/en-GB.mod_magebridge_cms.ini
 language/en-GB/en-GB.com_jce_advlink_magebridgelinks.ini
+plugins/community/magebridge
 plugins/content/magebridge
 plugins/magento/magebridge
 plugins/finder/magebridge

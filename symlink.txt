@@ -11,6 +11,7 @@ joomla2/modules/mod_magebridge_menu
 joomla2/modules/mod_magebridge_switcher
 joomla2/modules/mod_magebridge_products
 joomla2/media/com_magebridge
+joomla2/plugins/community/magebridge
 joomla2/plugins/system/magebridgert
 joomla2/plugins/system/magebridgesample
 joomla2/plugins/system/magebridgezoo
