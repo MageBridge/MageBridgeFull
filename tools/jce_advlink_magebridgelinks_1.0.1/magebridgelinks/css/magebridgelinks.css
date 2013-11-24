@@ -1,0 +1,11 @@
+/* magebridgelinks CSS */
+
+div.tree ul li div.tree-row span.file.magebridgelinks {
+	background: url(../../../../../../../libraries/img/ext.gif) no-repeat 0 0;
+}
+div.tree ul li div.tree-row span.folder.magebridgelinks {
+	background: url(../img/magebridgelinks.gif) no-repeat;
+}
+div.tree ul li div.tree-row span.page.magebridgelinks {
+	background: url(../../../../../../../libraries/img/icons.gif) no-repeat 0 -120px;
+}

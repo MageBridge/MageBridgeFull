@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension type="plugin" group="xmap" version="1.6" method="upgrade">
+    <name>Xmap - MageBridge Plugin</name>
+    <author>Yireo</author>
+    <creationDate>March 2011</creationDate>
+    <copyright>GNU/GPL</copyright>
+    <license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+    <authorEmail>info@yireo.com</authorEmail>
+    <authorUrl>www.yireo.com</authorUrl>
+    <version>2.0.0</version>
+    <description>Xmap plugin for MageBridge component</description>
+    <files>
+        <filename plugin="com_magebridge">com_magebridge.php</filename>
+    </files>
+
+    <config>
+        <fields name="params">
+            <fieldset name="basic">
+                <field name="expand_root" type="list" default="1" label="Expand Root">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </field>
+                <field name="expand_category" type="list" default="0" label="Expand Category" description="Make sure to point the MageBridge Category Menu-Item to the category ID (numeric) and not the category URL Key (text)">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </field>
+                <field name="enable_products" type="list" default="0" label="Enable Products" description="Make sure to have enough PHP memory">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </field>
+                <field name="category_priority" type="list" default="-1" label="Category Priority">
+                    <option value="-1">Use Parent Menu Settings</option>
+                    <option value="0.1">0.1</option>
+                    <option value="0.2">0.2</option>
+                    <option value="0.3">0.3</option>
+                    <option value="0.4">0.4</option>
+                    <option value="0.5">0.5</option>
+                    <option value="0.6">0.6</option>
+                    <option value="0.7">0.7</option>
+                    <option value="0.8">0.8</option>
+                    <option value="0.9">0.9</option>
+                    <option value="1">1</option>
+                </field>
+                <field name="category_changefreq" type="list" default="-1" label="Category Frequency">
+                    <option value="-1">Use Parent Menu Settings</option>
+                    <option value="always">Always</option>
+                    <option value="hourly">Hourly</option>
+                    <option value="daily">Daily</option>
+                    <option value="weekly">Weekly</option>
+                    <option value="monthly">Monthly</option>
+                    <option value="yearly">Yearly</option>
+                    <option value="never">Never</option>
+                </field>
+                <field name="product_priority" type="list" default="-1" label="Product Priority">
+                    <option value="-1">Use Parent Menu Settings</option>
+                    <option value="0.1">0.1</option>
+                    <option value="0.2">0.2</option>
+                    <option value="0.3">0.3</option>
+                    <option value="0.4">0.4</option>
+                    <option value="0.5">0.5</option>
+                    <option value="0.6">0.6</option>
+                    <option value="0.7">0.7</option>
+                    <option value="0.8">0.8</option>
+                    <option value="0.9">0.9</option>
+                    <option value="1">1</option>
+                </field>
+                <field name="product_changefreq" type="list" default="-1" label="Product Frequency">
+                    <option value="-1">Use Parent Menu Settings</option>
+                    <option value="always">Always</option>
+                    <option value="hourly">Hourly</option>
+                    <option value="daily">Daily</option>
+                    <option value="weekly">Weekly</option>
+                    <option value="monthly">Monthly</option>
+                    <option value="yearly">Yearly</option>
+                    <option value="never">Never</option>
+                </field>
+            </fieldset>
+        </fields>
+    </config>
+</extension>

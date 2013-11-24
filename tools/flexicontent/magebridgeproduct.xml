@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install version="1.5" type="plugin" group="flexicontent_fields" method="upgrade">
+	<name>FLEXIcontent - MageBridge Product</name>
+	<author>Yireo</author>
+	<creationDate>October 2010</creationDate>
+	<copyright>Copyright (C) 2010 Yireo</copyright>
+	<license>GNU/GPL</license>
+	<authorEmail>info@yireo.com</authorEmail>
+	<authorUrl>www.yireo.com</authorUrl>
+	<version>1.0</version>
+	<description>FLEXI_FIELD_MAGEBRIDGEPRODUCT</description>
+	<files>
+		<filename plugin="magebridgeproduct">magebridgeproduct.php</filename>
+	</files>
+	<params group="standard">
+		<param name="display_label" type="radio" default="1" label="FLEXI_FIELD_DISPLAY_LABEL">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+	</params>
+	<params group="group-magebridgeproduct">
+		<param name="block" type="list" default="addtocart" label="FLEXI_FIELD_MAGEBRIDGEPRODUCT_BLOCK">
+			<option value="">None</option>
+			<option value="addtocart">Add To Cart Form</option>
+			<option value="product.info.media">Product Media</option>
+			<option value="product.info.upsell">Upsell Products</option>
+			<option value="catalog.product.related">Related Products</option>
+		</param>
+		<param name="load_css" type="list" default="1" label="FLEXI_FIELD_MAGEBRIDGEPRODUCT_LOADCSS">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="load_js" type="list" default="1" label="FLEXI_FIELD_MAGEBRIDGEPRODUCT_LOADJS">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+	</params>
+	<languages>
+		<language tag="en-GB">en-GB.plg_flexicontent_fields_magebridgeproduct.ini</language>
+	</languages>
+</install>

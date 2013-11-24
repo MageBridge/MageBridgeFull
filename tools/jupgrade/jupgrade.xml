@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE jupgrade>
+<jupgrade>
+    <!--<installer>
+        <file>administrator/components/com_magebridge/helpers/jupgrade.php</file>
+        <class>MageBridgeHelperJUpgrade</class>
+    </installer>-->
+    <tables>
+        <table>magebridge_config</table>
+        <table>magebridge_connectors</table>
+        <table>magebridge_log</table>
+        <table>magebridge_products</table>
+        <table>magebridge_products_log</table>
+        <table>magebridge_stores</table>
+        <table>magebridge_urls</table>
+        <table>magebridge_usergroups</table>
+    </tables>
+    <folders>
+        <folder>media/magebridge</folder>
+        <folder>administrator/components/com_magebridge</folder>
+        <folder>components/com_magebridge</folder>
+    </folders>
+</jupgrade>
+

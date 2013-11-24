@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+<install version="1.5" type="extension" plugin="advlink" extension="magebridgelinks" folder="links">
+	<name>MageBridge Links for Advanced Link</name>
+	<version>1.0.4</version>
+	<creationDate>27 August 2010</creationDate>
+	<author>Yireo</author>
+	<authorEmail>info@yireo.com</authorEmail>
+	<authorUrl>http://www.yireo.com/</authorUrl>
+	<copyright>Copyright Yireo 2010</copyright>
+	<license>GNU/GPL</license>
+	<description>An AdvLink extensions providing links to MageBridge categories and products</description>
+	<files>
+		<filename>magebridgelinks.php</filename>
+		<filename>magebridgelinks/index.html</filename>
+		<filename>magebridgelinks/magebridge.php</filename>
+		<filename>magebridgelinks/css/index.html</filename>
+		<filename>magebridgelinks/css/magebridgelinks.css</filename>
+		<filename>magebridgelinks/img/index.html</filename>
+		<filename>magebridgelinks/img/magebridgelinks.gif</filename>
+	</files>
+	<params>
+		<param name="advlink_magebridgelinks" type="list" default="1" label="PARAM MAGEBRIDGE ACCESS" description="PARAM MAGEBRIDGE ACCESS DESC">
+           	<option value="1">YES</option>
+           	<option value="0">NO</option>
+		</param>
+	</params>
+	<!--<languages>
+		<language tag="en-GB">en-GB.com_jce_advlink_magebridgelinks.ini</language>
+	</languages>-->
+</install>

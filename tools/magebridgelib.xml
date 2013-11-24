@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="library" method="upgrade" version="1.7.0">
+    <name>MageBridge</name>
+    <libraryname>magebridge</libraryname>
+    <author>Yireo</author>
+    <creationDate>October 2011</creationDate>
+    <copyright>Copyright (C) 2011</copyright>
+    <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+    <authorEmail>info@yireo.com</authorEmail>
+    <authorUrl>www.yireo.com</authorUrl>
+    <version>1.0</version>
+    <description>MageBridge library</description>
+
+    <files>
+        <folder>core</folder>
+        <folder>user</folder>
+        <folder>block</folder>
+        <folder>helpers</folder>
+    </files>
+</extension>

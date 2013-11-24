@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<install type="xmap_ext" version="1.5.0" method="upgrade">
+    <name>MageBridge Plugin</name>
+    <author>Yireo</author>
+    <creationDate>April 2012</creationDate>
+    <copyright>GNU/GPL</copyright>
+    <license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+    <authorEmail>info@yireo.com</authorEmail>
+    <authorUrl>www.yireo.com</authorUrl>
+    <version>0.8.11</version>
+    <description>Xmap plugin for MageBridge component</description>
+    <files>
+        <filename xmap_ext="com_magebridge">com_magebridge.php</filename>
+    </files>
+    <params>
+        <param name="expand_root" type="list" default="1" label="Expand Root Menu-Item">
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </param>
+        <param name="expand_category" type="list" default="0" label="Expand Category Menu-Item" description="Make sure to point the MageBridge Category Menu-Item to the category ID (numeric) and not the category URL Key (text)">
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </param>
+        <param name="enable_products" type="list" default="0" label="Enable Products" description="Make sure to have enough PHP memory">
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </param>
+        <param name="enable_categories" type="list" default="0" label="Enable Categories" description="Might cause categories being listed twice">
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </param>
+        <param name="category_priority" type="list" default="-1" label="Category Priority">
+            <option value="-1">Use Parent Menu Settings</option>
+            <option value="0.1">0.1</option>
+            <option value="0.2">0.2</option>
+            <option value="0.3">0.3</option>
+            <option value="0.4">0.4</option>
+            <option value="0.5">0.5</option>
+            <option value="0.6">0.6</option>
+            <option value="0.7">0.7</option>
+            <option value="0.8">0.8</option>
+            <option value="0.9">0.9</option>
+            <option value="1">1</option>
+        </param>
+        <param name="category_changefreq" type="list" default="-1" label="Category Change frequency">
+            <option value="-1">Use Parent Menu Settings</option>
+            <option value="always">Always</option>
+            <option value="hourly">Hourly</option>
+            <option value="daily">Daily</option>
+            <option value="weekly">Weekly</option>
+            <option value="monthly">Monthly</option>
+            <option value="yearly">Yearly</option>
+            <option value="never">Never</option>
+        </param>
+        <param name="product_priority" type="list" default="-1" label="Product Priority">
+            <option value="-1">Use Parent Menu Settings</option>
+            <option value="0.1">0.1</option>
+            <option value="0.2">0.2</option>
+            <option value="0.3">0.3</option>
+            <option value="0.4">0.4</option>
+            <option value="0.5">0.5</option>
+            <option value="0.6">0.6</option>
+            <option value="0.7">0.7</option>
+            <option value="0.8">0.8</option>
+            <option value="0.9">0.9</option>
+            <option value="1">1</option>
+        </param>
+        <param name="product_changefreq" type="list" default="-1" label="Product Change frequency">
+            <option value="-1">Use Parent Menu Settings</option>
+            <option value="always">Always</option>
+            <option value="hourly">Hourly</option>
+            <option value="daily">Daily</option>
+            <option value="weekly">Weekly</option>
+            <option value="monthly">Monthly</option>
+            <option value="yearly">Yearly</option>
+            <option value="never">Never</option>
+        </param>
+    </params>
+</install>

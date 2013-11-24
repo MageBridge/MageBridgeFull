@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="1.5" type="plugin" group="k2" method="upgrade">
+	<name>MageBridge K2 Plugin</name>
+	<author>Yireo</author>
+	<creationDate>March 2012</creationDate>
+	<copyright>Copyright (c) 2012 Yireo. All rights reserved.</copyright>
+	<authorEmail>info@yireo.com</authorEmail>
+	<authorUrl>www.yireo.com</authorUrl>
+	<version>1.0</version>
+	<license>http://www.gnu.org/licenses/gpl-3.0.html GNU/GPL</license>
+	<description>This K2 plugin extends item forms in K2 with extra MageBridge options.</description>
+	<files>
+		<filename plugin="magebridge">magebridge.php</filename>
+	</files>
+	
+	<!-- Standard plugin parameters for Joomla! 2.5 -->
+	<!--<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field name="width" type="text" default="425" label="Video width" description="" />
+				<field name="height" type="text" default="344" label="Video height" description="" />
+			</fieldset>
+		</fields>
+	</config>-->
+	
+	<params group="item-content" addpath="/administrator/components/com_magebridge/elements">
+		<param name="product_id" type="product" size="10" return="id" default="" label="Magento product ID" description="" />
+	</params>
+</extension>
