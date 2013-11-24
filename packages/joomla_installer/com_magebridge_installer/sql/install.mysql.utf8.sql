@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS `#__magebridge_config` (
+    `id` INT(11) NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(255) NOT NULL DEFAULT '',
+    `value` TEXT NOT NULL DEFAULT '',
+    PRIMARY KEY  (`id`)
+) DEFAULT CHARSET=utf8;

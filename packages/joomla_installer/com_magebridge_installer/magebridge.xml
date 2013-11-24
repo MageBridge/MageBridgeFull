@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" version="1.6.0" method="upgrade">
+    <name>COM_MAGEBRIDGE</name>
+    <author>Yireo</author>
+    <authoremail>development@yireo.com</authoremail>
+    <authorurl>http://www.yireo.com</authorurl>
+    <creationDate>October 2012</creationDate>
+    <copyright>Copyright 2012 Yireo.com</copyright>
+    <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+    <version>1.2.0</version>
+    <description>This component installs MageBridge for Joomla! 2.5 and Joomla! 3.0</description>
+
+    <!-- installation part -->
+    <install>
+        <sql>
+            <file driver="mysql" charset="utf8">sql/install.mysql.utf8.sql</file>
+        </sql>
+    </install>
+    <uninstall>
+        <sql>
+            <file driver="mysql" charset="utf8">sql/uninstall.mysql.utf8.sql</file>
+        </sql>
+    </uninstall>
+
+    <!-- frontend part -->
+    <files>
+        <filename>index.html</filename>
+        <filename>helpers/helper.php</filename>
+        <filename>helpers/index.html</filename>
+        <filename>models/proxy.php</filename>
+        <filename>models/config.php</filename>
+        <filename>models/index.html</filename>
+    </files>
+
+    <media>
+        <folder>com_magebridge</folder>
+    </media>
+
+    <!-- administration part -->
+    <administration>
+
+        <menu img="../media/com_magebridge/images/yireo-small.png">COM_MAGEBRIDGE_INSTALLER</menu>
+
+        <files>
+            <filename>magebridge.xml</filename>
+            <filename>controller.php</filename>
+            <filename>index.html</filename>
+            <filename>magebridge.php</filename>
+            <filename>view.php</filename>
+            <filename>models/check.php</filename>
+            <filename>models/update.php</filename>
+            <filename>models/index.html</filename>
+            <filename>helpers/update.php</filename>
+            <filename>helpers/index.html</filename>
+            <folder>tables</folder>
+            <folder>views</folder>
+            <folder>sql</folder>
+        </files>
+
+        <languages folder="language">
+            <language tag="en-GB">en-GB.com_magebridge.ini</language>
+            <language tag="en-GB">en-GB.com_magebridge.sys.ini</language>
+        </languages>
+
+    </administration>
+
+</extension>

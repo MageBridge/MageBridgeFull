@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+    <name>Yireo_MageBridge</name>
+    <version>1.6.0</version>
+    <stability>stable</stability>
+    <channel>community</channel>
+    <license uri="http://www.yireo.com/">MageBridge EULA</license>
+    <extends/>
+    <summary>This module integrates Magento with Joomla!</summary>
+    <description>This module integrates Magento with Joomla!</description>
+    <notes>This package can only be used with a valid MageBridge license.</notes>
+    <date>2011-02-23</date>
+    <time>00:00:01</time>
+    <authors>
+        <author>
+            <name>Yireo</name>
+            <user>yireo</user>
+            <email>info@yireo.com</email>
+        </author>
+    </authors>
+
+    <contents>
+        <target name="magedesign">
+            <dir name="adminhtml">
+                <dir name="default">
+                    <dir name="default">
+                        <dir name="template">
+                            <dir name="magebridge">
+                                <file name="license.phtml" />
+                                <file name="menu.phtml" />
+                                <file name="settings.phtml" />
+                                <file name="updates.phtml" />
+                            </dir>
+                        </dir>
+                    </dir>
+                </dir>
+            </dir>
+        </target>
+
+        <target name="magecommunity">
+            <dir name="Yireo">
+                <dir name="MageBridge">
+                    <dir name="controllers">
+                        <file name="IndexController.php" />
+                    </dir>
+                    <dir name="Block">
+                        <file name="License.php" />
+                        <file name="Menu.php" />
+                        <file name="Settings.php" />
+                        <file name="Updates.php" />
+                    </dir>
+                    <dir name="etc">
+                        <file name="config.xml" />
+                        <file name="system.xml" />
+                    </dir>
+                    <dir name="Helper">
+                        <file name="Data.php" />
+                    </dir>
+                    <dir name="Model">
+                        <file name="Update.php" />
+                    </dir>
+                </dir>
+            </dir>
+        </target>
+
+        <target name="mageetc">
+            <dir name="modules">
+                <file name="Yireo_MageBridge.xml" />
+            </dir>
+        </target>
+
+    </contents>
+    <compatible/>
+    <dependencies>
+        <required>
+            <php>
+                <min>5.2.8</min>
+                <max>6.0.0</max>
+            </php>
+        </required>
+    </dependencies>
+</package>

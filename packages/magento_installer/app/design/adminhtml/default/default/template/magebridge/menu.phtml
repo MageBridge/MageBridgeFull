@@ -1,0 +1,21 @@
+<?php
+/**
+ * MageBridge
+ *
+ * @author Yireo
+ * @package MageBridge
+ * @copyright Copyright 2011
+ * @license Yireo EULA (www.yireo.com)
+ * @link http://www.yireo.com
+ */
+?>
+<ul id="system_config_tabs" class="tabs config-tabs">
+<li>
+    <dl>
+    <dt class="label">Menu</dt>
+    <?php foreach($this->getMenuItems() as $item) { ?>
+    <dd><a href="<?php echo $item['url']; ?>" class="<?php echo $item['class']; ?>"><span><?php echo $item['title']; ?></span></a></dd>
+    <?php } ?>
+    </dl>
+</li>
+</ul>

@@ -1,0 +1,33 @@
+/* Joomla! Administrator icons */
+.icon-32-download { 
+    background-image: url(../images/toolbar/icon-32-download.png); 
+}
+
+.icon-48-yireo { 
+    background-image: url(../images/yireo.png); 
+}
+
+div.header {
+    padding-left: 70px !important;
+}
+
+div#latest_news {
+    width: auto;
+    height: auto;
+    padding: 5px;
+    background-color: white;
+    border: 1px solid #cccccc;
+}
+
+div.loader {
+    width: 100%;
+    height: 60px;
+    background-position: center center;
+    background-image: url(../images/loader.gif);
+    background-repeat: no-repeat;
+}
+
+td.key {
+    font-weight: normal !important;
+    width: 200px !important;
+}

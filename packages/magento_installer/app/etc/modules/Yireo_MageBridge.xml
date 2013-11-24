@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * MageBridge-module for Magento 
+ *
+ * @package     Yireo_MageBridge
+ * @author      Yireo (www.yireo.com)
+ * @copyright   Copyright (c) 2011 
+ * @license     Open Software License
+ */
+-->
+<config>
+    <modules>
+        <Yireo_MageBridge>
+            <active>true</active>
+            <codePool>community</codePool>
+        </Yireo_MageBridge>
+    </modules>
+</config>
