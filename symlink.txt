@@ -80,3 +80,13 @@ joomla2/administrator/language/en-GB/en-GB.plg_system_magebridgezoo.ini
 joomla2/administrator/language/en-GB/en-GB.plg_system_magebridgezoo.sys.ini
 joomla2/administrator/language/en-GB/en-GB.plg_user_magebridge.ini
 joomla2/administrator/language/en-GB/en-GB.plg_user_magebridge.sys.ini
+magento/skin/adminhtml/default/default/images/magebridge
+magento/magebridge.class.php
+magento/app/code/community/Yireo/MageBridge
+magento/app/design/frontend/default/default/template/magebridge
+magento/app/design/frontend/default/magebridge
+magento/app/design/adminhtml/default/default/layout/magebridge.xml
+magento/app/design/adminhtml/default/default/template/magebridge
+magento/app/etc/modules/Yireo_MageBridge.xml
+magento/js/magebridge
+magento/magebridge.php

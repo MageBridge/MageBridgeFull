@@ -29,6 +29,7 @@ cat symlink.txt|while read FILE; do
             echo "WARNING: $FILE is a file"
         else
             echo "Linking $FILE"
+            mkdir -p `dirname $FILE`
             ln -s $sourceDir/$FILE $destinationDir/$FILE
         fi
     fi
@@ -39,6 +40,7 @@ cat symlink.txt|while read FILE; do
             continue;
         else
             echo "Linking $FILE"
+            mkdir -p `dirname $FILE`
             ln -s $sourceDir/$FILE $destinationDir/$FILE
         fi
     fi
