@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="MageBridge" default="build" basedir=".">
+
+    <!-- Pathing -->
+    <property name="joomla_package" value="${root}/packages/joomla" />
+    <property name="joomla_patch" value="${root}/packages/joomla_patch" />
+    <property name="joomla" value="${root}/joomla" />
+
+    <!-- Public Target: build_joomla -->
+    <target name="build_joomla" description="Build all Joomla! packages">
+        <phingcall target="build_joomla_all" />
+    </target>
+
+    <!-- Target: build_joomla_all -->
+    <target name="build_joomla_all" description="Build all Joomla! packages">
+        <phingcall target="cleanup_joomla" />
+        <phingcall target="build_joomla_component" />
+        <phingcall target="build_joomla_modules" />
+        <phingcall target="build_joomla_plugins" />
+        <phingcall target="build_joomla_templates" />
+        <phingcall target="build_joomla_patch" />
+        <phingcall target="build_joomla_unzipfirst" />
+    </target>
+
+    <!-- Target: cleanup_joomla -->
+    <target name="cleanup_joomla" description="Cleanup Joomla!">
+        <exec command="cd ${joomla}; ./clean.sh" />
+        <exec command="cd ${joomla_package}; rm -r com_* mod_* plg_*" />
+        <exec command="rm -r ${joomla_package}/source; mkdir -p ${joomla_package}/source" />
+    </target>
+
+    <!-- Target: build_joomla_xml -->
+    <target name="build_joomla_xml" description="Build Joomla! XML">
+        <foreach param="file" absparam="filename" target="replace_xml_version">
+            <fileset dir="${joomla}">
+                <include name="administrator/components/com_magebridge/magebridge.xml" />
+                <include name="modules/mod_magebridge_block/mod_magebridge_block.xml" />
+                <include name="modules/mod_magebridge_cart/mod_magebridge_cart.xml" />
+                <include name="modules/mod_magebridge_cms/mod_magebridge_cms.xml" />
+                <include name="modules/mod_magebridge_login/mod_magebridge_login.xml" />
+                <include name="modules/mod_magebridge_menu/mod_magebridge_menu.xml" />
+                <include name="modules/mod_magebridge_newsletter/mod_magebridge_newsletter.xml" />
+                <include name="modules/mod_magebridge_products/mod_magebridge_products.xml" />
+                <include name="modules/mod_magebridge_roklogin/mod_magebridge_roklogin.xml" />
+                <include name="modules/mod_magebridge_rokscroller/mod_magebridge_rokscroller.xml" />
+                <include name="modules/mod_magebridge_progress/mod_magebridge_progress.xml" />
+                <include name="modules/mod_magebridge_switcher/mod_magebridge_switcher.xml" />
+                <include name="modules/mod_magebridge_widget/mod_magebridge_widget.xml" />
+                <include name="administrator/modules/mod_magebridge_customers/mod_magebridge_customers.xml" />
+                <include name="administrator/modules/mod_magebridge_orders/mod_magebridge_orders.xml" />
+                <include name="plugins/authentication/magebridge/magebridge.xml" />
+                <include name="plugins/content/magebridge/magebridge.xml" />
+                <include name="plugins/content/magebridgetags/magebridgetags.xml" />
+                <include name="plugins/community/magebridge/magebridge.xml" />
+                <include name="plugins/magento/magebridge/magebridge.xml" />
+                <include name="plugins/search/magebridge/magebridge.xml" />
+                <include name="plugins/system/magebridge/magebridge.xml" />
+                <include name="plugins/user/magebridge/magebridge.xml" />
+                <include name="plugins/finder/magebridge/magebridge.xml" />
+                <include name="plugins/magebridge/magebridge/magebridge.xml" />
+                <include name="plugins/system/magebridgeyoo/magebridgeyoo.xml" />
+                <include name="plugins/system/magebridgezoo/magebridgezoo.xml" />
+                <include name="plugins/system/magebridget3/magebridget3.xml" />
+                <include name="plugins/system/magebridgert/magebridgert.xml" />
+                <include name="plugins/system/magebridgepre/magebridgepre.xml" />
+                <include name="templates/magebridge_root/templateDetails.xml" />
+            </fileset>
+        </foreach>
+    </target>
+
+    <!-- Target: build_joomla_component -->
+    <target name="build_joomla_component">
+
+        <exec command="cd ${joomla_package}; rm -r com_*" />
+
+        <foreach param="file" absparam="filename" target="replace_xml_version">
+            <fileset dir="${joomla}">
+                <include name="administrator/components/com_magebridge/magebridge.xml" />
+            </fileset>
+        </foreach>
+
+        <exec command="mkdir -p ${joomla_package}/source/com_magebridge" />
+        <copy todir="${joomla_package}/source/com_magebridge">
+            <fileset dir="${joomla}">
+                <include name="administrator/components/com_magebridge/**" />
+                <include name="components/com_magebridge/**" />
+                <include name="language/en-GB/*com_magebridge*ini" />
+                <include name="administrator/language/en-GB/*com_magebridge*ini" />
+                <include name="media/com_magebridge/**" />
+            </fileset>
+        </copy>
+        <copy file="${gpl}" tofile="${joomla_package}/source/com_magebridge/LICENSE.txt" overwrite="true" />
+
+        <copy file="${joomla_package}/source/com_magebridge/administrator/components/com_magebridge/magebridge.xml"
+            tofile="${joomla_package}/source/com_magebridge/magebridge.xml" overwrite="true" />
+        <copy file="${joomla_package}/source/com_magebridge/administrator/components/com_magebridge/script.magebridge.php"
+            tofile="${joomla_package}/source/com_magebridge/script.magebridge.php" overwrite="true" />
+
+        <zip destfile="${joomla_package}/com_magebridge_j25.zip">
+            <fileset dir="${joomla_package}/source">
+                <include name="com_magebridge/**" />
+            </fileset>
+        </zip>
+
+        <tar destfile="${joomla_package}/com_magebridge_j25.tar.gz" compression="gzip">
+            <fileset dir="${joomla_package}/source">
+                <include name="com_magebridge/**" />
+            </fileset>
+        </tar>
+    </target>
+
+    <!-- Target: build_joomla_templates -->
+    <target name="build_joomla_templates">
+        <exec command="mkdir -p ${joomla_package}/source/tpl_magebridge_root" />
+        <copy todir="${joomla_package}/source/tpl_magebridge_root">
+            <fileset dir="${joomla}/templates/magebridge_root">
+                <include name="**" />
+            </fileset>
+        </copy>
+        <copy file="${gpl}" tofile="${joomla_package}/source/tpl_magebridge_root/LICENSE.txt" overwrite="true" />
+
+        <zip destfile="${joomla_package}/tpl_magebridge_root_j25.zip">
+            <fileset dir="${joomla_package}/source">
+                <include name="tpl_magebridge_root/**" />
+            </fileset>
+        </zip>
+
+        <tar destfile="${joomla_package}/tpl_magebridge_root_j25.tar.gz" compression="gzip">
+            <fileset dir="${joomla_package}/source">
+                <include name="tpl_magebridge_root/**" />
+            </fileset>
+        </tar>
+    </target>
+
+    <!-- Target: build_joomla_plugins -->
+    <target name="build_joomla_plugins">
+        <foreach list="${joomla_plugins}" param="name" target="build_joomla_plugin"/>
+    </target>
+
+    <!-- Target: build_joomla_plugin -->
+    <target name="build_joomla_plugin">
+        <exec command="echo '${name}'|cut -f1 -d\|" outputProperty="group" />
+        <exec command="echo '${name}'|cut -f2 -d\|" outputProperty="pluginname" />
+        <exec command="echo '${name}'|cut -f3 -d\|" outputProperty="suffix" />
+
+        <if><equals arg1="${suffix}" arg2="" />
+            <then>
+                <property name="buildname" value="${group}" />
+            </then>
+            <else>
+                <property name="buildname" value="${suffix}" />
+            </else>
+        </if>
+
+        <exec command="mkdir -p ${joomla_package}/source/plg_magebridge_${buildname}" />
+        <copy todir="${joomla_package}/source/plg_magebridge_${buildname}" haltonerror="false">
+            <fileset dir="${joomla}/plugins/${group}/${pluginname}">
+                <include name="**" />
+            </fileset>
+            <fileset dir="${joomla}/language/en-GB">
+                <include name="en-GB.plg_${group}_${pluginname}.ini" />
+            </fileset>
+            <fileset dir="${joomla}/administrator/language/en-GB">
+                <include name="en-GB.plg_${group}_${pluginname}.ini" />
+                <include name="en-GB.plg_${group}_${pluginname}.sys.ini" />
+            </fileset>
+        </copy>
+        <copy file="${gpl}" tofile="${joomla_package}/source/plg_magebridge_${buildname}/LICENSE.txt" overwrite="true" />
+
+        <zip destfile="${joomla_package}/plg_magebridge_${buildname}_j25.zip">
+            <fileset dir="${joomla_package}/source">
+                <include name="plg_magebridge_${buildname}/**" />
+            </fileset>
+        </zip>
+
+        <tar destfile="${joomla_package}/plg_magebridge_${buildname}_j25.tar.gz" compression="gzip">
+            <fileset dir="${joomla_package}/source">
+                <include name="plg_magebridge_${buildname}/**" />
+            </fileset>
+        </tar>
+    </target>
+
+    <!-- Target: build_joomla_modules -->
+    <target name="build_joomla_modules">
+        <foreach list="${joomla_modules}" param="name" target="build_joomla_module"/>
+    </target>
+
+    <!-- Target: build_joomla_module -->
+    <target name="build_joomla_module">
+        <echo>Note: module is ${name}</echo>
+
+        <property name="modulename" value="mod_magebridge_${name}" />
+        <exec command="mkdir -p ${joomla_package}/source/${modulename}" />
+
+        <available file="${joomla}/modules/${modulename}" property="site" value="1"/>
+        <if><equals arg1="${site}" arg2="1" />
+            <then>
+                <phingcall target="replace_xml_version">
+                    <property name="filename" value="${joomla}/modules/${modulename}/${modulename}.xml" />
+                </phingcall>
+                <copy todir="${joomla_package}/source/${modulename}">
+                    <fileset dir="${joomla}/modules/${modulename}">
+                        <include name="**" />
+                    </fileset>
+                </copy>
+            </then>
+        </if>
+
+        <available file="${joomla}/administrator/modules/${modulename}" property="admin" value="1"/>
+        <if><equals arg1="${admin}" arg2="1" />
+            <then>
+                <phingcall target="replace_xml_version">
+                    <property name="filename" value="${joomla}/administrator/modules/${modulename}/${modulename}.xml" />
+                </phingcall>
+                <copy todir="${joomla_package}/source/${modulename}">
+                    <fileset dir="${joomla}/administrator/modules/${modulename}">
+                        <include name="**" />
+                    </fileset>
+                </copy>
+            </then>
+        </if>
+
+        <copy todir="${joomla_package}/source/${modulename}" haltonerror="false">
+            <fileset dir="${joomla}/language/en-GB">
+                <include name="*${modulename}*" />
+            </fileset>
+            <fileset dir="${joomla}/administrator/language/en-GB">
+                <include name="*${modulename}*" />
+            </fileset>
+        </copy>
+        <copy file="${gpl}" tofile="${joomla_package}/source/${modulename}/LICENSE.txt" overwrite="true" />
+
+        <zip destfile="${joomla_package}/${modulename}_j25.zip">
+            <fileset dir="${joomla_package}/source">
+                <include name="${modulename}/**" />
+            </fileset>
+        </zip>
+
+        <tar destfile="${joomla_package}/${modulename}_j25.tar.gz" compression="gzip">
+            <fileset dir="${joomla_package}/source">
+                <include name="${modulename}/**" />
+            </fileset>
+        </tar>
+    </target>
+
+    <!-- Target: build_joomla_patch -->
+    <target name="build_joomla_patch" description="Build a patch-file for Joomla!">
+        <exec command="mkdir -p ${joomla_patch}" />
+        <property name="tarfile" value="${joomla_patch}/MageBridge_${version}_Joomla25_patch.tar.gz" />
+        <tar destfile="${tarfile}" compression="gzip">
+            <fileset dir="${joomla}">
+                <include name="components/com_magebridge/**" />
+                <include name="administrator/components/com_magebridge/**" />
+                <include name="administrator/modules/mod_magebridge**" />
+                <include name="administrator/language/en-GB/*magebridge*" />
+                <include name="modules/mod_magebridge**" />
+                <include name="language/en-GB/*magebridge*" />
+                <include name="plugins/system/magebridge**" />
+                <include name="plugins/authentication/magebridge**" />
+                <include name="plugins/content/magebridge**" />
+                <include name="plugins/search/magebridge**" />
+                <include name="plugins/finder/magebridge**" />
+                <include name="plugins/user/magebridge**" />
+                <include name="plugins/magento/magebridge**" />
+                <include name="plugins/magebridge**" />
+                <include name="media/com_magebridge/**" />
+            </fileset>
+        </tar>
+        <copy file="${joomla_patch}/MageBridge_${version}_Joomla25_patch.tar.gz" tofile="${joomla_patch}/MageBridge_Joomla25_patch.tar.gz" overwrite="true" />
+        <exec command="git add ${tarfile}" />
+
+        <property name="zipfile" value="${joomla_patch}/MageBridge_${version}_Joomla25_patch.zip" />
+        <zip destfile="${zipfile}">
+            <fileset dir="${joomla}">
+                <include name="components/com_magebridge/**" />
+                <include name="administrator/components/com_magebridge/**" />
+                <include name="administrator/modules/mod_magebridge**" />
+                <include name="administrator/language/en-GB/*magebridge*" />
+                <include name="modules/mod_magebridge**" />
+                <include name="language/en-GB/*magebridge*" />
+                <include name="plugins/system/magebridge**" />
+                <include name="plugins/authentication/magebridge**" />
+                <include name="plugins/content/magebridge**" />
+                <include name="plugins/search/magebridge**" />
+                <include name="plugins/finder/magebridge**" />
+                <include name="plugins/user/magebridge**" />
+                <include name="plugins/magento/magebridge**" />
+                <include name="plugins/magebridge**" />
+                <include name="media/com_magebridge/**" />
+            </fileset>
+        </zip>
+        <copy file="${joomla_patch}/MageBridge_${version}_Joomla25_patch.zip" tofile="${joomla_patch}/MageBridge_Joomla25_patch.zip" overwrite="true" />
+        <exec command="git add ${zipfile}" />
+
+    </target>
+
+    <!-- Target: build_joomla_unzipfirst -->
+    <target name="build_joomla_unzipfirst" description="Build a unzipfirst-file for Joomla!">
+
+        <property name="zipfile" value="${joomla_package}/pkg_magebridge_${version}_j25_UNZIPFIRST.zip" />
+        <zip destfile="${zipfile}">
+            <fileset dir="${joomla_package}">
+                <include name="com_magebridge_j25.zip" />
+                <include name="plg_magebridge_pre_j25.zip" />
+                <include name="plg_magebridge_content_j25.zip" />
+                <include name="plg_magebridge_magebridge_j25.zip" />
+                <include name="plg_magebridge_magento_j25.zip" />
+                <include name="plg_magebridge_system_j25.zip" />
+                <include name="plg_magebridge_user_j25.zip" />
+                <include name="plg_magebridge_authentication_j25.zip" />
+            </fileset>
+        </zip>
+        <copy file="${zipfile}" tofile="${joomla_package}/pkg_magebridge_j25_UNZIPFIRST.zip" overwrite="true" />
+        <exec command="git add ${zipfile}" />
+
+    </target>
+
+</project>

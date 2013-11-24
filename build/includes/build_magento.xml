@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="MageBridge" default="build" basedir=".">
+
+    <!-- Pathing -->
+    <property name="magento_package" value="${root}/packages/magento" />
+    <property name="magento_installer" value="${root}/packages/magento_installer" />
+    <property name="magento_patch" value="${root}/packages/magento_patch" />
+    <property name="magento" value="${root}/magento" />
+
+    <!-- Public Target: build_magento -->
+    <target name="build_magento" description="Build all Magento packages">
+        <phingcall target="build_magento_all" />
+    </target>
+
+    <!-- Target: build_magento_all -->
+    <target name="build_magento_all" description="Build all Magento packages">
+        <phingcall target="cleanup_magento" />
+        <phingcall target="build_magento_patch" />
+        <!--<phingcall target="build_magento_package_mc1" />-->
+        <!--<phingcall target="build_magento_package_mc2" />-->
+        <phingcall target="build_magento_installer" />
+    </target>
+
+    <!-- Target: build_magento_cleanup -->
+    <target name="cleanup_magento" description="Cleanup Magento">
+        <exec command="cd ${magento_package}; rm -r Yireo_MageBridge*" />
+    </target>
+
+    <!-- Target: build_magento_xml -->
+    <target name="build_magento_xml" description="Build Magento XML">
+        <foreach param="file" absparam="filename" target="replace_xml_version">
+            <fileset dir="${magento}">
+                <include name="app/code/community/Yireo/MageBridge/etc/config.xml" />
+            </fileset>
+        </foreach>
+
+        <property name="packagexml" value="${magento_package}/mc1/package.xml" />
+        <exec command="mkdir -p ${magento_package}/mc1" />
+        <exec command="cp ./includes/package_mc1.xml ${packagexml}" />
+
+        <echo>Note: building ${packagexml}</echo>
+        <exec command="cp ${packagexml} ${tmp}; cat ${tmp}|sed -e 's/&lt;date&gt;\([^\&lt;]*\)/&lt;date&gt;${date}/' &gt; ${packagexml}" />
+        <exec command="cp ${packagexml} ${tmp}; cat ${tmp}|sed -e 's/&lt;release&gt;\([0-9\.]\+\)/&lt;release&gt;${version}/' &gt; ${packagexml}" />
+        <exec command="cp ${packagexml} ${tmp}; cat ${tmp}|sed -e 's/&lt;api&gt;\([0-9\.]\+\)/&lt;api&gt;${version}/' &gt; ${packagexml}" />
+
+        <property name="package2xml" value="${magento_package}/mc2/package.xml" />
+        <exec command="mkdir -p ${magento_package}/mc2" />
+        <exec command="cp ./includes/package_mc2.xml ${package2xml}" />
+
+        <echo>Note: building ${package2xml}</echo>
+        <exec command="cp ${package2xml} ${tmp}; cat ${tmp}|sed -e 's/&lt;date&gt;\([^\&lt;]*\)/&lt;date&gt;${date}/' &gt; ${package2xml}" />
+        <exec command="cp ${package2xml} ${tmp}; cat ${tmp}|sed -e 's/&lt;version&gt;\([0-9\.]\+\)/&lt;version&gt;${version}/' &gt; ${package2xml}" />
+    </target>
+
+    <!-- Target: build_magento_package_mc1 -->
+    <target name="build_magento_package_mc1" description="Build a package-file for Magento">
+        <property name="magento_build" value="${magento_package}/Yireo_MageBridge-${version}" />
+        <exec command="mkdir -p ${magento_build}/Yireo/MageBridge" />
+        <exec command="mkdir -p ${magento_build}/js/magebridge" />
+        <exec command="mkdir -p ${magento_build}/modules" />
+        <exec command="mkdir -p ${magento_build}/frontend/default/magebridge" />
+        <exec command="mkdir -p ${magento_build}/adminhtml/default/default/template/magebridge" />
+        <exec command="mkdir -p ${magento_build}/adminhtml/default/default/images/magebridge" />
+
+        <copy file="${magento}/magebridge.php" todir="${magento_build}" />
+        <copy file="${magento}/magebridge.class.php" todir="${magento_build}" />
+        <copy file="${magento}/js/magebridge/configuration.js" todir="${magento_build}/js/magebridge" />
+        <copy file="${magento}/app/etc/modules/Jira_MageBridge.xml" todir="${magento_build}/modules/" />
+        <copy file="${magento}/app/etc/modules/Yireo_MageBridge.xml" todir="${magento_build}/modules/" />
+        <copy todir="${magento_build}/Yireo/MageBridge" overwrite="true">
+            <fileset dir="${magento}/app/code/community/Yireo/MageBridge">
+                <include name="**" />
+            </fileset>
+        </copy>
+        <copy todir="${magento_build}/frontend/default/magebridge">
+            <fileset dir="${magento}/app/design/frontend/default/magebridge">
+                <include name="**" />
+            </fileset>
+        </copy>
+        <copy todir="${magento_build}/adminhtml/default/default/template/magebridge">
+            <fileset dir="${magento}/app/design/adminhtml/default/default/template/magebridge">
+                <include name="**" />
+            </fileset>
+        </copy>
+        <copy todir="${magento_build}/adminhtml/default/default/images/magebridge">
+            <fileset dir="${magento}/skin/adminhtml/default/default/images/magebridge">
+                <include name="**" />
+            </fileset>
+        </copy>
+
+        <tar destfile="${magento_package}/Yireo_MageBridge.tar.gz" compression="gzip">
+            <fileset dir="${magento_package}">
+                <include name="Yireo_MageBridge-${version}/**" />
+            </fileset>
+            <fileset dir="${magento_package}/mc1">
+                <include name="package.xml" />
+            </fileset>
+        </tar>
+        <exec command="cd ${magento}; ./pear package-validate ${magento_package}/Yireo_MageBridge.tar.gz" />
+    </target>
+
+    <!-- Target: build_magento_package_mc2 -->
+    <target name="build_magento_package_mc2" description="Build a package-file for Magento (MagentoConnect 2.0)">
+        <property name="tarfile" value="${magento_package}/MageBridge_Magento_mc2.tar.gz" />
+        <tar destfile="${tarfile}" compression="gzip">
+            <fileset dir="${magento_package}/mc2">
+                <include name="package.xml" />
+            </fileset>
+            <fileset dir="${magento}">
+                <include name="app/etc/modules/Jira_MageBridge.xml" />
+                <include name="app/etc/modules/Yireo_MageBridge.xml" />
+                <include name="magebridge.php" />
+                <include name="magebridge.class.php" />
+                <include name="js/magebridge/configuration.js" />
+                <include name="app/code/community/Yireo/MageBridge/" />
+                <include name="app/design/frontend/default/magebridge/" />
+                <include name="app/design/adminhtml/default/default/template/magebridge/" />
+                <include name="app/design/adminhtml/default/default/layout/magebridge.xml" />
+                <include name="app/design/frontend/default/default/template/magebridge/" />
+                <include name="app/design/frontend/default/default/layout/magebridge.xml" />
+                <include name="skin/adminhtml/default/default/images/magebridge/" />
+            </fileset>
+        </tar>
+    </target>
+
+    <!-- Target: build_magento_patch -->
+    <target name="build_magento_patch" description="Build a patch-file for Magento">
+        <property name="tarfile" value="${magento_patch}/MageBridge_${version}_Magento_patch.tar.gz" />
+        <tar destfile="${tarfile}" compression="gzip">
+            <fileset dir="${magento}">
+                <include name="app/etc/modules/Jira_MageBridge.xml" />
+                <include name="app/etc/modules/Yireo_MageBridge.xml" />
+                <include name="magebridge.php" />
+                <include name="magebridge.class.php" />
+                <include name="js/magebridge/configuration.js" />
+                <include name="app/code/community/Yireo/MageBridge/" />
+                <include name="app/design/frontend/default/magebridge/" />
+                <include name="app/design/adminhtml/default/default/template/magebridge/" />
+                <include name="app/design/adminhtml/default/default/layout/magebridge.xml" />
+                <include name="app/design/frontend/default/default/template/magebridge/" />
+                <include name="app/design/frontend/default/default/layout/magebridge.xml" />
+                <include name="skin/adminhtml/default/default/images/magebridge/" />
+            </fileset>
+        </tar>
+        <copy file="${magento_patch}/MageBridge_${version}_Magento_patch.tar.gz" tofile="${magento_patch}/MageBridge_Magento_patch.tar.gz" overwrite="true" />
+        <exec command="git add ${tarfile}" />
+
+        <property name="zipfile" value="${magento_patch}/MageBridge_${version}_Magento_patch.zip" />
+        <zip destfile="${zipfile}">
+            <fileset dir="${magento}">
+                <include name="app/etc/modules/Jira_MageBridge.xml" />
+                <include name="app/etc/modules/Yireo_MageBridge.xml" />
+                <include name="magebridge.php" />
+                <include name="magebridge.class.php" />
+                <include name="js/magebridge/configuration.js" />
+                <include name="app/code/community/Yireo/MageBridge/" />
+                <include name="app/design/frontend/default/magebridge/" />
+                <include name="app/design/adminhtml/default/default/template/magebridge/" />
+                <include name="app/design/adminhtml/default/default/layout/magebridge.xml" />
+                <include name="app/design/frontend/default/default/template/magebridge/" />
+                <include name="app/design/frontend/default/default/layout/magebridge.xml" />
+                <include name="skin/adminhtml/default/default/images/magebridge/" />
+            </fileset>
+        </zip>
+        <copy file="${magento_patch}/MageBridge_${version}_Magento_patch.zip" tofile="${magento_patch}/MageBridge_Magento_patch.zip" overwrite="true" />
+        <exec command="git add ${zipfile}" />
+    </target>
+
+    <!-- Target: build_magento_installer -->
+    <target name="build_magento_installer" description="Build package-files for MageBridge Installer for Magento)">
+        <exec command="cd ${magento_installer}; rm -r MageBridge_Magento*gz" />
+
+        <!--<property name="tgzfile" value="${magento_installer}/MageBridge_Magento_Installer_mc2.tar.gz" />
+        <tar destfile="${tgzfile}" compression="gzip">
+            <fileset dir="${magento_installer}/mc2">
+                <include name="package.xml" />
+            </fileset>
+            <fileset dir="${magento_installer}">
+                <include name="app/" />
+            </fileset>
+        </tar>-->
+
+        <property name="tarfile" value="${magento_installer}/MageBridge_Magento_Installer_patch.tar.gz" />
+        <tar destfile="${tarfile}" compression="gzip">
+            <fileset dir="${magento_installer}">
+                <include name="app/" />
+            </fileset>
+        </tar>
+
+        <property name="zipfile" value="${magento_installer}/MageBridge_Magento_Installer_patch.zip" />
+        <zip destfile="${zipfile}">
+            <fileset dir="${magento_installer}">
+                <include name="app/" />
+            </fileset>
+        </zip>
+    </target>
+</project>

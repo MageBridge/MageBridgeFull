@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="MageBridge" default="build" basedir=".">
+
+    <!-- General variables -->
+    <property file="./build.properties" />
+
+    <exec command="date +%Y-%m-%d" outputProperty="date" />
+    <exec command="date '+%B %Y'" outputProperty="creationDate" />
+    <exec command="date +%Y" outputProperty="creationYear" />
+    <exec command="echo /tmp/build.$$" outputProperty="tmp" />
+    <exec command="cd ../;pwd" outputProperty="root" />
+    <echo>Note: root is ${root}</echo>
+
+    <property name="gpl" value="${root}/build/includes/gpl-3.0.txt" />
+
+    <!-- Import other files -->
+    <import file="./includes/build_joomla.xml"/>
+    <import file="./includes/build_magento.xml"/>
+
+    <!-- Public Target: build -->
+    <target name="build" description="Build all packages">
+        <echo message="Running build" />
+        <phingcall target="build_xml" />
+        <phingcall target="build_joomla_all" />
+        <phingcall target="build_magento_all" />
+        <phingcall target="gitcommit" />
+    </target>
+
+    <!-- Target: gitpull -->
+    <target name="gitpull" description="Update Git">
+        <exec command="cd ${root}; git pull > /dev/null" />
+        <property file="${root}/build/build.properties" />
+    </target>
+
+    <!-- Subtarget: build_xml -->
+    <target name="build_xml">
+        <property name="buildxml" value="${root}/packages/magebridge.xml" />
+        <echo>Note: building ${buildxml}</echo>
+        <exec command="cp ${buildxml} ${tmp}; cat ${tmp}|sed -e 's/&lt;joomla&gt;\([^\&lt;]*\)/&lt;joomla&gt;${version}/' &gt; ${buildxml}" />
+        <exec command="cp ${buildxml} ${tmp}; cat ${tmp}|sed -e 's/&lt;magento&gt;\([^\&lt;]*\)/&lt;magento&gt;${version}/' &gt; ${buildxml}" />
+
+        <phingcall target="build_joomla_xml" />
+        <phingcall target="build_magento_xml" />
+    </target>
+
+    <!-- Target: replace_xml_version -->
+    <target name="replace_xml_version">
+        <exec command="cp ${filename} ${tmp}; cat ${tmp}|sed -e 's/&lt;version&gt;\([^\&lt;]*\)/&lt;version&gt;${version}/' &gt; ${filename}; rm ${tmp}" />
+        <exec command="cp ${filename} ${tmp}; cat ${tmp}|sed -e 's/&lt;creationDate&gt;\([^\&lt;]*\)/&lt;creationDate&gt;${creationDate}/' &gt; ${filename}; rm ${tmp}" />
+        <exec command="cp ${filename} ${tmp}; cat ${tmp}|sed -e 's/&lt;copyright&gt;\([^\&lt;]*\)/&lt;copyright&gt;Copyright (C) ${creationYear} Yireo.com. All rights reserved./' &gt; ${filename}; rm ${tmp}" />
+    </target>
+
+    <!-- Target: gitcommit -->
+    <target name="gitcommit" description="Commit to Git">
+        <exec command="cd ${root}; git commit -m 'Build version ${version}'; git push origin master" />
+        <exec command="rm ${tmp}" />
+    </target>
+
+</project>

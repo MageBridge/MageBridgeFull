@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+    <name>Yireo_MageBridge</name>
+    <version>1.7.3862</version>
+    <stability>stable</stability>
+    <channel>community</channel>
+    <license>Open Source License</license>
+    <extends/>
+    <summary>This module integrates Magento with Joomla!</summary>
+    <description>This module integrates Magento with Joomla!</description>
+    <notes>This module integrates Magento with Joomla!</notes>
+    <date>2012-03-29</date>
+    <time>00:00:01</time>
+    <authors>
+        <author>
+            <name>Yireo</name>
+            <user>yireo</user>
+            <email>info@yireo.com</email>
+        </author>
+    </authors>
+
+    <contents>
+        <target name="mage">
+            <dir name=".">
+                <file name="magebridge.php" />
+                <file name="magebridge.class.php" />
+            </dir>
+            <dir name="js">
+                <dir name="magebridge">
+                    <file name="configuration.js" />
+                </dir>
+            </dir>
+        </target>
+
+        <target name="mageskin">
+            <dir name="adminhtml">
+                <dir name="default">
+                    <dir name="default">
+                        <dir name="images">
+                            <dir name="magebridge">
+                                <file name="check-ok.png" />
+                                <file name="check-warning.png" />
+                                <file name="check-error.png" />
+                            </dir>
+                        </dir>
+                    </dir>
+                </dir>
+            </dir>
+        </target>
+
+        <target name="magedesign">
+            <dir name="adminhtml">
+                <dir name="default">
+                    <dir name="default">
+                        <dir name="layout">
+                            <file name="magebridge.xml" />
+                        </dir>
+                        <dir name="template">
+                            <dir name="magebridge">
+                                <file name="license.phtml" />
+                                <file name="menu.phtml" />
+                                <file name="settings.phtml" />
+                                <file name="check.phtml" />
+                                <file name="browse.phtml" />
+                                <file name="updates.phtml" />
+                                <file name="log.phtml" />
+                                <dir name="settings">
+                                    <file name="events.phtml" />
+                                    <file name="joomla.phtml" />
+                                    <file name="other.phtml" />
+                                </dir>
+                            </dir>
+                        </dir>
+                    </dir>
+                </dir>
+            </dir>
+            <dir name="frontend">
+                <dir name="default">
+                    <dir name="magebridge">
+                        <dir name="template">
+                            <dir name="magebridge">
+                                <file name="page.phtml" />
+                                <dir name="product">
+                                    <file name="addtocart.phtml" />
+                                </dir>
+                            </dir>
+                            <dir name="catalog">
+                                <dir name="product">
+                                    <dir name="view">
+                                        <file name="media.phtml" />
+                                    </dir>
+                                </dir>
+                            </dir>
+                        </dir>
+                        <dir name="layout">
+                            <file name="catalogsearch.xml" />
+                            <file name="customer.xml" />
+                            <file name="review.xml" />
+                            <file name="cms.xml" />
+                            <file name="checkout.xml" />
+                            <file name="poll.xml" />
+                            <file name="core.xml" />
+                            <file name="catalog.xml" />
+                            <file name="page.xml" />
+                            <file name="newsletter.xml" />
+                            <file name="contacts.xml" />
+                            <file name="magebridge.xml" />
+                        </dir>
+                    </dir>
+                </dir>
+            </dir>
+        </target>
+
+        <target name="magecommunity">
+            <dir name="Yireo">
+                <dir name="MageBridge">
+                    <dir name="controllers">
+                        <file name="IndexController.php" />
+                        <file name="OutputController.php" />
+                        <file name="RedirectController.php" />
+                    </dir>
+                    <dir name="Block">
+                        <file name="Breadcrumbs.php" />
+                        <file name="License.php" />
+                        <file name="Menu.php" />
+                        <file name="Settings.php" />
+                        <file name="Check.php" />
+                        <file name="Browse.php" />
+                        <file name="Log.php" />
+                        <file name="TextList.php" />
+                        <file name="Updates.php" />
+                        <dir name="Settings">
+                            <file name="Events.php" />
+                            <file name="Joomla.php" />
+                            <file name="Other.php" />
+                        </dir>
+                    </dir>
+                    <dir name="etc">
+                        <file name="api.xml" />
+                        <file name="config.xml" />
+                        <file name="system.xml" />
+                    </dir>
+                    <dir name="Helper">
+                        <file name="Cache.php" />
+                        <file name="Data.php" />
+                        <file name="Event.php" />
+                        <file name="Encryption.php" />
+                        <file name="Product.php" />
+                        <file name="Theme.php" />
+                        <file name="User.php" />
+                    </dir>
+                    <dir name="Model">
+                        <file name="Api.php" />
+                        <file name="Block.php" />
+                        <file name="Breadcrumbs.php" />
+                        <file name="Client.php" />
+                        <file name="Core.php" />
+                        <file name="Debug.php" />
+                        <file name="Dispatcher.php" />
+                        <file name="Headers.php" />
+                        <file name="Listener.php" />
+                        <file name="Messages.php" />
+                        <file name="Search.php" />
+                        <file name="Setup.php" />
+                        <file name="Session.php" />
+                        <file name="Update.php" />
+                        <file name="Url.php" />
+                        <file name="User.php" />
+                        <file name="Widget.php" />
+                        <dir name="Block">
+                            <file name="Api.php" />
+                        </dir>
+                        <dir name="Category">
+                            <file name="Api.php" />
+                        </dir>
+                        <dir name="Client">
+                            <file name="Xmlrpc.php" />
+                            <file name="Jsonrpc.php" />
+                        </dir>
+                        <dir name="Cms">
+                            <file name="Api.php" />
+                        </dir>
+                        <dir name="Customer">
+                            <file name="Api.php" />
+                            <file name="Joomla.php" />
+                        </dir>
+                        <dir name="Mysql4">
+                            <dir name="Customer">
+                                <file name="Joomla.php" />
+                                <dir name="Joomla">
+                                    <file name="Collection.php" />
+                                </dir>
+                            </dir>
+                        </dir>
+                        <dir name="Order">
+                            <file name="Api.php" />
+                        </dir>
+                        <dir name="Product">
+                            <file name="Api.php" />
+                        </dir>
+                        <dir name="Rewrite">
+                            <file name="Customer.php" />
+                            <file name="Url.php" />
+                            <file name="Store.php" />
+                            <dir name="Adminhtml">
+                                <file name="Url.php" />
+                            </dir>
+                            <dir name="Email">
+                                <dir name="Template">
+                                    <file name="Filter.php" />
+                                </dir>
+                            </dir>
+                        </dir>
+                        <dir name="Session">
+                            <file name="Api.php" />
+                        </dir>
+                        <dir name="Storegroups">
+                            <file name="Api.php" />
+                        </dir>
+                        <dir name="Storeviews">
+                            <file name="Api.php" />
+                        </dir>
+                        <dir name="Tag">
+                            <file name="Api.php" />
+                        </dir>
+                        <dir name="User">
+                            <file name="Api.php" />
+                        </dir>
+                        <dir name="Websites">
+                            <file name="Api.php" />
+                        </dir>
+                        <dir name="Widget">
+                            <file name="Api.php" />
+                        </dir>
+                    </dir>
+                    <dir name="sql">
+                        <dir name="magebridge_setup">
+                            <file name="mysql4-install-1.4.1829.php" />
+                            <file name="mysql4-upgrade-1.4.1828-1.4.1829.php" />
+                            <file name="mysql4-upgrade-1.6.3037-1.6.3038.php" />
+                        </dir>
+                    </dir>
+                </dir>
+            </dir>
+        </target>
+
+        <target name="mageetc">
+            <dir name="modules">
+                <file name="Jira_MageBridge.xml" />
+                <file name="Yireo_MageBridge.xml" />
+            </dir>
+        </target>
+
+    </contents>
+    <compatible/>
+    <dependencies>
+        <required>
+            <php>
+                <min>5.2.8</min>
+                <max>6.0.0</max>
+            </php>
+        </required>
+    </dependencies>
+</package>
