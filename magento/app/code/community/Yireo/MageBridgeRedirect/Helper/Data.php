@@ -4,8 +4,8 @@
  *
  * @author Yireo
  * @package MageBridge
- * @copyright Copyright 2012
- * @license Yireo EULA (www.yireo.com)
+ * @copyright Copyright 2013
+ * @license Open Source License
  * @link http://www.yireo.com
  */
 
@@ -22,6 +22,20 @@ class Yireo_MageBridgeRedirect_Helper_Data extends Mage_Core_Helper_Abstract
     {
         $value = Mage::getStoreConfig('magebridge/redirect/enabled');
         return (bool)$value;
+    }
+
+    /*
+     * Helper-method to check whether the current request is an API-request
+     *
+     * @access public
+     * @param null
+     * @return string
+     */
+    public function isApi()
+    {
+        $request = Mage::app()->getFrontController()->getRequest();
+        if($this->getModuleName() == 'api') return true;
+        return false;
     }
 
     /*

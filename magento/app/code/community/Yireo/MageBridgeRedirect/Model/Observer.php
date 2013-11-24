@@ -4,8 +4,8 @@
  *
  * @author Yireo
  * @package MageBridge
- * @copyright Copyright 2012
- * @license Yireo EULA (www.yireo.com)
+ * @copyright Copyright 2013
+ * @license Open Source License
  * @link http://www.yireo.com
  */
 
@@ -26,16 +26,21 @@ class Yireo_MageBridgeRedirect_Model_Observer
         if(Mage::helper('magebridge')->isBridge() == true) {
             return $this;
         }
-        
+
         // Check whether redirection is enabled
         if(Mage::helper('magebridgeredirect')->enabled() == false) {
-            return false;
+            return $this;
         }
 
+        // Check if this is an API-request
+        if(Mage::helper('magebridgeredirect')->isApi() == true) {
+            return $this;
+        }
+        
         // Fetch the MageBridge Root
         $magebridgeRootUrl = Mage::helper('magebridgeredirect')->getMageBridgeRoot();
         if(empty($magebridgeRootUrl)) {
-            return false;
+            return $this;
         }
 
         // Parse request URI
