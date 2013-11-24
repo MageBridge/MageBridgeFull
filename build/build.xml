@@ -9,6 +9,8 @@
     <exec command="date +%Y" outputProperty="creationYear" />
     <exec command="echo /tmp/build.$$" outputProperty="tmp" />
     <exec command="cd ../;pwd" outputProperty="root" />
+    <exec command="cd ../;pwd" outputProperty="MageBridgeFull" />
+    <exec command="cd ${MageBridgeFull}/../MageBridgeCore;pwd" outputProperty="MageBridgeCore" />
     <echo>Note: root is ${root}</echo>
 
     <property name="gpl" value="${root}/build/includes/gpl-3.0.txt" />
@@ -52,6 +54,7 @@
 
     <!-- Target: gitcommit -->
     <target name="gitcommit" description="Commit to Git">
+        <echo>cd ${root}; git commit -m 'Build version ${version}' .; git push origin master</echo>
         <exec command="cd ${root}; git commit -m 'Build version ${version}'; git push origin master" />
         <exec command="rm ${tmp}" />
     </target>

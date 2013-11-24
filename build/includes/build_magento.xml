@@ -29,7 +29,7 @@
     <!-- Target: build_magento_xml -->
     <target name="build_magento_xml" description="Build Magento XML">
         <foreach param="file" absparam="filename" target="replace_xml_version">
-            <fileset dir="${magento}">
+            <fileset dir="${magento}" expandsymboliclinks="true">
                 <include name="app/code/community/Yireo/MageBridge/etc/config.xml" />
             </fileset>
         </foreach>
@@ -68,31 +68,31 @@
         <copy file="${magento}/app/etc/modules/Jira_MageBridge.xml" todir="${magento_build}/modules/" />
         <copy file="${magento}/app/etc/modules/Yireo_MageBridge.xml" todir="${magento_build}/modules/" />
         <copy todir="${magento_build}/Yireo/MageBridge" overwrite="true">
-            <fileset dir="${magento}/app/code/community/Yireo/MageBridge">
+            <fileset dir="${magento}/app/code/community/Yireo/MageBridge" expandsymboliclinks="true">
                 <include name="**" />
             </fileset>
         </copy>
         <copy todir="${magento_build}/frontend/default/magebridge">
-            <fileset dir="${magento}/app/design/frontend/default/magebridge">
+            <fileset dir="${magento}/app/design/frontend/default/magebridge" expandsymboliclinks="true">
                 <include name="**" />
             </fileset>
         </copy>
         <copy todir="${magento_build}/adminhtml/default/default/template/magebridge">
-            <fileset dir="${magento}/app/design/adminhtml/default/default/template/magebridge">
+            <fileset dir="${magento}/app/design/adminhtml/default/default/template/magebridge" expandsymboliclinks="true">
                 <include name="**" />
             </fileset>
         </copy>
         <copy todir="${magento_build}/adminhtml/default/default/images/magebridge">
-            <fileset dir="${magento}/skin/adminhtml/default/default/images/magebridge">
+            <fileset dir="${magento}/skin/adminhtml/default/default/images/magebridge" expandsymboliclinks="true">
                 <include name="**" />
             </fileset>
         </copy>
 
         <tar destfile="${magento_package}/Yireo_MageBridge.tar.gz" compression="gzip">
-            <fileset dir="${magento_package}">
+            <fileset dir="${magento_package}" expandsymboliclinks="true">
                 <include name="Yireo_MageBridge-${version}/**" />
             </fileset>
-            <fileset dir="${magento_package}/mc1">
+            <fileset dir="${magento_package}/mc1" expandsymboliclinks="true">
                 <include name="package.xml" />
             </fileset>
         </tar>
@@ -103,10 +103,10 @@
     <target name="build_magento_package_mc2" description="Build a package-file for Magento (MagentoConnect 2.0)">
         <property name="tarfile" value="${magento_package}/MageBridge_Magento_mc2.tar.gz" />
         <tar destfile="${tarfile}" compression="gzip">
-            <fileset dir="${magento_package}/mc2">
+            <fileset dir="${magento_package}/mc2" expandsymboliclinks="true">
                 <include name="package.xml" />
             </fileset>
-            <fileset dir="${magento}">
+            <fileset dir="${magento}" expandsymboliclinks="true">
                 <include name="app/etc/modules/Jira_MageBridge.xml" />
                 <include name="app/etc/modules/Yireo_MageBridge.xml" />
                 <include name="magebridge.php" />
@@ -127,7 +127,7 @@
     <target name="build_magento_patch" description="Build a patch-file for Magento">
         <property name="tarfile" value="${magento_patch}/MageBridge_${version}_Magento_patch.tar.gz" />
         <tar destfile="${tarfile}" compression="gzip">
-            <fileset dir="${magento}">
+            <fileset dir="${magento}" expandsymboliclinks="true">
                 <include name="app/etc/modules/Jira_MageBridge.xml" />
                 <include name="app/etc/modules/Yireo_MageBridge.xml" />
                 <include name="magebridge.php" />
@@ -147,7 +147,7 @@
 
         <property name="zipfile" value="${magento_patch}/MageBridge_${version}_Magento_patch.zip" />
         <zip destfile="${zipfile}">
-            <fileset dir="${magento}">
+            <fileset dir="${magento}" expandsymboliclinks="true">
                 <include name="app/etc/modules/Jira_MageBridge.xml" />
                 <include name="app/etc/modules/Yireo_MageBridge.xml" />
                 <include name="magebridge.php" />
@@ -172,24 +172,24 @@
 
         <!--<property name="tgzfile" value="${magento_installer}/MageBridge_Magento_Installer_mc2.tar.gz" />
         <tar destfile="${tgzfile}" compression="gzip">
-            <fileset dir="${magento_installer}/mc2">
+            <fileset dir="${magento_installer}/mc2" expandsymboliclinks="true">
                 <include name="package.xml" />
             </fileset>
-            <fileset dir="${magento_installer}">
+            <fileset dir="${magento_installer}" expandsymboliclinks="true">
                 <include name="app/" />
             </fileset>
         </tar>-->
 
         <property name="tarfile" value="${magento_installer}/MageBridge_Magento_Installer_patch.tar.gz" />
         <tar destfile="${tarfile}" compression="gzip">
-            <fileset dir="${magento_installer}">
+            <fileset dir="${magento_installer}" expandsymboliclinks="true">
                 <include name="app/" />
             </fileset>
         </tar>
 
         <property name="zipfile" value="${magento_installer}/MageBridge_Magento_Installer_patch.zip" />
         <zip destfile="${zipfile}">
-            <fileset dir="${magento_installer}">
+            <fileset dir="${magento_installer}" expandsymboliclinks="true">
                 <include name="app/" />
             </fileset>
         </zip>

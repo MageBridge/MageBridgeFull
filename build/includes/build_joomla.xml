@@ -4,7 +4,7 @@
     <!-- Pathing -->
     <property name="joomla_package" value="${root}/packages/joomla" />
     <property name="joomla_patch" value="${root}/packages/joomla_patch" />
-    <property name="joomla" value="${root}/joomla" />
+    <property name="joomla" value="${root}/joomla2" />
 
     <!-- Public Target: build_joomla -->
     <target name="build_joomla" description="Build all Joomla! packages">
@@ -25,14 +25,14 @@
     <!-- Target: cleanup_joomla -->
     <target name="cleanup_joomla" description="Cleanup Joomla!">
         <exec command="cd ${joomla}; ./clean.sh" />
-        <exec command="cd ${joomla_package}; rm -r com_* mod_* plg_*" />
+        <exec command="cd ${joomla_package}; rm -r com_* mod_* plg_* tpl_*" />
         <exec command="rm -r ${joomla_package}/source; mkdir -p ${joomla_package}/source" />
     </target>
 
     <!-- Target: build_joomla_xml -->
     <target name="build_joomla_xml" description="Build Joomla! XML">
         <foreach param="file" absparam="filename" target="replace_xml_version">
-            <fileset dir="${joomla}">
+            <fileset dir="${joomla}" expandsymboliclinks="true">
                 <include name="administrator/components/com_magebridge/magebridge.xml" />
                 <include name="modules/mod_magebridge_block/mod_magebridge_block.xml" />
                 <include name="modules/mod_magebridge_cart/mod_magebridge_cart.xml" />
@@ -74,14 +74,14 @@
         <exec command="cd ${joomla_package}; rm -r com_*" />
 
         <foreach param="file" absparam="filename" target="replace_xml_version">
-            <fileset dir="${joomla}">
+            <fileset dir="${joomla}" expandsymboliclinks="true">
                 <include name="administrator/components/com_magebridge/magebridge.xml" />
             </fileset>
         </foreach>
 
         <exec command="mkdir -p ${joomla_package}/source/com_magebridge" />
         <copy todir="${joomla_package}/source/com_magebridge">
-            <fileset dir="${joomla}">
+            <fileset dir="${joomla}" expandsymboliclinks="true">
                 <include name="administrator/components/com_magebridge/**" />
                 <include name="components/com_magebridge/**" />
                 <include name="language/en-GB/*com_magebridge*ini" />
@@ -97,13 +97,13 @@
             tofile="${joomla_package}/source/com_magebridge/script.magebridge.php" overwrite="true" />
 
         <zip destfile="${joomla_package}/com_magebridge_j25.zip">
-            <fileset dir="${joomla_package}/source">
+            <fileset dir="${joomla_package}/source" expandsymboliclinks="true">
                 <include name="com_magebridge/**" />
             </fileset>
         </zip>
 
         <tar destfile="${joomla_package}/com_magebridge_j25.tar.gz" compression="gzip">
-            <fileset dir="${joomla_package}/source">
+            <fileset dir="${joomla_package}/source" expandsymboliclinks="true">
                 <include name="com_magebridge/**" />
             </fileset>
         </tar>
@@ -113,20 +113,20 @@
     <target name="build_joomla_templates">
         <exec command="mkdir -p ${joomla_package}/source/tpl_magebridge_root" />
         <copy todir="${joomla_package}/source/tpl_magebridge_root">
-            <fileset dir="${joomla}/templates/magebridge_root">
+            <fileset dir="${joomla}/templates/magebridge_root" expandsymboliclinks="true">
                 <include name="**" />
             </fileset>
         </copy>
         <copy file="${gpl}" tofile="${joomla_package}/source/tpl_magebridge_root/LICENSE.txt" overwrite="true" />
 
         <zip destfile="${joomla_package}/tpl_magebridge_root_j25.zip">
-            <fileset dir="${joomla_package}/source">
+            <fileset dir="${joomla_package}/source" expandsymboliclinks="true">
                 <include name="tpl_magebridge_root/**" />
             </fileset>
         </zip>
 
         <tar destfile="${joomla_package}/tpl_magebridge_root_j25.tar.gz" compression="gzip">
-            <fileset dir="${joomla_package}/source">
+            <fileset dir="${joomla_package}/source" expandsymboliclinks="true">
                 <include name="tpl_magebridge_root/**" />
             </fileset>
         </tar>
@@ -154,13 +154,13 @@
 
         <exec command="mkdir -p ${joomla_package}/source/plg_magebridge_${buildname}" />
         <copy todir="${joomla_package}/source/plg_magebridge_${buildname}" haltonerror="false">
-            <fileset dir="${joomla}/plugins/${group}/${pluginname}">
+            <fileset dir="${joomla}/plugins/${group}/${pluginname}" expandsymboliclinks="true">
                 <include name="**" />
             </fileset>
-            <fileset dir="${joomla}/language/en-GB">
+            <fileset dir="${joomla}/language/en-GB" expandsymboliclinks="true">
                 <include name="en-GB.plg_${group}_${pluginname}.ini" />
             </fileset>
-            <fileset dir="${joomla}/administrator/language/en-GB">
+            <fileset dir="${joomla}/administrator/language/en-GB" expandsymboliclinks="true">
                 <include name="en-GB.plg_${group}_${pluginname}.ini" />
                 <include name="en-GB.plg_${group}_${pluginname}.sys.ini" />
             </fileset>
@@ -168,13 +168,13 @@
         <copy file="${gpl}" tofile="${joomla_package}/source/plg_magebridge_${buildname}/LICENSE.txt" overwrite="true" />
 
         <zip destfile="${joomla_package}/plg_magebridge_${buildname}_j25.zip">
-            <fileset dir="${joomla_package}/source">
+            <fileset dir="${joomla_package}/source" expandsymboliclinks="true">
                 <include name="plg_magebridge_${buildname}/**" />
             </fileset>
         </zip>
 
         <tar destfile="${joomla_package}/plg_magebridge_${buildname}_j25.tar.gz" compression="gzip">
-            <fileset dir="${joomla_package}/source">
+            <fileset dir="${joomla_package}/source" expandsymboliclinks="true">
                 <include name="plg_magebridge_${buildname}/**" />
             </fileset>
         </tar>
@@ -192,28 +192,28 @@
         <property name="modulename" value="mod_magebridge_${name}" />
         <exec command="mkdir -p ${joomla_package}/source/${modulename}" />
 
-        <available file="${joomla}/modules/${modulename}" property="site" value="1"/>
-        <if><equals arg1="${site}" arg2="1" />
+        <available file="${joomla}/modules/${modulename}" property="siteAvailable" value="1" followSymlinks="true" />
+        <if><equals arg1="${siteAvailable}" arg2="1" />
             <then>
                 <phingcall target="replace_xml_version">
                     <property name="filename" value="${joomla}/modules/${modulename}/${modulename}.xml" />
                 </phingcall>
                 <copy todir="${joomla_package}/source/${modulename}">
-                    <fileset dir="${joomla}/modules/${modulename}">
+                    <fileset dir="${joomla}/modules/${modulename}" expandsymboliclinks="true">
                         <include name="**" />
                     </fileset>
                 </copy>
             </then>
         </if>
 
-        <available file="${joomla}/administrator/modules/${modulename}" property="admin" value="1"/>
-        <if><equals arg1="${admin}" arg2="1" />
+        <available file="${joomla}/administrator/modules/${modulename}" property="adminAvailable" value="1" followSymlinks="true" />
+        <if><equals arg1="${adminAvailable}" arg2="1" />
             <then>
                 <phingcall target="replace_xml_version">
                     <property name="filename" value="${joomla}/administrator/modules/${modulename}/${modulename}.xml" />
                 </phingcall>
                 <copy todir="${joomla_package}/source/${modulename}">
-                    <fileset dir="${joomla}/administrator/modules/${modulename}">
+                    <fileset dir="${joomla}/administrator/modules/${modulename}" expandsymboliclinks="true">
                         <include name="**" />
                     </fileset>
                 </copy>
@@ -221,23 +221,23 @@
         </if>
 
         <copy todir="${joomla_package}/source/${modulename}" haltonerror="false">
-            <fileset dir="${joomla}/language/en-GB">
+            <fileset dir="${joomla}/language/en-GB" expandsymboliclinks="true">
                 <include name="*${modulename}*" />
             </fileset>
-            <fileset dir="${joomla}/administrator/language/en-GB">
+            <fileset dir="${joomla}/administrator/language/en-GB" expandsymboliclinks="true">
                 <include name="*${modulename}*" />
             </fileset>
         </copy>
         <copy file="${gpl}" tofile="${joomla_package}/source/${modulename}/LICENSE.txt" overwrite="true" />
 
         <zip destfile="${joomla_package}/${modulename}_j25.zip">
-            <fileset dir="${joomla_package}/source">
+            <fileset dir="${joomla_package}/source" expandsymboliclinks="true">
                 <include name="${modulename}/**" />
             </fileset>
         </zip>
 
         <tar destfile="${joomla_package}/${modulename}_j25.tar.gz" compression="gzip">
-            <fileset dir="${joomla_package}/source">
+            <fileset dir="${joomla_package}/source" expandsymboliclinks="true">
                 <include name="${modulename}/**" />
             </fileset>
         </tar>
@@ -248,7 +248,7 @@
         <exec command="mkdir -p ${joomla_patch}" />
         <property name="tarfile" value="${joomla_patch}/MageBridge_${version}_Joomla25_patch.tar.gz" />
         <tar destfile="${tarfile}" compression="gzip">
-            <fileset dir="${joomla}">
+            <fileset dir="${joomla}" expandsymboliclinks="true">
                 <include name="components/com_magebridge/**" />
                 <include name="administrator/components/com_magebridge/**" />
                 <include name="administrator/modules/mod_magebridge**" />
@@ -271,7 +271,7 @@
 
         <property name="zipfile" value="${joomla_patch}/MageBridge_${version}_Joomla25_patch.zip" />
         <zip destfile="${zipfile}">
-            <fileset dir="${joomla}">
+            <fileset dir="${joomla}" expandsymboliclinks="true">
                 <include name="components/com_magebridge/**" />
                 <include name="administrator/components/com_magebridge/**" />
                 <include name="administrator/modules/mod_magebridge**" />
@@ -299,7 +299,7 @@
 
         <property name="zipfile" value="${joomla_package}/pkg_magebridge_${version}_j25_UNZIPFIRST.zip" />
         <zip destfile="${zipfile}">
-            <fileset dir="${joomla_package}">
+            <fileset dir="${joomla_package}" expandsymboliclinks="true">
                 <include name="com_magebridge_j25.zip" />
                 <include name="plg_magebridge_pre_j25.zip" />
                 <include name="plg_magebridge_content_j25.zip" />
