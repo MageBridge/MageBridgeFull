@@ -479,3 +479,4 @@ plugins/magebridge/magebridge
 plugins/authentication/magebridge
 media/com_magebridge
 components/com_magebridge
+templates/magebridge_root
