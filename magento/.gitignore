@@ -1,0 +1,11 @@
+# MageBridge symlinks
+skin/adminhtml/default/default/images/magebridge
+magebridge.class.php
+app/code/community/Yireo/MageBridge
+app/design/frontend/default/default/template/magebridge
+app/design/frontend/default/magebridge
+app/design/adminhtml/default/default/layout/magebridge.xml
+app/design/adminhtml/default/default/template/magebridge
+app/etc/modules/Yireo_MageBridge.xml
+js/magebridge
+magebridge.php
