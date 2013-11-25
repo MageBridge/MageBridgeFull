@@ -11,6 +11,7 @@ case $target in
         ;;
     'joomla') 
         phing build_joomla
+        phing gitcommit
         ;;
     'joomla_patch') 
         phing build_joomla_patch
