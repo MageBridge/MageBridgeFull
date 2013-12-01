@@ -465,12 +465,10 @@ modules/mod_magebridge_widget
 modules/mod_magebridge_cms
 modules/mod_magebridge_switcher
 modules/mod_magebridge_progress
-modules/mod_magebridge_products
 modules/mod_magebridge_menu
 modules/mod_magebridge_login
 modules/mod_magebridge_cart
 modules/mod_magebridge_block
-language/en-GB/en-GB.mod_magebridge_products.sys.ini
 language/en-GB/en-GB.mod_magebridge_block.ini
 language/en-GB/en-GB.mod_magebridge_widget.sys.ini
 language/en-GB/en-GB.mod_magebridge_cart.sys.ini
@@ -478,7 +476,6 @@ language/en-GB/en-GB.mod_magebridge_progress.sys.ini
 language/en-GB/en-GB.mod_magebridge_switcher.ini
 language/en-GB/en-GB.mod_magebridge_login.ini
 language/en-GB/en-GB.mod_magebridge_cart.ini
-language/en-GB/en-GB.mod_magebridge_products.ini
 language/en-GB/en-GB.mod_magebridge_block.sys.ini
 language/en-GB/en-GB.mod_magebridge_menu.ini
 language/en-GB/en-GB.mod_magebridge_newsletter.ini
