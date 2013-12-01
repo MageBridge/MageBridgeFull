@@ -1,0 +1,17 @@
+# Magento native files
+
+# MageBridge symlinks
+magebridge.php
+js/magebridge
+app/etc/modules/Yireo_MageBridgeRedirect.xml
+app/etc/modules/Yireo_MageBridge.xml
+app/etc/modules/Yireo_JoomlaApi.xml
+app/design/adminhtml/default/default/template/magebridge
+app/design/adminhtml/default/default/layout/magebridge.xml
+app/design/frontend/default/magebridge
+app/design/frontend/default/default/template/magebridge
+app/code/community/Yireo/JoomlaApi
+app/code/community/Yireo/MageBridgeRedirect
+app/code/community/Yireo/MageBridge
+magebridge.class.php
+skin/adminhtml/default/default/images/magebridge
