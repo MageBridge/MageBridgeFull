@@ -5,7 +5,7 @@
     <property name="magento_package" value="${root}/packages/magento" />
     <property name="magento_installer" value="${root}/packages/magento_installer" />
     <property name="magento_patch" value="${root}/packages/magento_patch" />
-    <property name="magento" value="${root}/magento" />
+    <property name="magento" value="${MageBridgeCore}/magento" />
 
     <!-- Public Target: build_magento -->
     <target name="build_magento" description="Build all Magento packages">
@@ -125,7 +125,9 @@
 
     <!-- Target: build_magento_patch -->
     <target name="build_magento_patch" description="Build a patch-file for Magento">
+
         <property name="tarfile" value="${magento_patch}/MageBridge_${version}_Magento_patch.tar.gz" />
+        <exec command="rm ${tarfile}" />
         <tar destfile="${tarfile}" compression="gzip">
             <fileset dir="${magento}" expandsymboliclinks="true">
                 <include name="app/etc/modules/Jira_MageBridge.xml" />
@@ -146,6 +148,7 @@
         <exec command="git add ${tarfile}" />
 
         <property name="zipfile" value="${magento_patch}/MageBridge_${version}_Magento_patch.zip" />
+        <exec command="rm ${zipfile}" />
         <zip destfile="${zipfile}">
             <fileset dir="${magento}" expandsymboliclinks="true">
                 <include name="app/etc/modules/Jira_MageBridge.xml" />
