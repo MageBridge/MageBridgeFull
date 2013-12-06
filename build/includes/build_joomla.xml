@@ -230,7 +230,7 @@
                 <phingcall target="replace_xml_version">
                     <property name="filename" value="${joomla}/modules/${modulename}/${modulename}.xml" />
                 </phingcall>
-                <copy todir="${jooml_package}/source/${modulename}">
+                <copy todir="${joomla_package}/source/${modulename}">
                     <fileset dir="${joomla}/modules/${modulename}" expandsymboliclinks="true">
                         <include name="**" />
                     </fileset>
