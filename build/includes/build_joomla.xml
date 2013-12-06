@@ -91,7 +91,7 @@
         </copy>
         <copy file="${gpl}" tofile="${joomla_package}/source/com_magebridge/LICENSE.txt" overwrite="true" />
 
-        <copy file="${joomla_package}/source/com_magebridge/administrator/components/com_magebridge/magebridge.xml"
+        <move file="${joomla_package}/source/com_magebridge/administrator/components/com_magebridge/magebridge.xml"
             tofile="${joomla_package}/source/com_magebridge/magebridge.xml" overwrite="true" />
         <copy file="${joomla_package}/source/com_magebridge/administrator/components/com_magebridge/script.magebridge.php"
             tofile="${joomla_package}/source/com_magebridge/script.magebridge.php" overwrite="true" />
