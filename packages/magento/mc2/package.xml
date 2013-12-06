@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <package>
     <name>Yireo_MageBridge</name>
-    <version>1.8.4794</version>
+    <version>1.8.4795</version>
     <stability>stable</stability>
     <channel>community</channel>
     <license>Open Source License</license>
@@ -9,7 +9,7 @@
     <summary>This module integrates Magento with Joomla!</summary>
     <description>This module integrates Magento with Joomla!</description>
     <notes>This module integrates Magento with Joomla!</notes>
-    <date>2013-12-05</date>
+    <date>2013-12-06</date>
     <time>00:00:01</time>
     <authors>
         <author>
