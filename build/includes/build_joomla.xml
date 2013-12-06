@@ -34,18 +34,6 @@
         <foreach param="file" absparam="filename" target="replace_xml_version">
             <fileset dir="${MageBridgeFullJoomla}" expandsymboliclinks="true">
                 <include name="administrator/components/com_magebridge/magebridge.xml" />
-                <include name="modules/mod_magebridge_block/mod_magebridge_block.xml" />
-                <include name="modules/mod_magebridge_cart/mod_magebridge_cart.xml" />
-                <include name="modules/mod_magebridge_cms/mod_magebridge_cms.xml" />
-                <include name="modules/mod_magebridge_login/mod_magebridge_login.xml" />
-                <include name="modules/mod_magebridge_menu/mod_magebridge_menu.xml" />
-                <include name="modules/mod_magebridge_newsletter/mod_magebridge_newsletter.xml" />
-                <include name="modules/mod_magebridge_products/mod_magebridge_products.xml" />
-                <include name="modules/mod_magebridge_roklogin/mod_magebridge_roklogin.xml" />
-                <include name="modules/mod_magebridge_rokscroller/mod_magebridge_rokscroller.xml" />
-                <include name="modules/mod_magebridge_progress/mod_magebridge_progress.xml" />
-                <include name="modules/mod_magebridge_switcher/mod_magebridge_switcher.xml" />
-                <include name="modules/mod_magebridge_widget/mod_magebridge_widget.xml" />
                 <include name="administrator/modules/mod_magebridge_customers/mod_magebridge_customers.xml" />
                 <include name="administrator/modules/mod_magebridge_orders/mod_magebridge_orders.xml" />
                 <include name="plugins/authentication/magebridge/magebridge.xml" />
