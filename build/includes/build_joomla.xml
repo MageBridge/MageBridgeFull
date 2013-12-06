@@ -84,8 +84,10 @@
             <fileset dir="${joomla}" expandsymboliclinks="true">
                 <include name="administrator/components/com_magebridge/**" />
                 <include name="components/com_magebridge/**" />
-                <include name="language/en-GB/*com_magebridge*ini" />
-                <include name="administrator/language/en-GB/*com_magebridge*ini" />
+                <include name="language/en-GB/en-GB.com_magebridge.ini" />
+                <include name="administrator/language/en-GB/en-GB.com_magebridge.ini" />
+                <include name="administrator/language/en-GB/en-GB.com_magebridge.menu.ini" />
+                <include name="administrator/language/en-GB/en-GB.com_magebridge.sys.ini" />
                 <include name="media/com_magebridge/**" />
             </fileset>
         </copy>
