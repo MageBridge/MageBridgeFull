@@ -2,9 +2,10 @@
 <project name="MageBridge" default="build" basedir=".">
 
     <!-- Pathing -->
-    <property name="joomla_package" value="${root}/packages/joomla" />
-    <property name="joomla_patch" value="${root}/packages/joomla_patch" />
-    <property name="joomla" value="${root}/joomla2" />
+    <property name="joomla_package" value="${MageBridgeFull}/packages/joomla" />
+    <property name="joomla_patch" value="${MageBridgeFull}/packages/joomla_patch" />
+    <property name="MageBridgeFullJoomla" value="${MageBridgeFull}/joomla2" />
+    <property name="MageBridgeCoreJoomla" value="${MageBridgeCore}/joomla2" />
 
     <!-- Public Target: build_joomla -->
     <target name="build_joomla" description="Build all Joomla! packages">
@@ -24,15 +25,14 @@
 
     <!-- Target: cleanup_joomla -->
     <target name="cleanup_joomla" description="Cleanup Joomla!">
-        <exec command="cd ${joomla}; ./clean.sh" />
         <exec command="cd ${joomla_package}; rm -r com_* mod_* plg_* tpl_*" />
-        <exec command="rm -r ${joomla_package}/source; mkdir -p ${joomla_package}/source" />
+        <!-- @todo<exec command="rm -r ${joomla_package}/source; mkdir -p ${joomla_package}/source" />-->
     </target>
 
     <!-- Target: build_joomla_xml -->
     <target name="build_joomla_xml" description="Build Joomla! XML">
         <foreach param="file" absparam="filename" target="replace_xml_version">
-            <fileset dir="${joomla}" expandsymboliclinks="true">
+            <fileset dir="${MageBridgeFullJoomla}" expandsymboliclinks="true">
                 <include name="administrator/components/com_magebridge/magebridge.xml" />
                 <include name="modules/mod_magebridge_block/mod_magebridge_block.xml" />
                 <include name="modules/mod_magebridge_cart/mod_magebridge_cart.xml" />
@@ -74,14 +74,14 @@
         <exec command="cd ${joomla_package}; rm -r com_*" />
 
         <foreach param="file" absparam="filename" target="replace_xml_version">
-            <fileset dir="${joomla}" expandsymboliclinks="true">
+            <fileset dir="${MageBridgeCoreJoomla}" expandsymboliclinks="true">
                 <include name="administrator/components/com_magebridge/magebridge.xml" />
             </fileset>
         </foreach>
 
         <exec command="mkdir -p ${joomla_package}/source/com_magebridge" />
         <copy todir="${joomla_package}/source/com_magebridge">
-            <fileset dir="${joomla}" expandsymboliclinks="true">
+            <fileset dir="${MageBridgeCore}/joomla2" expandsymboliclinks="true">
                 <include name="administrator/components/com_magebridge/**" />
                 <include name="components/com_magebridge/**" />
                 <include name="language/en-GB/en-GB.com_magebridge.ini" />
@@ -115,7 +115,7 @@
     <target name="build_joomla_templates">
         <exec command="mkdir -p ${joomla_package}/source/tpl_magebridge_root" />
         <copy todir="${joomla_package}/source/tpl_magebridge_root">
-            <fileset dir="${joomla}/templates/magebridge_root" expandsymboliclinks="true">
+            <fileset dir="${MageBridgeCoreJoomla}/templates/magebridge_root" expandsymboliclinks="true">
                 <include name="**" />
             </fileset>
         </copy>
@@ -136,7 +136,22 @@
 
     <!-- Target: build_joomla_plugins -->
     <target name="build_joomla_plugins">
-        <foreach list="${joomla_plugins}" param="name" target="build_joomla_plugin"/>
+        <foreach list="${joomla_core_plugins}" param="name" target="build_joomla_core_plugin"/>
+        <foreach list="${joomla_full_plugins}" param="name" target="build_joomla_full_plugin"/>
+    </target>
+
+    <!-- Target: build_joomla_core_plugin -->
+    <target name="build_joomla_core_plugin">
+        <property name="joomla" value="${MageBridgeCoreJoomla}" override="true" />
+        <property name="name" value="${name}" override="true" />
+        <phingcall target="build_joomla_plugin" />
+    </target>
+
+    <!-- Target: build_joomla_full_plugin -->
+    <target name="build_joomla_full_plugin">
+        <property name="joomla" value="${MageBridgeFullJoomla}" override="true" />
+        <property name="name" value="${name}" override="true" />
+        <phingcall target="build_joomla_plugin" />
     </target>
 
     <!-- Target: build_joomla_plugin -->
@@ -184,12 +199,27 @@
 
     <!-- Target: build_joomla_modules -->
     <target name="build_joomla_modules">
-        <foreach list="${joomla_modules}" param="name" target="build_joomla_module"/>
+        <foreach list="${joomla_core_modules}" param="name" target="build_joomla_core_module"/>
+        <foreach list="${joomla_full_modules}" param="name" target="build_joomla_full_module"/>
+    </target>
+
+    <!-- Target: build_joomla_core_module -->
+    <target name="build_joomla_core_module">
+        <property name="joomla" value="${MageBridgeCoreJoomla}" override="true" />
+        <property name="name" value="${name}" override="true" />
+        <phingcall target="build_joomla_module" />
+    </target>
+
+    <!-- Target: build_joomla_full_module -->
+    <target name="build_joomla_full_module">
+        <property name="joomla" value="${MageBridgeFullJoomla}" override="true" />
+        <property name="name" value="${name}" override="true" />
+        <phingcall target="build_joomla_module" />
     </target>
 
     <!-- Target: build_joomla_module -->
     <target name="build_joomla_module">
-        <echo>Note: module is ${name}</echo>
+        <echo>Note: Building module coded "${name}", folder ${joomla}</echo>
 
         <property name="modulename" value="mod_magebridge_${name}" />
         <exec command="mkdir -p ${joomla_package}/source/${modulename}" />
@@ -200,7 +230,7 @@
                 <phingcall target="replace_xml_version">
                     <property name="filename" value="${joomla}/modules/${modulename}/${modulename}.xml" />
                 </phingcall>
-                <copy todir="${joomla_package}/source/${modulename}">
+                <copy todir="${jooml_package}/source/${modulename}">
                     <fileset dir="${joomla}/modules/${modulename}" expandsymboliclinks="true">
                         <include name="**" />
                     </fileset>
@@ -250,7 +280,7 @@
         <exec command="mkdir -p ${joomla_patch}" />
         <property name="tarfile" value="${joomla_patch}/MageBridge_${version}_Joomla25_patch.tar.gz" />
         <tar destfile="${tarfile}" compression="gzip">
-            <fileset dir="${joomla}" expandsymboliclinks="true">
+            <fileset dir="${MageBridgeCore}/joomla2" expandsymboliclinks="true">
                 <include name="components/com_magebridge/**" />
                 <include name="administrator/components/com_magebridge/**" />
                 <include name="administrator/modules/mod_magebridge**" />
@@ -273,7 +303,7 @@
 
         <property name="zipfile" value="${joomla_patch}/MageBridge_${version}_Joomla25_patch.zip" />
         <zip destfile="${zipfile}">
-            <fileset dir="${joomla}" expandsymboliclinks="true">
+            <fileset dir="${MageBridgeCoreJoomla}" expandsymboliclinks="true">
                 <include name="components/com_magebridge/**" />
                 <include name="administrator/components/com_magebridge/**" />
                 <include name="administrator/modules/mod_magebridge**" />
