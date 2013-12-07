@@ -26,31 +26,13 @@
     <!-- Target: cleanup_joomla -->
     <target name="cleanup_joomla" description="Cleanup Joomla!">
         <exec command="cd ${joomla_package}; rm -r com_* mod_* plg_* tpl_*" />
-        <!-- @todo<exec command="rm -r ${joomla_package}/source; mkdir -p ${joomla_package}/source" />-->
+        <exec command="rm -r ${joomla_package}/source; mkdir -p ${joomla_package}/source" />
     </target>
 
     <!-- Target: build_joomla_xml -->
     <target name="build_joomla_xml" description="Build Joomla! XML">
         <foreach param="file" absparam="filename" target="replace_xml_version">
             <fileset dir="${MageBridgeFullJoomla}" expandsymboliclinks="true">
-                <include name="administrator/components/com_magebridge/magebridge.xml" />
-                <include name="administrator/modules/mod_magebridge_customers/mod_magebridge_customers.xml" />
-                <include name="administrator/modules/mod_magebridge_orders/mod_magebridge_orders.xml" />
-                <include name="plugins/authentication/magebridge/magebridge.xml" />
-                <include name="plugins/content/magebridge/magebridge.xml" />
-                <include name="plugins/content/magebridgetags/magebridgetags.xml" />
-                <include name="plugins/community/magebridge/magebridge.xml" />
-                <include name="plugins/magento/magebridge/magebridge.xml" />
-                <include name="plugins/search/magebridge/magebridge.xml" />
-                <include name="plugins/system/magebridge/magebridge.xml" />
-                <include name="plugins/user/magebridge/magebridge.xml" />
-                <include name="plugins/finder/magebridge/magebridge.xml" />
-                <include name="plugins/magebridge/magebridge/magebridge.xml" />
-                <include name="plugins/system/magebridgeyoo/magebridgeyoo.xml" />
-                <include name="plugins/system/magebridgezoo/magebridgezoo.xml" />
-                <include name="plugins/system/magebridget3/magebridget3.xml" />
-                <include name="plugins/system/magebridgert/magebridgert.xml" />
-                <include name="plugins/system/magebridgepre/magebridgepre.xml" />
                 <include name="templates/magebridge_root/templateDetails.xml" />
             </fileset>
         </foreach>
@@ -156,6 +138,10 @@
                 <property name="buildname" value="${suffix}" />
             </else>
         </if>
+
+        <phingcall target="replace_xml_version">
+            <property name="filename" value="${joomla}/plugins/${group}/${pluginname}/${pluginname}.xml" />
+        </phingcall>
 
         <exec command="mkdir -p ${joomla_package}/source/plg_magebridge_${buildname}" />
         <copy todir="${joomla_package}/source/plg_magebridge_${buildname}" haltonerror="false">
