@@ -21,6 +21,7 @@
         <phingcall target="build_joomla_templates" />
         <phingcall target="build_joomla_patch" />
         <phingcall target="build_joomla_unzipfirst" />
+        <phingcall target="build_joomla_allpackages" />
     </target>
 
     <!-- Target: cleanup_joomla -->
@@ -296,6 +297,22 @@
             </fileset>
         </zip>
         <copy file="${joomla_patch}/MageBridge_${version}_Joomla25_patch.zip" tofile="${joomla_patch}/MageBridge_Joomla25_patch.zip" overwrite="true" />
+        <exec command="git add ${zipfile}" />
+
+    </target>
+    
+    <!-- Target: build_joomla_allpackages -->
+    <target name="build_joomla_allpackages" description="Build a allpackages-file for Joomla!">
+
+        <property name="zipfile" value="${joomla_package}/pkg_magebridge_${version}_j25_ALL.zip" />
+        <zip destfile="${zipfile}">
+            <fileset dir="${joomla_package}" expandsymboliclinks="true">
+                <include name="com_magebridge_j25.zip" />
+                <include name="plg_magebridge_**_j25.zip" />
+                <include name="mod_magebridge_**_j25.zip" />
+            </fileset>
+        </zip>
+        <copy file="${zipfile}" tofile="${joomla_package}/pkg_magebridge_j25_ALL.zip" overwrite="true" />
         <exec command="git add ${zipfile}" />
 
     </target>
