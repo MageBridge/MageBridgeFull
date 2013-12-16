@@ -424,6 +424,13 @@ configuration.php
 index.php
 joomla.xml
 *.txt
+# JCE
+plugins/editors/jce/*
+administrator/components/com_jce
+components/com_jce
+language/en-GB/en-GB.com_jce.ini
+language/en-GB/en-GB.com_jce.xml
+media/jce/
 
 # MageBridge symlinks
 administrator/language/en-GB/en-GB.plg_community_magebridge.ini
