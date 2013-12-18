@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fields name="actions">
+        <fieldset name="actions" addfieldpath="/administrator/components/com_content/models/fields">
+            <field name="article_id" label="PLG_MAGEBRIDGEPRODUCT_ARTICLE_FIELD_ARTICLE_ID" type="modal_article" default="0" />
+        </fieldset>
+    </fields>
+</form>
