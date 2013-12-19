@@ -2,7 +2,7 @@
 <form>
     <fields name="actions">
         <fieldset name="actions" addfieldpath="/administrator/components/com_magebridge/fields">
-            <field name="usergroup_id" label="PLG_MAGEBRIDGEPRODUCT_USERGROUP_FIELD_USERGROUP_ID" type="usergroup" default="0" />
+            <field name="usergroup_id" label="PLG_MAGEBRIDGEPRODUCT_USERGROUP_FIELD_USERGROUP_ID" type="usergroup" allownone="1" />
         </fieldset>
     </fields>
 </form>
