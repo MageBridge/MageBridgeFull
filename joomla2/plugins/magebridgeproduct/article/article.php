@@ -13,62 +13,35 @@
 defined('_JEXEC') or die('Restricted access');
 
 /**
- * MageBridge Product-connector to mail a Joomla! article when a customer buys a product
+ * MageBridge Product Plugin to mail a Joomla! article when a customer buys a product
  *
  * @package MageBridge
  */
-class plgMageBridgeProductArticle extends MageBridgePlugin
+class plgMageBridgeProductArticle extends MageBridgePluginProduct
 {
-	/**
-	 * Constructor
-	 *
-	 * @access      protected
-	 * @param       object  $subject The object to observe
-	 * @param       array   $config  An array that holds the plugin configuration
-	 */
-	public function __construct(& $subject, $config)
-	{
-		parent::__construct($subject, $config);
-		$this->loadLanguage();
-	}
-
-    /*
-     * Method to check whether this connector is enabled or not
-     *
-     * @param null
-     * @return bool
-     */
-    public function isEnabled()
-    {
-        return true;
-    }
-
-    /*
-     * Method to manipulate the MageBridge Product Relation backend-form
-     *
-     * @param JForm $form The form to be altered
-     * @param JForm $data The associated data for the form
-     * @return boolean
-     */
-    public function onMageBridgeProductPrepareForm($form, $data)
-    {
-		$form->loadFile(dirname(__FILE__).'/form.xml', false);
-    }
-
     /*
      * Method to execute when the product is bought
      * 
-     * @param string $article_id
+     * @param array $actions
      * @param JUser $user
      * @param int $status
      * @return bool
      */
-    public function onPurchase($article_id = null, $user = null, $status = null)
+    public function onMageBridgeProductPurchase($actions = null, $user = null, $status = null)
     {
-        // Load the article from the database
-        $db = JFactory::getDBO();
-        $db->setQuery('SELECT `introtext`,`title` FROM `#__content` WHERE `id` = '.(int)$article_id);
-        $article = $db->loadObject();
+        // Check for the article ID
+        if(!isset($actions['article_id'])) {
+            return false;
+        }
+
+        // Make sure it is not empty
+        $article_id = (int)$actions['article_id'];
+        if(!$article_id > 0) {
+            return false;
+        }
+
+        $this->db->setQuery('SELECT `introtext`,`title` FROM `#__content` WHERE `id` = '.$article_id);
+        $article = $this->db->loadObject();
         if (empty($article)) {
             return false;
         }
