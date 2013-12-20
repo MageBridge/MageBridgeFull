@@ -20,6 +20,11 @@ defined('_JEXEC') or die('Restricted access');
 class plgMageBridgeProductUsergroup extends MageBridgePluginProduct
 {
     /*
+     * Deprecated variable to migrate from the original connector-architecture to new Product Plugins
+     */
+    protected $connector_field = 'usergroup_id';
+
+    /*
      * Method to execute when the product is bought
      * 
      * @param array $actions
