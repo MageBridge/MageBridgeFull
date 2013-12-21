@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fields name="actions">
+        <fieldset name="actions" addfieldpath="/administrator/components/com_magebridge/fields">
+            <field name="acajoom_list" label="PLG_MAGEBRIDGEPRODUCT_ACAJOOM_FIELD_ACAJOOM_ID" type="sql" sql="SELECT `list_name` AS `title`, `id` AS `value` FROM `#__acajoom_lists`" />
+        </fieldset>
+    </fields>
+</form>
