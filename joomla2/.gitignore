@@ -227,6 +227,7 @@ components/com_users/*
 components/com_weblinks/*
 components/com_wrapper/*
 components/index.html
+docs/*
 images/banners/*
 images/sampledata/*
 images/joomla*
@@ -421,6 +422,7 @@ templates/system/*
 templates/index.html
 tmp/*
 configuration.php
+robots.txt.dist
 index.php
 joomla.xml
 *.txt
