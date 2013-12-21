@@ -2,7 +2,7 @@
 <form>
     <fields name="actions">
         <fieldset name="actions" addfieldpath="/administrator/components/com_magebridge/fields">
-            <field name="acajoom_list" label="PLG_MAGEBRIDGEPRODUCT_ACAJOOM_FIELD_ACAJOOM_LIST" type="sql" query="SELECT `list_name` AS `title`, `id` AS `value` FROM `#__acajoom_lists`" />
+            <field name="acctexp_plan" label="PLG_MAGEBRIDGEPRODUCT_ACCTEXP_FIELD_ACCTEXP_PLAN" type="sql" query="SELECT `name` AS `title`, `id` AS `value` FROM `#__acctexp_plans`" />
         </fieldset>
     </fields>
 </form>

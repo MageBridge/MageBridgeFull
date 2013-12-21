@@ -34,6 +34,11 @@ class plgMageBridgeProductUsergroup extends MageBridgePluginProduct
      */
     public function onMageBridgeProductPurchase($actions = null, $user = null, $status = null)
     {
+        // Make sure this event is allowed
+        if($this->isEnabled() == false) {
+            return false;
+        }
+
         // Check for the usergroup ID
         if(!isset($actions['usergroup_id'])) {
             return false;
@@ -69,6 +74,11 @@ class plgMageBridgeProductUsergroup extends MageBridgePluginProduct
      */
     public function onMageBridgeProductReverse($actions = null, $user = null)
     {
+        // Make sure this event is allowed
+        if($this->isEnabled() == false) {
+            return false;
+        }
+
         // Check for the usergroup ID
         if(!isset($actions['usergroup_id'])) {
             return false;

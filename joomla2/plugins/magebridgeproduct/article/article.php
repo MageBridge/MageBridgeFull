@@ -34,6 +34,11 @@ class plgMageBridgeProductArticle extends MageBridgePluginProduct
      */
     public function onMageBridgeProductPurchase($actions = null, $user = null, $status = null)
     {
+        // Make sure this event is allowed
+        if($this->isEnabled() == false) {
+            return false;
+        }
+
         // Check for the article ID
         if(!isset($actions['article_id'])) {
             return false;

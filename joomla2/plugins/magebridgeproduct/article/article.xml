@@ -12,6 +12,7 @@
 
 	<files>
 		<filename plugin="article">article.php</filename>
+		<filename>form.xml</filename>
 		<filename>index.html</filename>
 	</files>
 
