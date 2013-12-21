@@ -2,9 +2,9 @@
 
 # Definitions
 base=`pwd`
-joomla25=${base}/joomla25
-joomla30=${base}/joomla30
-rsync="rsync -rERuC "
+joomla25=${base}/joomla2
+joomla30=${base}/joomla3
+rsync="rsync -rLERuC "
 
 # init
 cd $joomla25
@@ -38,6 +38,11 @@ done
 mkdir -p $joomla30/plugins/magebridge.newsletter/
 cd $joomla30/plugins/
 $rsync magebridge.newsletter $joomla30/plugins/
+
+# product plugins
+mkdir -p $joomla30/plugins/magebridgeproduct/
+cd $joomla30/plugins/
+$rsync magebridgeproduct $joomla30/plugins/
 
 # other plugins
 cd $joomla30/plugins/system
