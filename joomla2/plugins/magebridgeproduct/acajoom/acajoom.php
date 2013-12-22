@@ -36,14 +36,15 @@ class plgMageBridgeProductAcajoom extends MageBridgePluginProduct
     }
 
     /*
-     * Method to execute when the product is bought
+     * Event "onMageBridgeProductPurchase"
      * 
+     * @access public
      * @param array $actions
-     * @param JUser $user
-     * @param int $status
-     * @return bool
+     * @param object $user Joomla! user object
+     * @param tinyint $status Status of the current order
+     * @param string $sku Magento SKU
      */
-    public function onMageBridgeProductPurchase($actions = null, $user = null, $status = null)
+    public function onMageBridgeProductPurchase($actions = null, $user = null, $status = null, $sku = null)
     {
         // Make sure this event is allowed
         if($this->isEnabled() == false) {
@@ -56,8 +57,8 @@ class plgMageBridgeProductAcajoom extends MageBridgePluginProduct
         }
 
         // Make sure it is not empty
-        $list_id = (int)$actions['acajoom_list'];
-        if(!$list_id > 0) {
+        $acajoom_list = (int)$actions['acajoom_list'];
+        if(!$acajoom_list > 0) {
             return false;
         }
 
@@ -85,7 +86,7 @@ class plgMageBridgeProductAcajoom extends MageBridgePluginProduct
         if ($subscriber_id > 0) {
 
             // See if the user is already there
-            $query = 'SELECT * FROM `#__acajoom_queue` WHERE `subscriber_id`='.(int)$subscriber_id.' AND `list_id`='.(int)$list_id.' LIMIT 1';
+            $query = 'SELECT * FROM `#__acajoom_queue` WHERE `subscriber_id`='.(int)$subscriber_id.' AND `list_id`='.(int)$acajoom_list.' LIMIT 1';
             $this->db->setQuery($query);
             $row = $this->db->loadObject();
 
@@ -93,7 +94,7 @@ class plgMageBridgeProductAcajoom extends MageBridgePluginProduct
 
                 $values = array(
                     'subscriber_id' => (int)$subscriber_id,
-                    'list_id' => (int)$list_id,
+                    'list_id' => (int)$acajoom_list,
                     'type' => 1,
                 );
 
@@ -107,13 +108,14 @@ class plgMageBridgeProductAcajoom extends MageBridgePluginProduct
     }
 
     /*
-     * Method to execute when this connector is reversed
+     * Event "onMageBridgeProductReverse"
      * 
      * @param array $actions
      * @param JUser $user
+     * @param string $sku Magento SKU
      * @return bool
      */
-    public function onMageBridgeProductReverse($actions = null, $user = null)
+    public function onMageBridgeProductReverse($actions = null, $user = null, $sku = null)
     {
         // Make sure this event is allowed
         if($this->isEnabled() == false) {
@@ -126,8 +128,8 @@ class plgMageBridgeProductAcajoom extends MageBridgePluginProduct
         }
 
         // Make sure it is not empty
-        $list_id = (int)$actions['acajoom_list'];
-        if(!$list_id > 0) {
+        $acajoom_list = (int)$actions['acajoom_list'];
+        if(!$acajoom_list > 0) {
             return false;
         }
 
@@ -137,7 +139,7 @@ class plgMageBridgeProductAcajoom extends MageBridgePluginProduct
         $subscriber_id = $this->db->loadResult();
 
         if ($subscriber_id > 0) {
-            $query = 'DELETE FROM `#__acajoom_queue` WHERE `subscriber_id`='.(int)$subscriber_id.' AND `list_id`='.(int)$list_id;
+            $query = 'DELETE FROM `#__acajoom_queue` WHERE `subscriber_id`='.(int)$subscriber_id.' AND `list_id`='.(int)$acajoom_list;
             $this->db->setQuery($query);
             $this->db->query();
         }

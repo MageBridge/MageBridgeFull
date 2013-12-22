@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fields name="actions">
+        <fieldset name="actions" addfieldpath="/administrator/components/com_magebridge/fields">
+            <field name="akeebasubs_level" label="PLG_MAGEBRIDGEPRODUCT_AKEEBASUBS_FIELD_AKEEBASUBS_LEVEL" type="sql" query="SELECT `title`, `akeebasubs_level_id` AS `value` FROM `#__akeebasubs_levels`" />
+        </fieldset>
+    </fields>
+</form>

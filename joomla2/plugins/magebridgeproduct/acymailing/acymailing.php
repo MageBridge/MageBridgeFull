@@ -44,14 +44,15 @@ class plgMageBridgeProductAcymailing extends MageBridgePluginProduct
     }
 
     /*
-     * Method to execute when the product is bought
+     * Event "onMageBridgeProductPurchase"
      * 
+     * @access public
      * @param array $actions
-     * @param JUser $user
-     * @param int $status
-     * @return bool
+     * @param object $user Joomla! user object
+     * @param tinyint $status Status of the current order
+     * @param string $sku Magento SKU
      */
-    public function onMageBridgeProductPurchase($actions = null, $user = null, $status = null)
+    public function onMageBridgeProductPurchase($actions = null, $user = null, $status = null, $sku = null)
     {
         // Make sure this event is allowed
         if($this->isEnabled() == false) {
@@ -94,10 +95,11 @@ class plgMageBridgeProductAcymailing extends MageBridgePluginProduct
     }
 
     /*
-     * Method to execute when this connector is reversed
+     * Event "onMageBridgeProductReverse"
      * 
      * @param array $actions
      * @param JUser $user
+     * @param string $sku Magento SKU
      * @return bool
      */
     public function onMageBridgeProductReverse($actions = null, $user = null)

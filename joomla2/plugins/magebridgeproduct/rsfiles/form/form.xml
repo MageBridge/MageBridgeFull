@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fields name="actions">
+        <fieldset name="actions" addfieldpath="/administrator/components/com_magebridge/fields">
+            <field name="rsfiles_group" label="PLG_MAGEBRIDGEPRODUCT_RSFILES_FIELD_RSFILES_GROUP" type="sql" query="SELECT `GroupName` AS `title`, `IdGroup` AS `value` FROM `#__rsfiles_groups` ORDER BY `name`" />
+        </fieldset>
+    </fields>
+</form>

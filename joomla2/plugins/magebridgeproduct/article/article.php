@@ -25,14 +25,15 @@ class plgMageBridgeProductArticle extends MageBridgePluginProduct
     protected $connector_field = 'article_id';
 
     /*
-     * Method to execute when the product is bought
+     * Event "onMageBridgeProductPurchase"
      * 
+     * @access public
      * @param array $actions
-     * @param JUser $user
-     * @param int $status
-     * @return bool
+     * @param object $user Joomla! user object
+     * @param tinyint $status Status of the current order
+     * @param string $sku Magento SKU
      */
-    public function onMageBridgeProductPurchase($actions = null, $user = null, $status = null)
+    public function onMageBridgeProductPurchase($actions = null, $user = null, $status = null, $sku = null)
     {
         // Make sure this event is allowed
         if($this->isEnabled() == false) {

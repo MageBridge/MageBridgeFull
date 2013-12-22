@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fields name="actions">
+        <fieldset name="actions" addfieldpath="/administrator/components/com_magebridge/fields">
+            <field name="docman_group" label="PLG_MAGEBRIDGEPRODUCT_DOCMAN_GROUP_FIELD_DOCMAN_GROUP" type="sql" query="SELECT `groups_name` AS `title`, `groups_id` AS `value` FROM `#__docman_groups`" />
+        </fieldset>
+    </fields>
+</form>

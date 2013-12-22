@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fields name="actions">
+        <fieldset name="actions" addfieldpath="/administrator/components/com_magebridge/fields">
+            <field name="jnews_list" label="PLG_MAGEBRIDGEPRODUCT_JNEWSLETTER_FIELD_JNEWS_LIST" type="sql" query="SELECT `list_name` AS `title`, `id` AS `value` FROM `#__jnews_lists`" />
+        </fieldset>
+    </fields>
+</form>
