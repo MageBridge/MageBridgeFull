@@ -38,7 +38,7 @@
         			<option value="popular">MOD_MAGEBRIDGE_SLIDER_FIELD_ORDERING_OPTION_POPULAR</option>
 		        </field>
         		<field name="count" type="text" default="5" label="MOD_MAGEBRIDGE_SLIDER_FIELD_COUNT" description="MOD_MAGEBRIDGE_SLIDER_FIELD_COUNT_DESC" />
-		        <field name="category_id" type="category" return="id" default="" label="MOD_MAGEBRIDGE_SLIDER_FIELD_CATEGORY_ID" description="MOD_MAGEBRIDGE_SLIDER_FIELD_CATEGORY_ID_DESC" />
+		        <field name="category_id" type="mcategory" return="id" default="" label="MOD_MAGEBRIDGE_SLIDER_FIELD_CATEGORY_ID" description="MOD_MAGEBRIDGE_SLIDER_FIELD_CATEGORY_ID_DESC" />
         		<field name="tool" type="list" default="" label="MOD_MAGEBRIDGE_SLIDER_FIELD_TOOL" description="MOD_MAGEBRIDGE_SLIDER_FIELD_TOOL_DESC">
 		        	<option value="awkward">Awkward</option>
 		        	<option value="slidesjs">SlidesJS</option>
