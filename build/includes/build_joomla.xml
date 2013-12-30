@@ -140,6 +140,8 @@
             </else>
         </if>
 
+        <echo>Note: Building plugin "${buildname}", group ${group}, name ${pluginname}</echo>
+
         <phingcall target="replace_xml_version">
             <property name="filename" value="${joomla}/plugins/${group}/${pluginname}/${pluginname}.xml" />
         </phingcall>

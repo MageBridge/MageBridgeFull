@@ -18,7 +18,7 @@ defined('_JEXEC') or die('Restricted access');
     <?php foreach ($products as $product) : ?>
     <div>
         <?php if ($params->get('show_title',1)) : ?>
-            <a href="<?php echo $product['url']; ?>"><h3><?php echo $product['name']; ?></h3></a>
+            <a href="<?php echo $product['url']; ?>"><h4><?php echo $product['name']; ?></h4></a>
         <?php endif; ?>
 
         <?php if ($params->get('show_short_description',1)) : ?>
