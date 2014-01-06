@@ -44,9 +44,8 @@ class plgContentMageBridgeTags extends JPlugin
         $bridge = MageBridgeModelBridge::getInstance();
 
 	    // Load plugin paramaters
-        jimport('joomla.html.parameter');
 	    $plugin = JPluginHelper::getPlugin('content', 'magebridgetags');
-    	$pluginParams = new JParameter($plugin->params);
+    	$pluginParams = YireoHelper::toRegistry($plugin->params);
         $max = $pluginParams->get('max_products', 10);
 
         // Find related data
