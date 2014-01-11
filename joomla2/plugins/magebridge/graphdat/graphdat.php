@@ -3,9 +3,13 @@
  * Joomla! MageBridge plugin for Graphdat
  *
  * @author Yireo (info@yireo.com)
- * @copyright Copyright 2013
+ * @copyright Copyright 2014
  * @license GNU Public License
  * @link http://www.yireo.com
+ *
+ * 1) Install Graphdat Agent (see graphdat.com)
+ * 2) Install Graphdat PHP extension (pecl install graphdat)
+ * 3) Enable this MageBridge Graphdat plugin
  */
 
 // Check to ensure this file is included in Joomla!
@@ -17,19 +21,19 @@ jimport( 'joomla.plugin.plugin' );
 /**
  * MageBridge Graphdat Plugin
  */
-class plgMagebridgeMagebridge extends JPlugin
+class plgMagebridgeGraphdat extends JPlugin
 {
     /**
-     * Wrapper function for graphdat_start
+     * Wrapper function for graphdat_begin
      * 
      * @access private
      * @param string $name
      * @return null
      */
-    private function graphdatStart($timer = null)
+    private function graphdatBegin($timer = null)
     {
-        if(function_exists('graphdat_start')) {
-            graphdat_start($timer);
+        if(function_exists('graphdat_begin')) {
+            graphdat_begin($timer);
         }
     }
 
@@ -56,7 +60,7 @@ class plgMagebridgeMagebridge extends JPlugin
      */
     public function onBeforeBuildMageBridge()
     {
-        $this->graphdatStart('build MageBridge');
+        $this->graphdatBegin('onBeforeBuildMageBridge');
     }
 
     /**
@@ -68,6 +72,6 @@ class plgMagebridgeMagebridge extends JPlugin
      */
     public function onAfterBuildMageBridge()
     {
-        $this->graphdatEnd('build MageBridge');
+        $this->graphdatEnd('onAfterBuildMageBridge');
     }
 }
