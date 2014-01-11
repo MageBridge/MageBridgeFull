@@ -503,6 +503,7 @@ administrator/language/en-GB/en-GB.plg_system_magebridge.sys.ini
 administrator/language/en-GB/en-GB.plg_finder_magebridge.ini
 administrator/language/en-GB/en-GB.plg_community_magebridge.sys.ini
 administrator/language/en-GB/en-GB.plg_system_magebridget3.ini
+administrator/language/nl-NL/
 administrator/components/com_magebridge
 modules/mod_magebridge_newsletter
 modules/mod_magebridge_widget
@@ -533,6 +534,7 @@ language/en-GB/en-GB.mod_magebridge_newsletter.sys.ini
 language/en-GB/en-GB.mod_magebridge_widget.ini
 language/en-GB/en-GB.mod_magebridge_cms.ini
 language/en-GB/en-GB.com_jce_advlink_magebridgelinks.ini
+language/nl-NL/
 plugins/community/magebridge
 plugins/content/magebridge
 plugins/magento/magebridge
