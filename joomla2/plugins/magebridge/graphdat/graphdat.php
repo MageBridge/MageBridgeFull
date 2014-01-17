@@ -62,16 +62,4 @@ class plgMagebridgeGraphdat extends JPlugin
     {
         $this->graphdatBegin('onBeforeBuildMageBridge');
     }
-
-    /**
-     * Event onAfterBuildMageBridge
-     *
-     * @access public
-     * @param null
-     * @return null
-     */
-    public function onAfterBuildMageBridge()
-    {
-        $this->graphdatEnd('onAfterBuildMageBridge');
-    }
 }
