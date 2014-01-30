@@ -36,16 +36,16 @@ done
 
 # newsletter plugins
 mkdir -p $joomla30/plugins/magebridge.newsletter/
-cd $joomla30/plugins/
+cd $joomla25/plugins/
 $rsync magebridge.newsletter $joomla30/plugins/
 
 # product plugins
 mkdir -p $joomla30/plugins/magebridgeproduct/
-cd $joomla30/plugins/
+cd $joomla25/plugins/
 $rsync magebridgeproduct $joomla30/plugins/
 
 # other plugins
-cd $joomla30/plugins/system
+cd $joomla25/plugins/system
 $rsync magebridge* $joomla30/plugins/system
 
 # languages
