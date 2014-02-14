@@ -59,6 +59,7 @@
                 <include name="administrator/language/en-GB/en-GB.com_magebridge.ini" />
                 <include name="administrator/language/en-GB/en-GB.com_magebridge.menu.ini" />
                 <include name="administrator/language/en-GB/en-GB.com_magebridge.sys.ini" />
+                <include name="administrator/language/en-GB/en-GB.lib_yireo.ini" />
                 <include name="media/com_magebridge/**" />
             </fileset>
         </copy>
@@ -262,6 +263,7 @@
                 <include name="administrator/components/com_magebridge/**" />
                 <include name="administrator/modules/mod_magebridge**" />
                 <include name="administrator/language/en-GB/*magebridge*" />
+                <include name="administrator/language/en-GB/*lib_yireo*" />
                 <include name="modules/mod_magebridge**" />
                 <include name="language/en-GB/*magebridge*" />
                 <include name="plugins/system/magebridge**" />
@@ -285,6 +287,7 @@
                 <include name="administrator/components/com_magebridge/**" />
                 <include name="administrator/modules/mod_magebridge**" />
                 <include name="administrator/language/en-GB/*magebridge*" />
+                <include name="administrator/language/en-GB/*lib_yireo*" />
                 <include name="modules/mod_magebridge**" />
                 <include name="language/en-GB/*magebridge*" />
                 <include name="plugins/system/magebridge**" />

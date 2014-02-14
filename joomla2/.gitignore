@@ -470,6 +470,7 @@ language/en-GB/en-GB.com_jce.xml
 media/jce/
 
 # MageBridge symlinks
+administrator/language/en-GB/en-GB.lib_yireo.ini
 administrator/language/en-GB/en-GB.plg_community_magebridge.ini
 administrator/language/en-GB/en-GB.plg_magebridge_magebridge.sys.ini
 administrator/language/en-GB/en-GB.plg_search_magebridge.sys.ini
