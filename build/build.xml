@@ -16,6 +16,7 @@
     <property name="gpl" value="${root}/build/includes/gpl-3.0.txt" />
 
     <!-- Import other files -->
+    <import file="../../../distributor/build/includes/generic_magento_module.xml"/>
     <import file="./includes/build_joomla.xml"/>
     <import file="./includes/build_magento.xml"/>
 
