@@ -15,6 +15,7 @@
     <!-- Target: build_magento_all -->
     <target name="build_magento_all" description="Build all Magento packages">
         <phingcall target="cleanup_magento" />
+        <phingcall target="build_magento_xml" />
         <phingcall target="build_magento_patch" />
         <phingcall target="build_magento_package_mc2" />
         <phingcall target="build_magento_installer" />
@@ -29,6 +30,9 @@
     <target name="build_magento_xml" description="Build Magento XML">
         <foreach param="file" absparam="filename" target="replace_xml_version">
             <fileset dir="${magento}" expandsymboliclinks="true">
+                <include name="app/code/community/Yireo/MageBridge/etc/config.xml" />
+            </fileset>
+            <fileset dir="${magento_installer}" expandsymboliclinks="true">
                 <include name="app/code/community/Yireo/MageBridge/etc/config.xml" />
             </fileset>
         </foreach>
