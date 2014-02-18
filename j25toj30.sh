@@ -16,7 +16,7 @@ for path in $paths; do
 done
 
 # site modules
-modules="block cart cms login menu newsletter products progress roklogin rokscroller switcher"
+modules="block cart cms login menu newsletter products progress roklogin rokscroller switcher widget"
 for module in $modules; do
     $rsync ./modules/mod_magebridge_${module} ${joomla30}
 done
