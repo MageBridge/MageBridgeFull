@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fields name="actions">
+        <fieldset name="actions" addfieldpath="/administrator/components/com_magebridge/fields">
+            <field name="msc_id" label="PLG_MAGEBRIDGEPRODUCT_OSEMSC6_FIELD_MSC_ID" type="sql" query="SELECT `id` AS `value`, `title` FROM `#__osemsc_acl`" key_field="value" value_field="title" />
+            <field name="msc_period" label="PLG_MAGEBRIDGEPRODUCT_OSEMSC6_FIELD_MSC_PERIOD" type="text" />
+            <field name="msc_periodtype" label="PLG_MAGEBRIDGEPRODUCT_OSEMSC6_FIELD_MSC_PERIODTYPE" type="list">
+                <option value="day">PLG_MAGEBRIDGEPRODUCT_OSEMSC6_FIELD_MSC_PERIODTYPE_OPTION_DAY</option>
+                <option value="week">PLG_MAGEBRIDGEPRODUCT_OSEMSC6_FIELD_MSC_PERIODTYPE_OPTION_WEEK</option>
+                <option value="month">PLG_MAGEBRIDGEPRODUCT_OSEMSC6_FIELD_MSC_PERIODTYPE_OPTION_MONTH</option>
+                <option value="year">PLG_MAGEBRIDGEPRODUCT_OSEMSC6_FIELD_MSC_PERIODTYPE_OPTION_YEAR</option>
+            </field>
+        </fieldset>
+    </fields>
+</form>

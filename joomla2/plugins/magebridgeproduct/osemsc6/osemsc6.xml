@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5" type="plugin" group="magebridgeproduct" method="upgrade">
+	<name>PLG_MAGEBRIDGEPRODUCT_OSEMSC6</name>
+	<author>Yireo</author>
+	<creationDate>February 2014</creationDate>
+	<copyright>Copyright (C) 2014 Yireo.com. All rights reserved.</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<authorEmail>info@yireo.com</authorEmail>
+	<authorUrl>www.yireo.com</authorUrl>
+	<version>1.8.5067</version>
+	<description>PLG_MAGEBRIDGEPRODUCT_OSEMSC6_DESC</description>
+
+	<files>
+		<filename plugin="osemsc6">osemsc6.php</filename>
+		<folder>form</folder>
+		<filename>index.html</filename>
+	</files>
+
+	<languages>
+		<language tag="en-GB">en-GB.plg_magebridgeproduct_osemsc6.ini</language>
+		<language tag="en-GB">en-GB.plg_magebridgeproduct_osemsc6.sys.ini</language>
+	</languages>
+</extension>
