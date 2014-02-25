@@ -120,7 +120,7 @@ class plgContentMageBridgeTags extends JPlugin
 
         // Read the parameters
 	    $plugin = JPluginHelper::getPlugin('content', 'magebridgetags');
-    	$pluginParams = new JParameter($plugin->params);
+    	$pluginParams = YireoHelper::toRegistry($plugin->params);
         $source = $pluginParams->get('tag_source');
 
         switch($source) {
