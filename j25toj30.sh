@@ -51,5 +51,6 @@ $rsync magebridge* $joomla30/plugins/system
 # languages
 cp $joomla25/language/en-GB/*magebridge* $joomla30/language/en-GB/
 cp $joomla25/administrator/language/en-GB/*magebridge* $joomla30/administrator/language/en-GB/
+cp $joomla25/administrator/language/en-GB/*yireo* $joomla30/administrator/language/en-GB/
 
 # end
