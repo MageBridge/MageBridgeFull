@@ -23,16 +23,21 @@
     <!-- Public Target: build -->
     <target name="build" description="Build all packages">
         <echo message="Running build" />
+        <phingcall target="gitpull" />
         <phingcall target="build_xml" />
-        <phingcall target="build_joomla_all" />
-        <phingcall target="build_magento_all" />
+        <!--<phingcall target="build_joomla_all" />
+        <phingcall target="build_magento_all" />-->
         <phingcall target="gitcommit" />
     </target>
 
     <!-- Target: gitpull -->
     <target name="gitpull" description="Update Git">
         <exec command="cd ${root}; git pull > /dev/null" />
+        <exec command="cd ${root}; githead=`git rev-list HEAD --count`; expr $githead + 4940" outputProperty="build_version" />
+        <exec command="cat ${build_version} > ${root}/build/build.version" />
         <property file="${root}/build/build.properties" />
+        <property name="version" value="${major}.${build_version}" />
+        <echo>Note: building ${version}</echo>
     </target>
 
     <!-- Subtarget: build_xml -->
@@ -56,6 +61,7 @@
     <!-- Target: gitcommit -->
     <target name="gitcommit" description="Commit to Git">
         <echo>cd ${root}; git commit -m 'Build version ${version}' .; git push origin master</echo>
+        <exec command="cd ${root}; git tag -s v${version} -m 'Creating release ${version}'" />
         <exec command="cd ${MageBridgeFull}; git commit -m 'Build version ${version}' .; git push origin master" />
         <exec command="cd ${MageBridgeCore}; git commit -m 'Increase version to v${version}' .; git push origin master" />
         <exec command="rm ${tmp}" />

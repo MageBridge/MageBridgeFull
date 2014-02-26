@@ -1,4 +1,4 @@
 <magebridge>
-    <joomla>1.8.5067</joomla>
-    <magento>1.8.5067</magento>
+    <joomla>${version}</joomla>
+    <magento>${version}</magento>
 </magebridge>
