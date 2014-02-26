@@ -34,7 +34,7 @@
     <target name="gitpull" description="Update Git">
         <exec command="cd ${root}; git pull > /dev/null" />
         <exec command="cd ${root}; githead=`git rev-list HEAD --count`; expr $githead + 4940" outputProperty="build_version" />
-        <exec command="cat ${build_version} > ${root}/build/build.version" />
+        <exec command="echo ${build_version} > ${root}/build/build.version" />
         <property file="${root}/build/build.properties" />
         <property name="version" value="${major}.${build_version}" />
         <echo>Note: building ${version}</echo>
