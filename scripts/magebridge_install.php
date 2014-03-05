@@ -4,7 +4,7 @@
  *
  * @author Yireo (info@yireo.com)
  * @package MageBridge
- * @copyright Copyright 2013
+ * @copyright Copyright 2014
  * @license GNU Public License
  * @link http://www.yireo.com
  */
@@ -47,19 +47,40 @@ class MageBridgeInstaller
      */
     public function doUnzipFile($file, $folder)
     {
-        if(!class_exists('ZipArchive')) {
-            $this->feedback('ERROR: No ZIP-support found');
-            exit;
-        }
-
+        $zipSupport = false;
+    
         // Set umask(0022) manually
         umask(0022);
 
-        $zip = new ZipArchive();
-        if($zip->open($file) === true) {
-            $zip->extractTo($folder);
-            $zip->close();
+        // ZipArchive
+        if(class_exists('ZipArchive')) {
+            $zipSupport = true;
+            $zip = new ZipArchive();
+            if($zip->open($file) === true) {
+                $zip->extractTo($folder);
+                $zip->close();
+            }
         }
+
+        // Try commands instead
+        if($zipSupport == false) {
+            $cmd = "unzip $file -d $folder";
+            if(function_exists('exec')) {
+                $zipSupport = true;
+                exec($cmd);
+            } elseif(function_exists('system')) {
+                $zipSupport = true;
+                system($cmd);
+            } elseif(function_exists('passthru')) {
+                $zipSupport = true;
+                passthru($cmd);
+            }
+        }
+
+        if($zipSupport == false) {
+            $this->feedback('ERROR: No ZIP-support found');
+        }
+        return;
     }
 
     /*
@@ -350,9 +371,9 @@ class MageBridgeInstallerMagento extends MageBridgeInstaller
         $this->getHtaccess();
         $this->fixMagentoIndexFile();
         $this->initMagento();
-        $this->installMageBridge();
         $this->apiUserMagento();
         $this->systemConfigMagento();
+        $this->installMageBridge();
         $this->cleanMagento();
     }
 

@@ -16,8 +16,19 @@
 
     <property name="gpl" value="${root}/build/includes/gpl-3.0.txt" />
 
-    <!-- Import other files -->
+    <!-- Import generic targets -->
+    <import file="../../../distributor/build/includes/generic.xml"/>
+    <import file="../../../distributor/build/includes/generic_media.xml"/>
+    <import file="../../../distributor/build/includes/generic_tweet.xml"/>
+    <import file="../../../distributor/build/includes/generic_github.xml"/>
+    <import file="../../../distributor/build/includes/generic_joomla_plugin.xml"/>
+    <import file="../../../distributor/build/includes/generic_joomla_module.xml"/>
+    <import file="../../../distributor/build/includes/generic_joomla_component.xml"/>
+    <import file="../../../distributor/build/includes/generic_joomla_package.xml"/>
     <import file="../../../distributor/build/includes/generic_magento_module.xml"/>
+    <import file="../../../distributor/build/includes/generic_transifex.xml"/>
+
+    <!-- Import other files -->
     <import file="./includes/build_joomla.xml"/>
     <import file="./includes/build_magento.xml"/>
 

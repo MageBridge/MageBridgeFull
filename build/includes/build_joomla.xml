@@ -197,11 +197,20 @@
 
     <!-- Target: build_joomla_module -->
     <target name="build_joomla_module">
-        <echo>Note: Building module coded "${name}", folder ${joomla}</echo>
 
-        <property name="modulename" value="mod_magebridge_${name}" />
-        <exec command="mkdir -p ${joomla_package}/source/${modulename}" />
+        <!-- Define properties -->
+        <property name="destination" value="${joomla_package}" />
+        <property name="module_name" value="magebridge_${name}" />
+        <property name="module_title" value="mod_magebridge_${name}" />
+        <property name="info_url" value="http://www.yireo.com/software/magebridge" />
 
+        <available file="${joomla}/modules/${modulename}" property="module_client" value="0" followSymlinks="true" />
+        <available file="${joomla}/administrator/modules/${modulename}" property="module_client" value="0" followSymlinks="true" />
+
+        <!-- Call tasks -->
+        <phingcall target="generic_joomla_module_j25" />
+
+        <!--
         <available file="${joomla}/modules/${modulename}" property="siteAvailable" value="1" followSymlinks="true" />
         <if><equals arg1="${siteAvailable}" arg2="1" />
             <then>
@@ -251,6 +260,7 @@
                 <include name="${modulename}/**" />
             </fileset>
         </tar>
+        -->
     </target>
 
     <!-- Target: build_joomla_patch -->
