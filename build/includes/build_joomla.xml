@@ -177,8 +177,8 @@
 
     <!-- Target: build_joomla_modules -->
     <target name="build_joomla_modules">
-        <foreach list="${joomla_core_modules}" param="name" target="build_joomla_core_module"/>
         <foreach list="${joomla_full_modules}" param="name" target="build_joomla_full_module"/>
+        <foreach list="${joomla_core_modules}" param="name" target="build_joomla_core_module"/>
     </target>
 
     <!-- Target: build_joomla_core_module -->
@@ -201,67 +201,12 @@
         <!-- Define properties -->
         <property name="joomla25" value="${joomla}" />
         <property name="destination" value="${joomla_package}" />
-        <property name="module_name" value="magebridge_${name}" />
-        <property name="module_title" value="mod_magebridge_${name}" />
+        <property name="module_name" value="magebridge_${name}" override="true" />
+        <property name="module_title" value="mod_magebridge_${name}" override="true" />
         <property name="info_url" value="http://www.yireo.com/software/magebridge" />
-
-        <property name="module_client" value="0" />
-        <available file="${joomla}/administrator/modules/${modulename}" property="module_client" value="1" followSymlinks="true" />
 
         <!-- Call tasks -->
         <phingcall target="generic_joomla_module_j25" />
-
-        <!--
-        <available file="${joomla}/modules/${modulename}" property="siteAvailable" value="1" followSymlinks="true" />
-        <if><equals arg1="${siteAvailable}" arg2="1" />
-            <then>
-                <phingcall target="replace_xml_version">
-                    <property name="filename" value="${joomla}/modules/${modulename}/${modulename}.xml" />
-                </phingcall>
-                <copy todir="${joomla_package}/source/${modulename}">
-                    <fileset dir="${joomla}/modules/${modulename}" expandsymboliclinks="true">
-                        <include name="**" />
-                    </fileset>
-                </copy>
-            </then>
-        </if>
-
-        <available file="${joomla}/administrator/modules/${modulename}" property="adminAvailable" value="1" followSymlinks="true" />
-        <if><equals arg1="${adminAvailable}" arg2="1" />
-            <then>
-                <phingcall target="replace_xml_version">
-                    <property name="filename" value="${joomla}/administrator/modules/${modulename}/${modulename}.xml" />
-                </phingcall>
-                <copy todir="${joomla_package}/source/${modulename}">
-                    <fileset dir="${joomla}/administrator/modules/${modulename}" expandsymboliclinks="true">
-                        <include name="**" />
-                    </fileset>
-                </copy>
-            </then>
-        </if>
-
-        <copy todir="${joomla_package}/source/${modulename}" haltonerror="false">
-            <fileset dir="${joomla}/language/en-GB" expandsymboliclinks="true">
-                <include name="*${modulename}*" />
-            </fileset>
-            <fileset dir="${joomla}/administrator/language/en-GB" expandsymboliclinks="true">
-                <include name="*${modulename}*" />
-            </fileset>
-        </copy>
-        <copy file="${gpl}" tofile="${joomla_package}/source/${modulename}/LICENSE.txt" overwrite="true" />
-
-        <zip destfile="${joomla_package}/${modulename}_j25.zip">
-            <fileset dir="${joomla_package}/source" expandsymboliclinks="true">
-                <include name="${modulename}/**" />
-            </fileset>
-        </zip>
-
-        <tar destfile="${joomla_package}/${modulename}_j25.tar.gz" compression="gzip">
-            <fileset dir="${joomla_package}/source" expandsymboliclinks="true">
-                <include name="${modulename}/**" />
-            </fileset>
-        </tar>
-        -->
     </target>
 
     <!-- Target: build_joomla_patch -->
