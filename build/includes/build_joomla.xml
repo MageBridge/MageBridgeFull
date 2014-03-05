@@ -205,8 +205,9 @@
         <property name="module_title" value="mod_magebridge_${name}" override="true" />
         <property name="info_url" value="http://www.yireo.com/software/magebridge" />
 
+        <property name="site_copy_public" value="false" override="true" />
+        <property name="site_copy_updates" value="false" override="true" />
         <property name="site_copy_folder_downloads" value="${site_copy_folder_private}/magebridge-packages/" override="true" />
-        <property name="site_copy_folder_updates" value="${site_copy_folder_private}/magebridge-updates/" override="true" />
 
         <!-- Call tasks -->
         <phingcall target="generic_joomla_module_j25" />
