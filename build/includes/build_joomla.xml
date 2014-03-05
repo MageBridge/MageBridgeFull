@@ -205,8 +205,8 @@
         <property name="module_title" value="mod_magebridge_${name}" />
         <property name="info_url" value="http://www.yireo.com/software/magebridge" />
 
-        <available file="${joomla}/modules/${modulename}" property="module_client" value="0" followSymlinks="true" />
-        <available file="${joomla}/administrator/modules/${modulename}" property="module_client" value="0" followSymlinks="true" />
+        <property name="module_client" value="0" />
+        <available file="${joomla}/administrator/modules/${modulename}" property="module_client" value="1" followSymlinks="true" />
 
         <!-- Call tasks -->
         <phingcall target="generic_joomla_module_j25" />
