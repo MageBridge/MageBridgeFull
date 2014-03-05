@@ -199,6 +199,7 @@
     <target name="build_joomla_module">
 
         <!-- Define properties -->
+        <property name="joomla25" value="${joomla}" />
         <property name="destination" value="${joomla_package}" />
         <property name="module_name" value="magebridge_${name}" />
         <property name="module_title" value="mod_magebridge_${name}" />
