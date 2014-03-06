@@ -209,10 +209,23 @@
         <property name="site_copy_updates" value="false" override="true" />
         <property name="site_copy_folder_downloads" value="${site_copy_folder_private}/magebridge-packages/" override="true" />
 
+        <if><available file="${joomla}/modules/mod_${module_name}" type="dir" />
+            <then>
+                <phingcall target="replace_xml_version">
+                    <property name="filename" value="${joomla}/modules/mod_${module_name}/mod_${module_name}.xml" />
+                </phingcall>
+            </then>
+        </if>
+
+        <if><available file="${joomla}/administrator/modules/mod_${module_name}" type="dir" />
+            <then>
+                <phingcall target="replace_xml_version">
+                    <property name="filename" value="${joomla}/administrator/modules/mod_${module_name}/mod_${module_name}.xml" />
+                </phingcall>
+            </then>
+        </if>
+
         <!-- Call tasks -->
-        <phingcall target="replace_xml_version">
-            <property name="filename" value="${joomla}/plugins/${group}/${pluginname}/${pluginname}.xml" />
-        </phingcall>
         <phingcall target="generic_joomla_module_j25" />
     </target>
 
