@@ -1,5 +1,6 @@
 # Joomla! native files
 .htaccess
+*emailscheduler*
 administrator/cache/*
 administrator/components/com_finder/
 administrator/components/com_joomlaupdate/
