@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form>
-    <fieldset name="actions" addfieldpath="/administrator/components/com_magebridge/fields">
-        <field name="msc_id" label="PLG_MAGEBRIDGEPRODUCT_OSEMSC4_FIELD_MSC_ID" type="sql" query="SELECT `id` AS `value`, `name` AS `title` FROM `#__osemsc_acl`" />
-        <field name="msc_period" label="PLG_MAGEBRIDGEPRODUCT_OSEMSC4_FIELD_MSC_PERIOD" type="text" />
-        <field name="msc_periodtype" label="PLG_MAGEBRIDGEPRODUCT_OSEMSC4_FIELD_MSC_PERIODTYPE" type="list">
-            <option value="day">PLG_MAGEBRIDGEPRODUCT_OSEMSC4_FIELD_MSC_PERIODTYPE_OPTION_DAY</option>
-            <option value="week">PLG_MAGEBRIDGEPRODUCT_OSEMSC4_FIELD_MSC_PERIODTYPE_OPTION_WEEK</option>
-            <option value="month">PLG_MAGEBRIDGEPRODUCT_OSEMSC4_FIELD_MSC_PERIODTYPE_OPTION_MONTH</option>
-            <option value="year">PLG_MAGEBRIDGEPRODUCT_OSEMSC4_FIELD_MSC_PERIODTYPE_OPTION_YEAR</option>
-        </field>
-    </fieldset>
+    <fields name="actions">
+        <fieldset name="osemsc" addfieldpath="/administrator/components/com_magebridge/fields">
+            <field name="msc_id" label="PLG_MAGEBRIDGEPRODUCT_OSEMSC4_FIELD_MSC_ID" type="sql" query="SELECT `id` AS `value`, `name` AS `title` FROM `#__osemsc_acl`" />
+            <field name="msc_period" label="PLG_MAGEBRIDGEPRODUCT_OSEMSC4_FIELD_MSC_PERIOD" type="text" />
+            <field name="msc_periodtype" label="PLG_MAGEBRIDGEPRODUCT_OSEMSC4_FIELD_MSC_PERIODTYPE" type="list">
+                <option value="day">PLG_MAGEBRIDGEPRODUCT_OSEMSC4_FIELD_MSC_PERIODTYPE_OPTION_DAY</option>
+                <option value="week">PLG_MAGEBRIDGEPRODUCT_OSEMSC4_FIELD_MSC_PERIODTYPE_OPTION_WEEK</option>
+                <option value="month">PLG_MAGEBRIDGEPRODUCT_OSEMSC4_FIELD_MSC_PERIODTYPE_OPTION_MONTH</option>
+                <option value="year">PLG_MAGEBRIDGEPRODUCT_OSEMSC4_FIELD_MSC_PERIODTYPE_OPTION_YEAR</option>
+            </field>
+        </fieldset>
+    </fields>
 </form>

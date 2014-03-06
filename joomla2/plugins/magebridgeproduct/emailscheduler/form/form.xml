@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form>
     <fields name="actions">
-        <fieldset name="actions" addfieldpath="/administrator/components/com_magebridge/fields">
+        <fieldset name="emailscheduler" addfieldpath="/administrator/components/com_magebridge/fields">
             <field name="article_id" label="PLG_MAGEBRIDGEPRODUCT_EMAILSCHEDULER_FIELD_ARTICLE_ID" type="article" default="0" />
             <field name="template_id" label="PLG_MAGEBRIDGEPRODUCT_EMAILSCHEDULER_FIELD_TEMPLATE_ID" type="sql" 
                 query="SELECT id AS value, label AS title FROM #__emailscheduler_templates">

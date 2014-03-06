@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form>
     <fields name="actions">
-        <fieldset name="actions" addfieldpath="/administrator/components/com_magebridge/fields">
+        <fieldset name="kunena" addfieldpath="/administrator/components/com_magebridge/fields">
             <field name="kunena_rank" label="PLG_MAGEBRIDGEPRODUCT_KUNENA_RANKS_FIELD_KUNENA_RANK" type="sql" query="SELECT `rank_title` AS `title`, `rank_id` AS `value` FROM `#__kunena_ranks`" />
         </fieldset>
     </fields>

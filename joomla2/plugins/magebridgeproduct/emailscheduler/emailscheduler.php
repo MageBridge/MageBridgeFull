@@ -56,18 +56,13 @@ class plgMageBridgeProductEmailscheduler extends MageBridgePluginProduct
         $email->setTemplate($template_id);
 
         // Set the recipients
-        //$recipients = array($user->email);
-        $recipients = array('to' => 'jisse@koans.org'); // @todo: Temporary hacks
+        $recipients = array('to' => $user->email);
         if(!empty($actions['bcc'])) $recipients['bcc'] = $actions['bcc'];
         $email->setRecipients($recipients);
 
-        // @todo: Temporary hack
-        $emailData = $email->getData();
-        $email->setBody($emailData['body_html'].' [debug]'.$user->email.'[/debug]');
-
         // Save this mail with a bit of delay
         $delay = (isset($actions['delay'])) ? (int)$actions['delay'] : 0;
-        $email->setSendData(time() + $delay);
+        $email->setSendDate(time() + $delay);
         $email->save();
 
         return true;

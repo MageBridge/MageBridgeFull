@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form>
     <fields name="actions">
-        <fieldset name="actions" addfieldpath="/administrator/components/com_magebridge/fields">
+        <fieldset name="jomsocial" addfieldpath="/administrator/components/com_magebridge/fields">
             <field name="jomsocial_points" label="PLG_MAGEBRIDGEPRODUCT_JOMSOCIAL_USERPOINTS_FIELD_JOMSOCIAL_POINTS" type="text" />
         </fieldset>
     </fields>

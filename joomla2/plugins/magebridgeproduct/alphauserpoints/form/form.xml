@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form>
     <fields name="actions">
-        <fieldset name="actions" addfieldpath="/administrator/components/com_magebridge/fields">
+        <fieldset name="alphauserpoints" addfieldpath="/administrator/components/com_magebridge/fields">
             <field name="aup_rule" label="PLG_MAGEBRIDGEPRODUCT_ALPHAUSERPOINTS_FIELD_AUP_RULE" type="sql" query="SELECT `rule_name` AS `title`, `plugin_function` AS `value` FROM `#__alpha_userpoints_rules` WHERE `published`=1" />
             <field name="aup_points" label="PLG_MAGEBRIDGEPRODUCT_ALPHAUSERPOINTS_FIELD_AUP_POINTS" type="text" size="4" />
         </fieldset>

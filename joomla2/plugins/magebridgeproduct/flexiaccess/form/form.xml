@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form>
     <fields name="actions">
-        <fieldset name="actions" addfieldpath="/administrator/components/com_magebridge/fields">
+        <fieldset name="flexiaccess" addfieldpath="/administrator/components/com_magebridge/fields">
             <field name="flexiaccess_group" label="PLG_MAGEBRIDGEPRODUCT_FLEXIACCESS_FIELD_FLEXIACCESS_GROUP" type="sql" query="SELECT `name` AS `title`, `id` AS `value` FROM `#__flexiaccess_groups` ORDER BY `name`" />
         </fieldset>
     </fields>
