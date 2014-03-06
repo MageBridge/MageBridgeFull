@@ -210,6 +210,9 @@
         <property name="site_copy_folder_downloads" value="${site_copy_folder_private}/magebridge-packages/" override="true" />
 
         <!-- Call tasks -->
+        <phingcall target="replace_xml_version">
+            <property name="filename" value="${joomla}/plugins/${group}/${pluginname}/${pluginname}.xml" />
+        </phingcall>
         <phingcall target="generic_joomla_module_j25" />
     </target>
 
