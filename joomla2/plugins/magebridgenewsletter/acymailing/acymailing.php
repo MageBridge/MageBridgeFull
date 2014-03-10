@@ -4,7 +4,7 @@
  *
  * @author Yireo (info@yireo.com)
  * @package MageBridge
- * @copyright Copyright 2013
+ * @copyright Copyright 2014
  * @license GNU Public License
  * @link http://www.yireo.com
  */
@@ -83,14 +83,7 @@ class plgMageBridgeNewsletterAcymailing extends MageBridgePluginMagento
      */
     private function getParams()
     {
-        if (MageBridgeHelper::isJoomla15() == false) {
-            return $this->params;
-        } else {
-            jimport('joomla.html.parameter');
-            $plugin = JPluginHelper::getPlugin('magebridge.newsletter', 'acymailing');
-            $params = new JParameter($plugin->params);
-            return $params;
-        }
+        return $this->params;
     }
 }
 

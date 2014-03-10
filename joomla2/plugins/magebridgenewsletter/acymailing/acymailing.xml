@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension version="2.5" type="plugin" group="magebridge.newsletter" method="upgrade">
-	<name>PLG_MAGEBRIDGE_NEWSLETTER_ACYMAILING</name>
+<extension version="2.5" type="plugin" group="magebridgenewsletter" method="upgrade">
+	<name>PLG_MAGEBRIDGENEWSLETTER_ACYMAILING</name>
 	<author>Yireo</author>
 	<creationDate>March 2014</creationDate>
 	<copyright>Copyright (C) 2014 Yireo.com. All rights reserved.</copyright>
@@ -8,7 +8,7 @@
 	<authorEmail>info@yireo.com</authorEmail>
 	<authorUrl>www.yireo.com</authorUrl>
 	<version>1.8.5121</version>
-	<description>PLG_MAGEBRIDGE_NEWSLETTER_ACYMAILING_DESC</description>
+	<description>PLG_MAGEBRIDGENEWSLETTER_ACYMAILING_DESC</description>
 
 	<files>
 		<filename plugin="acymailing">acymailing.php</filename>
@@ -18,14 +18,14 @@
     <config>
 		<fields name="params">
 			<fieldset name="basic">
-        		<field name="newsletter" type="sql" label="PLG_MAGEBRIDGE_NEWSLETTER" key_field="value" value_field="title"
+        		<field name="newsletter" type="sql" label="PLG_MAGEBRIDGENEWSLETTER_ACYMAILING_FIELD_NEWSLETTER" key_field="value" value_field="title"
                     query="SELECT `name` AS `title`, `listid` AS `value` FROM `#__acymailing_list`" />
 	    	</fieldset>
     	</fields>
 	</config>
 
 	<languages>
-		<language tag="en-GB">en-GB.plg_magebridge.newsletter_acymailing.ini</language>
-		<language tag="en-GB">en-GB.plg_magebridge.newsletter_acymailing.sys.ini</language>
+		<language tag="en-GB">en-GB.plg_magebridgenewsletter_acymailing.ini</language>
+		<language tag="en-GB">en-GB.plg_magebridgenewsletter_acymailing.sys.ini</language>
 	</languages>
 </extension>

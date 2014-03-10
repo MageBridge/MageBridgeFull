@@ -116,14 +116,7 @@ class plgMageBridgeNewsletterJnews extends MageBridgePluginMagento
      */
     private function getParams()
     {
-        if (MageBridgeHelper::isJoomla15() == false) {
-            return $this->params;
-        } else {
-            jimport('joomla.html.parameter');
-            $plugin = JPluginHelper::getPlugin('magebridge.newsletter', 'jnews');
-            $params = new JParameter($plugin->params);
-            return $params;
-        }
+        return $this->params;
     }
 }
 
