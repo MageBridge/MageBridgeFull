@@ -18,7 +18,7 @@
     <config>
 		<fields name="params">
 			<fieldset name="basic">
-                <field name="file" label="PLG_MAGEBRIDGEPROFILE_JOMSOCIAL_FIELD_FILE" type="text" default="default" />
+                <field name="file" label="PLG_MAGEBRIDGEPROFILE_JOMSOCIAL_FIELD_FILE" type="text" default="map" />
 	    	</fieldset>
     	</fields>
 	</config>

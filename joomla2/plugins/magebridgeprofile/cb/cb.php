@@ -20,6 +20,11 @@ require_once JPATH_SITE.'/components/com_magebridge/helpers/loader.php';
  */
 class plgMageBridgeProfileCb extends MageBridgePluginProfile
 {
+    /*
+     * Short name of this plugin
+     */
+    protected $pluginName = 'cb';
+
     /**
      * Event "onMageBridgeProfileSave"
      * 
