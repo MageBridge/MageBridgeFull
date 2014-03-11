@@ -353,6 +353,7 @@ language/index.html
 libraries/*.php
 libraries/cms/*
 libraries/joomla/*
+libraries/phpass/*
 libraries/phpmailer/*
 libraries/phputf8/*
 libraries/simplepie/*
