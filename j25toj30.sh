@@ -35,14 +35,24 @@ for plugin in $plugins; do
 done
 
 # newsletter plugins
-mkdir -p $joomla30/plugins/magebridge.newsletter/
+mkdir -p $joomla30/plugins/magebridgenewsletter/
 cd $joomla25/plugins/
-$rsync magebridge.newsletter $joomla30/plugins/
+$rsync magebridgenewsletter $joomla30/plugins/
 
 # product plugins
 mkdir -p $joomla30/plugins/magebridgeproduct/
 cd $joomla25/plugins/
 $rsync magebridgeproduct $joomla30/plugins/
+
+# store plugins
+mkdir -p $joomla30/plugins/magebridgestore/
+cd $joomla25/plugins/
+$rsync magebridgestore $joomla30/plugins/
+
+# profile plugins
+mkdir -p $joomla30/plugins/magebridgeprofile/
+cd $joomla25/plugins/
+$rsync magebridgeprofile $joomla30/plugins/
 
 # other plugins
 cd $joomla25/plugins/system
