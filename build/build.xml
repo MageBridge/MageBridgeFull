@@ -74,7 +74,7 @@
     <target name="gitcommit" description="Commit to Git">
         <echo>cd ${root}; git commit -m 'Build version ${version}' .; git push origin master</echo>
         <exec command="cd ${root}; git tag -s v${version} -m 'Creating release ${version}'" />
-        <exec command="cd ${MageBridgeFull}; git add build/packages; git commit -m 'Build version ${version}' .; git push origin master" />
+        <exec command="cd ${MageBridgeFull}; git add packages/*; git commit -m 'Build version ${version}' .; git push origin master" />
         <exec command="cd ${MageBridgeCore}; git commit -m 'Increase version to v${version}' .; git push origin master" />
         <exec command="rm ${tmp}" />
     </target>
