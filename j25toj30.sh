@@ -28,7 +28,7 @@ for module in $modules; do
 done
     
 # plugins
-plugins="authentication community content system magebridge magento search user"
+plugins="authentication community content finder system magebridge magento search user"
 for plugin in $plugins; do
     cd $joomla25/plugins/$plugin/
     $rsync ./magebridge* $joomla30/plugins/$plugin/
