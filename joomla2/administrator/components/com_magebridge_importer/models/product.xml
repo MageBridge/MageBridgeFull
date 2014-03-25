@@ -1,11 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form>
     <fields name="item">
-        <fieldset name="attributeset" label="Attribute Set" addfieldpath="/administrator/components/com_magebridge_importer/fields">
-            <field name="attributeset_id" type="attributeset" label="Attribute Set" />
+        <fieldset name="attributeset" label="COM_MAGEBRIDGE_IMPORTER_MODEL_PRODUCT_FIELDSET_ATTRIBUTESET" 
+            addfieldpath="/administrator/components/com_magebridge_importer/fields">
+            <field name="attributeset_id" type="attributeset" label="COM_MAGEBRIDGE_IMPORTER_MODEL_PRODUCT_FIELD_ATTRIBUTESET" />
         </fieldset>
-        <fieldset name="category" label="Category" addfieldpath="/administrator/components/com_magebridge_importer/fields">
-            <field name="category_id" type="mcategorylist" label="Category" />
+        <fieldset name="category" label="COM_MAGEBRIDGE_IMPORTER_MODEL_PRODUCT_FIELDSET_CATEGORY" 
+            addfieldpath="/administrator/components/com_magebridge_importer/fields">
+            <field name="category_id" type="mcategorylist" label="COM_MAGEBRIDGE_IMPORTER_MODEL_PRODUCT_FIELD_CATEGORY" />
+        </fieldset>
+        <fieldset name="images" label="COM_MAGEBRIDGE_IMPORTER_MODEL_PRODUCT_FIELDSET_IMAGES" 
+            addfieldpath="/administrator/components/com_magebridge_importer/fields">
+            <field name="image1" type="media" label="COM_MAGEBRIDGE_IMPORTER_MODEL_PRODUCT_FIELD_IMAGE1" 
+                directory="import" preview="true" />
+            <field name="image2" type="media" label="COM_MAGEBRIDGE_IMPORTER_MODEL_PRODUCT_FIELD_IMAGE2" 
+                directory="import" preview="true" />
+            <field name="image3" type="media" label="COM_MAGEBRIDGE_IMPORTER_MODEL_PRODUCT_FIELD_IMAGE3" 
+                directory="import" preview="true" />
+            <field name="image4" type="media" label="COM_MAGEBRIDGE_IMPORTER_MODEL_PRODUCT_FIELD_IMAGE4" 
+                directory="import" preview="true" />
+            <field name="image5" type="media" label="COM_MAGEBRIDGE_IMPORTER_MODEL_PRODUCT_FIELD_IMAGE5" 
+                directory="import" preview="true" />
         </fieldset>
     </fields>
 </form>

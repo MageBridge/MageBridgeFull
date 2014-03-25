@@ -16,7 +16,7 @@ defined('_JEXEC') or die('Restricted access');
 jimport('joomla.utilities.utility');
 ?>
 <?php echo $this->loadTemplate('script'); ?>
-<?php $fieldsetsRight = array('category', 'attributeset'); ?>
+<?php $fieldsetsRight = array('category', 'images', 'attributeset'); ?>
 
 <form method="post" name="adminForm" id="adminForm">
 <div>

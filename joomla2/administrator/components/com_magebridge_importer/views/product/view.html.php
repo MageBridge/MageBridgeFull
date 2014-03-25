@@ -37,6 +37,7 @@ class MageBridgeImporterViewProduct extends YireoViewForm
         JToolBarHelper::save();
         JToolBarHelper::apply();
         JToolBarHelper::custom('approve', 'copy.png', 'copy.png', 'LIB_YIREO_VIEW_TOOLBAR_APPROVE', false, true);
+        JToolBarHelper::cancel();
 
         // Fetch this item
         $this->fetchItem();

@@ -70,7 +70,6 @@ class JFormFieldAttributeset extends JFormFieldAbstract
                 }
 
                 // Return a dropdown list
-                array_unshift( $options, array( 'value' => '', 'label' => ''));
                 return JHTML::_('select.genericlist', $options, $fieldName, null, 'value', 'label', $value);
 
             // Fetching data from the bridge failed, so report a warning

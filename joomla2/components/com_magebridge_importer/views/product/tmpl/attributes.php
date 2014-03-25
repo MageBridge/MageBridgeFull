@@ -20,11 +20,13 @@ $this->_task = 'store';
 ?>
 <?php echo $this->loadTemplate('script'); ?>
 
+<h1><?php echo JText::_('COM_MAGEBRIDGE_IMPORTER_VIEW_PRODUCT_LAYOUT_ATTRIBUTES_HEADING'); ?></h1>
+
 <form method="post" name="importerForm" id="importerForm">
     
 <?php foreach($this->form->getFieldsets() as $fieldsetCode => $fieldset): ?>
     <?php if($fieldsetCode == 'attributeset') continue; ?>
-    <?php echo $this->loadTemplate('fieldset', array('fieldset' => $fieldsetCode, 'legend' => $fieldset->label)); ?>
+    <?php echo $this->loadTemplate('fieldset', array('fieldset' => $fieldsetCode, 'legend' => JText::_($fieldset->label))); ?>
 <?php endforeach; ?>
 <input type="submit" value="<?php echo JText::_('JSAVE'); ?>">
 <input type="hidden" name="item[attributeset_id]" value="<?php echo (int)$this->attributeset_id; ?>">

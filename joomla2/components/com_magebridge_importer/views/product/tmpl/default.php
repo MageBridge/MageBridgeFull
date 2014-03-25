@@ -20,8 +20,10 @@ $this->_task = 'attributeset';
 ?>
 <?php echo $this->loadTemplate('script'); ?>
 
+<h1><?php echo JText::_('COM_MAGEBRIDGE_IMPORTER_VIEW_PRODUCT_LAYOUT_DEFAULT_HEADING'); ?></h1>
+
 <form method="post" name="importerForm" id="importerForm">
-<?php echo $this->loadTemplate('fieldset', array('fieldset' => 'attributeset', 'legend' => 'Attribute set')); ?>
+<?php echo $this->loadTemplate('fieldset', array('fieldset' => 'attributeset')); ?>
 <input type="submit" value="<?php echo JText::_('JNEXT'); ?>">
 <?php echo $this->loadTemplate('formend'); ?>
 </form>

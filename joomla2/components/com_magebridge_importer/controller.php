@@ -77,4 +77,10 @@ class MageBridgeImporterController extends YireoController
 
         $this->doRedirect(null, array('layout' => 'attributes')); 
     }
+
+    public function store($post = null)
+    {
+        parent::store();
+        $this->doRedirect('products');
+    }
 }

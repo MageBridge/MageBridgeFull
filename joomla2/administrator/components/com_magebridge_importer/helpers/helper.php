@@ -179,11 +179,14 @@ class MageBridgeImporterHelper
             }
         }
 
+        $required = ($attribute['required'] == 1) ? 'required="required" ' : '';
+
         $elementXml = '<fieldset name="attributegroup'.$attribute['group_value'].'" label="'.$attribute['group_label'].'">
             <field name="'.$name.'"
                type="'.$type.'"
                label="'.htmlentities($label).'"
                class="inputbox"
+               '.$required.'
             >
             '.$optionsXml.'
             </field>

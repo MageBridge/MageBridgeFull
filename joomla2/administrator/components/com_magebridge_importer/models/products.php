@@ -29,6 +29,11 @@ class MagebridgeImporterModelProducts extends YireoModel
         $this->_search = array('name');
 
         parent::__construct('product');
+
+        if ($this->application->isSite()) {
+            $user = JFactory::getUser();
+            $this->addWhere('`created_by`='.(int)$user->id);
+        }
     }
 
     /**
