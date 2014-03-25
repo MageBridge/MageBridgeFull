@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fields name="item">
+        <fieldset name="attributeset" label="Attribute Set" addfieldpath="/administrator/components/com_magebridge_importer/fields">
+            <field name="attributeset_id" type="attributeset" label="Attribute Set" />
+        </fieldset>
+        <fieldset name="category" label="Category" addfieldpath="/administrator/components/com_magebridge_importer/fields">
+            <field name="category_id" type="mcategorylist" label="Category" />
+        </fieldset>
+    </fields>
+</form>
