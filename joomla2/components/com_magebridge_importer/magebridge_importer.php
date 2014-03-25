@@ -18,6 +18,12 @@ require_once JPATH_ADMINISTRATOR.'/components/com_magebridge_importer/libraries/
 require_once JPATH_SITE.'/components/com_magebridge/libraries/factory.php';
 require_once JPATH_SITE.'/components/com_magebridge/helpers/loader.php';
 
+// Detect access
+$user = JFactory::getUser();
+if ($user->authorise('core.edit', 'com_content') == false) {
+    JError::raiseError(403, JText::_('JLIB_APPLICATION_ERROR_ACCESS_FORBIDDEN'));
+}
+
 // Require the controller
 require_once JPATH_COMPONENT.'/controller.php';
 $controller = new MageBridgeImporterController( );
