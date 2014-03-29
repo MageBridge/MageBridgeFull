@@ -165,6 +165,10 @@
 	        	</field>
         	</fieldset>
 			<fieldset name="advanced">
+	        	<field name="override_product_url" type="list" default="0" label="MOD_MAGEBRIDGE_PRODUCTS_FIELD_OVERRIDE_PRODUCT_URL" description="MOD_MAGEBRIDGE_PRODUCTS_FIELD_OVERRIDE_PRODUCT_URL">
+		        	<option value="0">JNO</option>
+        			<option value="1">JYES</option>
+	        	</field>
         		<field name="moduleclass_sfx" type="text" default="" label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL" description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC" />
         		<field name="cache" type="list" default="1" label="COM_MODULES_FIELD_CACHING_LABEL" description="COM_MODULES_FIELD_CACHING_DESC">
 		        	<option value="1">JGLOBAL_USE_GLOBAL</option>

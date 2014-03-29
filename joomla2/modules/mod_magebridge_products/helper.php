@@ -75,6 +75,9 @@ class modMageBridgeProductsHelper extends MageBridgeModuleHelper
         if (!empty($products)) {
             foreach ($products as $index => $product) {
 
+                // Optionally override the product URL coming from Magento
+                if($params->get('override_product_url', 0) == 1) $product['url'] = null;
+
                 // Use the URL-key to build a URL
                 if (!empty($product['url_store'])) {
                     $product['url'] = MageBridgeUrlHelper::route($product['url_store']);
