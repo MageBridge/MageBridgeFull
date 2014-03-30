@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="com_magebridge_importer.xml" default="build_magebridge_importer" basedir=".">
+
+    <!-- Public Target: build_tweetscheduler -->
+    <target name="build_magebridge_importer" description="Build all com_magebridge_importer">
+
+        <!-- Define properties and -->
+        <property name="joomla25" value="${MageBridgeFullJoomla}" />
+        <property name="destination" value="${root}/packages/com_magebridge_importer" />
+        <property name="info_url" value="http://www.yireo.com/software/magebridge" />
+        <property name="site_copy_folder_downloads" value="${site_copy_folder_private}/magebridge_importer/" override="true" />
+
+        <!-- Build component -->
+        <property name="component_name" value="magebridge_importer" />
+        <property name="component_title" value="MageBridge Importer" />
+        <phingcall target="generic_joomla_component_j25" />
+
+    </target>
+</project>
