@@ -60,7 +60,13 @@ class MagebridgeImporterModelProduct extends YireoModel
             if(!empty($rows)) {
                 foreach($rows as $row) {
                     $name = $row->name;
-                    $data->$name = $row->value;
+                    $value = $row->value;
+                    if(!empty($value)) {
+                        $tmpValue = @unserialize($value);
+                        if(!empty($tmpValue)) $value = $tmpValue;
+                    }
+
+                    $data->$name = $value;
                 }
             }
         }
@@ -97,6 +103,11 @@ class MagebridgeImporterModelProduct extends YireoModel
             $this->_db->setQuery('DELETE FROM `#__magebridge_importer_product_values` WHERE `product_id`='.(int)$this->_id);
             $this->_db->query();
             foreach($data['item'] as $attributeName => $attributeValue) {
+
+                if(!is_string($attributeValue)) {
+                    $attributeValue = serialize($attributeValue);
+                }
+
                 $query = 'INSERT INTO `#__magebridge_importer_product_values` SET '
                     . '`product_id`='.(int)$this->_id.', '
                     . '`name`='.$this->_db->Quote($attributeName).', '

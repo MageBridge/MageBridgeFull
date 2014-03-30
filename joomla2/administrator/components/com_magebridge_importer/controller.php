@@ -28,12 +28,6 @@ class MageBridgeImporterController extends YireoController
         parent::__construct();
     }
 
-    // Unapprove all approved entries
-    public function unapprove()
-    {
-        $this->status('pending');
-    }
-
     // Approve all pending entries
     public function approve()
     {

@@ -24,7 +24,6 @@ class MageBridgeImporterViewProducts extends YireoViewList
 	{
         // Load toolbar
         JToolBarHelper::custom('approve', 'copy.png', 'copy.png', 'LIB_YIREO_VIEW_TOOLBAR_APPROVE', false, true);
-        JToolBarHelper::custom('unapprove', 'copy.png', 'copy.png', 'LIB_YIREO_VIEW_TOOLBAR_UNAPPROVE', false, true);
 
         // Fetch the items
         $this->fetchItems();

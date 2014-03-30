@@ -25,9 +25,6 @@ class MageBridgeImporterViewProduct extends YireoViewForm
      */
     public function display($tpl = null)
     {
-        // Before loading anything, we build the bridge
-        $this->preBuildBridge();
-
         // Set the layout
         $layout = JRequest::getCmd('layout');
         if(!empty($layout)) {
@@ -36,11 +33,25 @@ class MageBridgeImporterViewProduct extends YireoViewForm
 
         // Allow for loading existing data by ID
         $this->fetchItem();
+
+        // Disallow editing
+        if(in_array($this->item->status, array('approved', 'submitted'))) {
+            $url = JRoute::_('index.php?option=com_magebridge_importer&view=products');
+            $this->application->redirect($url);
+            $this->application->close();
+        }
         
         // Fetch the attribute set ID
-        $session = JFactory::getSession();
-        $attributeset_id = $session->get('com_magebridge_importer.attributeset_id');
+        if($this->item->attributeset_id) {
+            $attributeset_id = $this->item->attributeset_id;
+            JFactory::getSession()->set('com_magebridge_importer.attributeset_id', $attributeset_id);
+        } else {
+            $attributeset_id = JFactory::getSession()->get('com_magebridge_importer.attributeset_id');
+        }
         $this->assignRef('attributeset_id', $attributeset_id);
+
+        // After loading the item, we build the bridge
+        $this->preBuildBridge();
 
         // Load the form if it's there
         $form = $this->get('Form');

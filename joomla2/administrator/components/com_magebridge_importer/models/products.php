@@ -55,6 +55,15 @@ class MagebridgeImporterModelProducts extends YireoModel
                     $data->$name = $row->value;
                 }
             }
+
+            $query = 'SELECT `name`, `email` FROM `#__users` WHERE `id`='.(int)$data->created_by;
+            $this->_db->setQuery($query);
+            $row = $this->_db->loadObject();
+            if(!empty($row)) {
+                $data->created_by_user = $row->name.' ('.$row->email.')';
+            } else {
+                $data->created_by_user = JText::_('JUNKNOWN');
+            }
         }
         return $data;
     }

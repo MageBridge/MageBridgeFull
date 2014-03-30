@@ -43,7 +43,6 @@ class MageBridgeImporterHelper
         }
 
         $cache = JFactory::getCache('com_magebridge_importer.admin');
-        $cache->setCaching(0);
         $result = $cache->call( array( 'MageBridgeImporterHelper', $function ));
         return $result;
     }
@@ -121,6 +120,7 @@ class MageBridgeImporterHelper
             'small_image',
             'special_*',
             'status',
+            'state',
             'tax_class_id',
             'thumbnail*',
             'url_key',
@@ -164,9 +164,17 @@ class MageBridgeImporterHelper
         $label = $attribute['label'];
         $type = $attribute['input'];
         $options = $attribute['options'];
+        $additional_html = null;
 
         if($type == 'select') {
             $type = 'list';
+        } elseif($type == 'multiselect') {
+            $type = 'list';
+            $additional_html .= ' multiple="multiple"';
+        } elseif($type == 'textarea' && $attribute['wysiwyg'] == 1) {
+            $type = 'editor';
+        } elseif($type == 'textarea') {
+            $type = 'textarea';
         } else {
             $type = 'text';
         }
@@ -185,7 +193,8 @@ class MageBridgeImporterHelper
             <field name="'.$name.'"
                type="'.$type.'"
                label="'.htmlentities($label).'"
-               class="inputbox"
+               class="inputbox attribute-'.$name.' type-'.$type.'"
+               '.$additional_html.'
                '.$required.'
             >
             '.$optionsXml.'

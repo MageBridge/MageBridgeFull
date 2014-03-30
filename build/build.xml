@@ -31,6 +31,7 @@
     <!-- Import other files -->
     <import file="./includes/build_joomla.xml"/>
     <import file="./includes/build_magento.xml"/>
+    <import file="./includes/com_magebridge_importer.xml"/>
 
     <!-- Public Target: build -->
     <target name="build" description="Build all packages">

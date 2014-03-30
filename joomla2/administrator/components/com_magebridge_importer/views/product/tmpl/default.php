@@ -12,21 +12,31 @@
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die('Restricted access');
 
-// Set the right image directory for JavaScipt
-jimport('joomla.utilities.utility');
+JHtml::_('behavior.formvalidation');
 ?>
+
+<script type="text/javascript">
+	Joomla.submitbutton = function(task)
+	{
+		if (task == 'cancel' || document.formvalidator.isValid(document.id('adminForm')))
+		{
+			Joomla.submitform(task, document.getElementById('adminForm'));
+		}
+	}
+</script>
+
 <?php echo $this->loadTemplate('script'); ?>
-<?php $fieldsetsRight = array('category', 'images', 'attributeset'); ?>
+<?php $fieldsetsRight = array('category', 'images', 'attributeset', 'other', 'admin'); ?>
 
 <form method="post" name="adminForm" id="adminForm">
-<div>
-    <div class="width-60 fltlft">
+<div class="row">
+    <div class="span6">
         <?php foreach($this->form->getFieldsets() as $fieldsetCode => $fieldset): ?>
             <?php if(in_array($fieldsetCode, $fieldsetsRight)) continue; ?>
             <?php echo $this->loadTemplate('fieldset', array('fieldset' => $fieldsetCode, 'legend' => $fieldset->label)); ?>
         <?php endforeach; ?>
     </div>
-    <div class="width-40 fltlft">
+    <div class="span6">
         <?php foreach($fieldsetsRight as $fieldsetCode): ?>
             <?php echo $this->loadTemplate('fieldset', array('fieldset' => $fieldsetCode)); ?>
         <?php endforeach; ?>

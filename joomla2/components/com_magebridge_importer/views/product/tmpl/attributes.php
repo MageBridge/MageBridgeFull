@@ -26,9 +26,12 @@ $this->_task = 'store';
     
 <?php foreach($this->form->getFieldsets() as $fieldsetCode => $fieldset): ?>
     <?php if($fieldsetCode == 'attributeset') continue; ?>
+    <?php if(isset($fieldset->site) && $fieldset->site == 0) continue; ?>
     <?php echo $this->loadTemplate('fieldset', array('fieldset' => $fieldsetCode, 'legend' => JText::_($fieldset->label))); ?>
 <?php endforeach; ?>
+
 <input type="submit" value="<?php echo JText::_('JSAVE'); ?>">
 <input type="hidden" name="item[attributeset_id]" value="<?php echo (int)$this->attributeset_id; ?>">
 <?php echo $this->loadTemplate('formend'); ?>
 </form>
+

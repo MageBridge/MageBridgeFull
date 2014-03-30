@@ -18,8 +18,8 @@ defined('_JEXEC') or die('Restricted access');
     <a href="<?php echo $item->custom_edit_link; ?>"><?php echo $item->sku; ?></a>
 </td>
 <td>
-    <?php echo $item->price; ?>
+    <?php echo JText::_('COM_MAGEBRIDGE_IMPORTER_MODEL_STATUS_'.$item->status); ?>
 </td>
 <td>
-    <?php echo JText::_('COM_MAGEBRIDGE_IMPORTER_MODEL_STATUS_'.$item->status); ?>
+    <?php echo $item->created_by_user; ?>
 </td>

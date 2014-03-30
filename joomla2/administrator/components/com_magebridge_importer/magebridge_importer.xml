@@ -23,13 +23,10 @@
     </uninstall>
 
     <!-- user part -->
-    <files folder="components/com_magebridge_importer">
+    <files folder="site">
         <filename>controller.php</filename>
         <filename>index.html</filename>
         <filename>magebridge_importer.php</filename>
-        <filename>router.php</filename>
-        <folder>helpers</folder>
-        <folder>models</folder>
         <folder>views</folder>
     </files>
 
@@ -37,7 +34,7 @@
         <folder>com_magebridge_importer</folder>
     </media>
 
-    <languages folder="language/en-GB">
+    <languages folder="site/language">
         <language tag="en-GB">en-GB.com_magebridge_importer.ini</language>
     </languages>
 
@@ -46,21 +43,20 @@
 
         <menu img="../media/com_magebridge/images/menu-magebridge.png">COM_MAGEBRIDGE_IMPORTER</menu>
 
-        <files folder="administrator/components/com_magebridge_importer">
-            <filename>config.xml</filename>
+        <files folder="admin">
             <filename>controller.php</filename>
             <filename>index.html</filename>
             <filename>magebridge_importer.php</filename>
-            <filename>view.php</filename>
-            <folder>controllers</folder>
             <folder>helpers</folder>
+            <folder>fields</folder>
+            <folder>libraries</folder>
             <folder>models</folder>
             <folder>tables</folder>
             <folder>sql</folder>
             <folder>views</folder>
         </files>
 
-        <languages folder="administrator/language/en-GB">
+        <languages folder="admin/language">
             <language tag="en-GB">en-GB.com_magebridge_importer.ini</language>
             <language tag="en-GB">en-GB.com_magebridge_importer.sys.ini</language>
             <language tag="en-GB">en-GB.lib_yireo.ini</language>
