@@ -62,24 +62,58 @@ class plgMageBridgeProductAkeebasubs extends MageBridgePluginProduct
             return false;
         }
 
+        // Load the level
+        $query = 'SELECT * FROM `#__akeebasubs_levels` WHERE `akeebasubs_level_id`='.(int)$level_id.' LIMIT 1';
+        $this->db->setQuery($query);
+        $level = $this->db->loadObject();
+        if(empty($level)) {
+            return false;
+        }
+        $levelDuration = $level->duration * 24 * 60 * 60;
+
         // See if the user is already there
         $query = 'SELECT * FROM `#__akeebasubs_subscriptions` WHERE `user_id`='.(int)$user->id.' AND `akeebasubs_level_id`='.(int)$level_id.' LIMIT 1';
         $this->db->setQuery($query);
         $row = $this->db->loadObject();
 
+        // Initial subscriptions
         if (empty($row)) {
+            $publish_down = time() + $levelDuration;
             $values = array(
                 'user_id' => (int)$user->id,
                 'akeebasubs_level_id' => (int)$level_id,
                 'enabled' => 1,
-                //'publish_up' => '',
-                //'publish_down' => '',
+                'publish_up' => date('Y-m-d H:i:s'),
+                'publish_down' => date('Y-m-d H:i:s', $publish_down),
                 'processor' => 'none',
                 'processor_key' => 'magento',
-                'state' => 'X',
+                'state' => 'C',
+                'created_on' => date('Y-m-d H:i:s'),
             );
 
             $query = 'INSERT INTO `#__akeebasubs_subscriptions` SET '.MageBridgeHelper::arrayToSql($values);
+            $this->db->setQuery($query);
+            $this->db->query();
+
+        // Renewals
+        } else {
+
+            $current_up = strtotime($row->publish_up);
+            $current_down = strtotime($row->publish_down);
+            $publish_down = ($current_down > time()) ? ($current_down + $levelDuration) : (time() + $levelDuration);
+
+            $values = array(
+                'user_id' => (int)$user->id,
+                'akeebasubs_level_id' => (int)$level_id,
+                'enabled' => 1,
+                'publish_down' => date('Y-m-d H:i:s', $publish_down),
+                'processor' => 'magento',
+                'processor_key' => 'unknown',
+                'state' => 'C',
+            );
+
+            $query = 'UPDATE `#__akeebasubs_subscriptions` SET '.MageBridgeHelper::arrayToSql($values)
+                .' WHERE `user_id`='.(int)$user->id.' AND `akeebasubs_level_id`='.(int)$level_id;
             $this->db->setQuery($query);
             $this->db->query();
         }
