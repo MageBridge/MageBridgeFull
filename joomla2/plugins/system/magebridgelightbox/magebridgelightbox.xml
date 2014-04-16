@@ -15,7 +15,7 @@
         <filename>index.html</filename>
     </files>
 
-    <media destination="plg_magebridgelightbox">
+    <media folder="media" destination="plg_magebridgelightbox">
         <filename>index.html</filename>
         <folder>prettyphoto</folder>
         <folder>pirobox</folder>

@@ -163,20 +163,23 @@
 
         <copy file="${gpl}" tofile="${joomla_package}/source/plg_magebridge_${buildname}/LICENSE.txt" overwrite="true" />
 
-        <if><available file="${joomla}/media/plg_${plugin_name}" type="dir" />
+        <echo>Media folder: ${joomla}/media/plg_${pluginname}</echo>
+        <if><available file="${joomla}/media/plg_${pluginname}" type="dir" />
             <then>
-                <copy todir="${builddir}" haltonerror="false" overwrite="true">
-                    <fileset dir="${joomla}/media/plg_${plugin_name}">
+                <exec command="mkdir -p ${joomla_package}/source/plg_magebridge_${buildname}/media" />
+                <copy todir="${joomla_package}/source/plg_magebridge_${buildname}/media" haltonerror="false" overwrite="true">
+                    <fileset dir="${joomla}/media/plg_${pluginname}">
                         <include name="**" />
                     </fileset>
                 </copy>
             </then>
         </if>
 
-        <if><available file="${joomla}/media/plg_${plugin_group}_${plugin_name}" type="dir" />
+        <if><available file="${joomla}/media/plg_${group}_${pluginname}" type="dir" />
             <then>
-                <copy todir="${builddir}" haltonerror="false" overwrite="true">
-                    <fileset dir="${joomla}/media/plg_${plugin_group}_${plugin_name}">
+                <exec command="mkdir -p ${joomla_package}/source/plg_magebridge_${buildname}/media" />
+                <copy todir="${joomla_package}/source/plg_magebridge_${buildname}/media" haltonerror="false" overwrite="true">
+                    <fileset dir="${joomla}/media/plg_${group}_${pluginname}">
                         <include name="**" />
                     </fileset>
                 </copy>
