@@ -20,7 +20,7 @@ $this->_task = 'attributeset';
 ?>
 <?php echo $this->loadTemplate('script'); ?>
 
-<h1><?php echo JText::_('COM_MAGEBRIDGE_IMPORTER_VIEW_PRODUCT_LAYOUT_DEFAULT_HEADING'); ?></h1>
+<h1><?php echo $this->title; ?><?php echo JText::_('COM_MAGEBRIDGE_IMPORTER_VIEW_PRODUCT_LAYOUT_DEFAULT_HEADING'); ?></h1>
 
 <form method="post" name="importerForm" id="importerForm">
 <?php echo $this->loadTemplate('fieldset', array('fieldset' => 'attributeset')); ?>

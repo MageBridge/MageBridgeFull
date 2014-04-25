@@ -25,10 +25,16 @@ class HelperAbstract
             'title' => 'MageBridge Importer',
             'menu' => array(
                 'products' => 'PRODUCTS',
+                'profiles' => 'PROFILES',
+                'fields' => 'FIELDS',
             ),
             'views' => array(
                 'products' => 'PRODUCTS',
                 'product' => 'PRODUCT',
+                'profiles' => 'PROFILES',
+                'profile' => 'PROFILE',
+                'fields' => 'FIELDS',
+                'field' => 'FIELD',
             ),
         );
     }

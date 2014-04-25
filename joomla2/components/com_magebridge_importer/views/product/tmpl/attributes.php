@@ -20,15 +20,18 @@ $this->_task = 'store';
 ?>
 <?php echo $this->loadTemplate('script'); ?>
 
-<h1><?php echo JText::_('COM_MAGEBRIDGE_IMPORTER_VIEW_PRODUCT_LAYOUT_ATTRIBUTES_HEADING'); ?></h1>
+<h1><?php echo $this->title; ?><?php echo JText::_('COM_MAGEBRIDGE_IMPORTER_VIEW_PRODUCT_LAYOUT_ATTRIBUTES_HEADING'); ?></h1>
 
 <form method="post" name="importerForm" id="importerForm">
     
+<?php echo $this->loadTemplate('fieldset', array('fieldset' => 'category', 'legend' => JText::_('COM_MAGEBRIDGE_IMPORTER_MODEL_PRODUCT_FIELDSET_CATEGORY'))); ?>
 <?php foreach($this->form->getFieldsets() as $fieldsetCode => $fieldset): ?>
-    <?php if($fieldsetCode == 'attributeset') continue; ?>
+    <?php if(in_array($fieldsetCode, array('attributeset', 'category', 'images', 'other'))) continue; ?>
     <?php if(isset($fieldset->site) && $fieldset->site == 0) continue; ?>
     <?php echo $this->loadTemplate('fieldset', array('fieldset' => $fieldsetCode, 'legend' => JText::_($fieldset->label))); ?>
 <?php endforeach; ?>
+<?php echo $this->loadTemplate('fieldset', array('fieldset' => 'images', 'legend' => JText::_('COM_MAGEBRIDGE_IMPORTER_MODEL_PRODUCT_FIELDSET_IMAGES'))); ?>
+<?php echo $this->loadTemplate('fieldset', array('fieldset' => 'other', 'legend' => JText::_('COM_MAGEBRIDGE_IMPORTER_MODEL_PRODUCT_FIELDSET_OTHER'))); ?>
 
 <input type="submit" value="<?php echo JText::_('JSAVE'); ?>">
 <input type="hidden" name="item[attributeset_id]" value="<?php echo (int)$this->attributeset_id; ?>">

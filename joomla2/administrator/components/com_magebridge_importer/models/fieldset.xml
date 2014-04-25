@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fields name="item">
+        <fieldset name="basic">
+            <field name="label" type="text" label="COM_MAGEBRIDGE_IMPORTER_MODEL_FIELDSET_FIELD_LABEL" />
+            <field name="name" type="text" label="COM_MAGEBRIDGE_IMPORTER_MODEL_FIELDSET_FIELD_NAME" />
+            <field name="profile_id" type="sql" label="COM_MAGEBRIDGE_IMPORTER_MODEL_FIELD_FIELD_PROFILE_ID" 
+                query="SELECT id, label FROM #__magebridge_importer_profiles" key_field="id" value_field="label"
+                />
+            <field name="description" type="editor" label="COM_MAGEBRIDGE_IMPORTER_MODEL_FIELD_FIELD_DESCRIPTION" />
+        </fieldset>
+    </fields>
+</form>

@@ -15,7 +15,7 @@ defined('_JEXEC') or die();
 /**
  * HTML View class
  */
-class MageBridgeImporterViewProducts extends YireoView
+class MageBridgeImporterViewFields extends YireoViewList
 {
     /*
      * Method to prepare the content for display
@@ -28,15 +28,10 @@ class MageBridgeImporterViewProducts extends YireoView
         // Prepare the items for display
         if (!empty($this->items)) {
             foreach ($this->items as $index => $item) {
-                $item->edit_link = 'index.php?option=com_magebridge_importer&view=product&id='.$item->id;
+                $item->custom_edit_link = 'index.php?option=com_magebridge_importer&view=field&cid[]='.$item->id;
                 $this->items[$index] = $item;
             }
         }
-
-        // Load the component parameters and set the title
-        $params = JFactory::getApplication()->getParams();
-        $title = $params->get('page_heading');
-        $this->assignRef('title', $title);
 
 		parent::display($tpl);
 	}

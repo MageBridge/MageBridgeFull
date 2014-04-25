@@ -55,7 +55,8 @@ class MageBridgeImporterHelper
      */
     static public function getAttributesets()
     {
-        return self::getApiData('magebridge_attribute.attributesets');
+        $data = self::getApiData('magebridge_attribute.attributesets');
+        return $data;
     }
 
     /*
@@ -71,7 +72,22 @@ class MageBridgeImporterHelper
         if(!empty($attributeset_id)) {
             $arguments['attributeset_id'] = $attributeset_id;
         }
-        return self::getApiData('magebridge_attribute.attributes', $arguments);
+        
+        $attributes = self::getApiData('magebridge_attribute.attributes', $arguments);
+
+        if(!empty($attributes)) {
+            usort($attributes, array('MageBridgeImporterHelper', 'sortAttribute'));
+        }
+
+        return $attributes;
+    }
+
+    static public function sortAttribute($a, $b)
+    {
+        if ($a['group_order'] == $b['group_order']) {
+            return 0;
+        }
+        return ($a['group_order'] < $b['group_order']) ? -1 : 1;
     }
 
     /*
@@ -98,7 +114,6 @@ class MageBridgeImporterHelper
             'custom_design*',
             'custom_layout_update',
             'enable_googlecheckout',
-            'featured',
             'finish',
             'gallery',
             'gift_message_available',
@@ -109,7 +124,6 @@ class MageBridgeImporterHelper
             'is_recurring',
             'links_*',
             'media_gallery',
-            'minimal_price',
             'msrp_*',
             'news_*',
             'options_container',
@@ -119,7 +133,6 @@ class MageBridgeImporterHelper
             'recurring_profile',
             'small_image',
             'special_*',
-            'status',
             'state',
             'tax_class_id',
             'thumbnail*',
@@ -164,6 +177,7 @@ class MageBridgeImporterHelper
         $label = $attribute['label'];
         $type = $attribute['input'];
         $options = $attribute['options'];
+        $description = $attribute['description'];
         $additional_html = null;
 
         if($type == 'select') {
@@ -183,7 +197,9 @@ class MageBridgeImporterHelper
             $optionsXml = '';
             foreach($options as $optionValue => $optionLabel) {
                 if(empty($optionValue) && empty($optionLabel) && count($options) == 1) break;
-                $optionsXml .= '<option value="'.$optionValue.'">'.htmlentities($optionLabel).'</option>'."\n";
+                if(!empty($optionLabel)) $optionLabel = htmlentities($optionLabel);
+                $optionLabel = '<![CDATA['.$optionLabel.']]>';
+                $optionsXml .= '<option value="'.$optionValue.'">'.$optionLabel.'</option>'."\n";
             }
         }
 
@@ -192,6 +208,7 @@ class MageBridgeImporterHelper
         $elementXml = '<fieldset name="attributegroup'.$attribute['group_value'].'" label="'.$attribute['group_label'].'">
             <field name="'.$name.'"
                type="'.$type.'"
+               description="'.$description.'"
                label="'.htmlentities($label).'"
                class="inputbox attribute-'.$name.' type-'.$type.'"
                '.$additional_html.'

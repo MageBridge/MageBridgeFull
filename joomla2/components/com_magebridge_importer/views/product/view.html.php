@@ -53,6 +53,22 @@ class MageBridgeImporterViewProduct extends YireoViewForm
         // After loading the item, we build the bridge
         $this->preBuildBridge();
 
+        // Load the component parameters and set the title
+        $params = JFactory::getApplication()->getParams();
+        $title = $params->get('page_heading');
+        if(!empty($title)) $title = $title.' - ';
+        $this->assignRef('title', $title);
+
+        // Load the profile
+        $profile_id = (int)$params->get('profile_id');
+        if($profile_id > 0) {
+            $db = JFactory::getDBO();
+            $db->setQuery('SELECT * FROM `#__magebridge_importer_fields` WHERE `profile_id`='.$profile_id);
+            $customFields = $db->loadObjectList();
+        } else {
+            $customFields = array();
+        }
+
         // Load the form if it's there
         $form = $this->get('Form');
         if(!empty($form)) {
@@ -81,7 +97,25 @@ class MageBridgeImporterViewProduct extends YireoViewForm
                 }
                 if($skip) continue;
 
-                // Skip attributes that are not in this attributeset
+                // @todo: Skip attributes that are not in this profile
+
+                // Overload Magento values with Joomla! stored values
+                $attribute['description'] = null;
+                foreach($customFields as $customField) {
+                    if($attribute['code'] != $customField->name) {
+                        continue;
+                    }
+
+                    $defaultDescription = 'COM_MAGEBRIDGE_IMPORTER_MODEL_PRODUCT_FIELD_'.strtoupper($attribute['code']);
+                    $customDescription = strip_tags($customField->description);
+                    $attribute['description'] = (!empty($customDescription)) ? $customDescription : $defaultDescription;
+
+                        $currentValue = $form->getValue($attribute['code']);
+                    if(!empty($customField->default_value)) {
+                        echo 'jisse: '.$customField->default_value;
+                        if(empty($currentValue)) $form->bind(array($attribute['code'] => $customField->default_value));
+                    }
+                }
 
                 // Skip attributes with no label
                 if(empty($attribute['label'])) continue;

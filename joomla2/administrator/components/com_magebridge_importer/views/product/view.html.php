@@ -18,7 +18,7 @@ jimport('joomla.filter.output');
 /**
  * HTML View class
  */
-class MageBridgeImporterViewProduct extends YireoViewForm
+class MageBridgeImporterViewProduct extends MageBridgeImporterView
 {
     /*
      * Flag to determine whether to load the menu
@@ -90,24 +90,4 @@ class MageBridgeImporterViewProduct extends YireoViewForm
 
 		parent::display($tpl);
 	}
-
-    /*
-     * Shortcut method to build the bridge for this page
-     *
-     * @param null
-     * @return null
-     */
-    public function preBuildBridge()
-    {
-        // Register the needed segments
-        $register = MageBridgeModelRegister::getInstance();
-        $register->add('headers');
-        $register->add('api', 'magebridge_attribute.attributesets');
-        $register->add('api', 'magebridge_attribute.attributes');
-        $register->add('api', 'magebridge_category.list');
-
-        // Build the bridge and collect all segments
-        $bridge = MageBridge::getBridge();
-        $bridge->build();
-    }
 }

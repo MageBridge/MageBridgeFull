@@ -17,6 +17,7 @@ require_once JPATH_ADMINISTRATOR.'/components/com_magebridge_importer/helpers/he
 require_once JPATH_ADMINISTRATOR.'/components/com_magebridge_importer/libraries/loader.php';
 require_once JPATH_SITE.'/components/com_magebridge/libraries/factory.php';
 require_once JPATH_SITE.'/components/com_magebridge/helpers/loader.php';
+require_once JPATH_COMPONENT.'/view.php';
 
 // Require the controller
 require_once JPATH_COMPONENT.'/controller.php';

@@ -11,6 +11,11 @@
 
 defined('_JEXEC') or die('Restricted access');
 ?>
+
+<?php if(!empty($this->title)) : ?>
+    <h1><?php echo $this->title; ?></h1>
+<?php endif; ?>
+
 <table width="100%" cellpadding="5">
     <thead>
         <tr>

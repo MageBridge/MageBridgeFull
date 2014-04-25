@@ -5,4 +5,15 @@
 			<![CDATA[This layout shows a product creation-form.]]>
 		</message>
 	</layout>
+    <fields name="params">
+        <fieldset name="basic" addfieldpath="/administrator/components/com_magebridge_importer/fields">
+		    <field name="profile_id" type="sql" label="COM_MAGEBRIDGE_IMPORTER_MODEL_FIELD_FIELD_PROFILE_ID"
+                query="SELECT id, label FROM #__magebridge_importer_profiles" key_field="id" value_field="label">
+                <option value="0">None</option>
+            </field>
+            <field name="attributeset_id" default="" type="attributeset" label="COM_MAGEBRIDGE_IMPORTER_MODEL_PRODUCT_FIELD_ATTRIBUTESET">
+                <option value="">No attributeset</option>
+            </field>
+        </fieldset>
+    </fields>
 </metadata>

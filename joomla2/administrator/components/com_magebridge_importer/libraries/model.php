@@ -21,7 +21,7 @@ require_once dirname(__FILE__).'/loader.php';
  *
  * @package Yireo
  */
-if(YireoHelper::isJoomla25()) {
+if(YireoHelper::isJoomla25() || YireoHelper::isJoomla15()) {
     jimport('joomla.application.component.model');
     class YireoAbstractModel extends JModel {}
 } else {
@@ -476,6 +476,15 @@ class YireoModel extends YireoCommonModel
 
                 if (!empty($data)) {
 
+                    // Prepare the column-fields
+                    if(!empty($this->_columnFields)) {
+                        foreach($this->_columnFields as $columnField) {
+                            if(!empty($data->$columnField) && !is_array($data->$columnField)) {
+                                $data->$columnField = explode('|', $data->$columnField);
+                            }
+                        }
+                    }
+
                     // Allow to modify the data
                     if (method_exists($this, 'onDataLoad')) {
                         $data = $this->onDataLoad($data);
@@ -552,6 +561,15 @@ class YireoModel extends YireoCommonModel
                             if ($this->user->authorise($action, $itemAsset) == false) {
                                 unset($data[$index]);
                                 continue;
+                            }
+                        }
+
+                        // Prepare the column-fields
+                        if(!empty($this->_columnFields)) {
+                            foreach($this->_columnFields as $columnField) {
+                                if(!empty($item->$columnField) && !is_array($item->$columnField)) {
+                                    $item->$columnField = explode('|', $item->$columnField);
+                                }
                             }
                         }
 
@@ -822,6 +840,15 @@ class YireoModel extends YireoCommonModel
             if (isset($data['params']['modified_by'])) unset( $data['params']['modified_by'] );
         }
 
+        // Prepare the column-fields
+        if(!empty($this->_columnFields)) {
+            foreach($this->_columnFields as $columnField) {
+                if(!empty($data[$columnField]) && is_array($data[$columnField])) {
+                    $data[$columnField] = implode('|', $data[$columnField]);
+                }
+            }
+        }
+
         // Bind the form fields to the table
         if (!$this->_tbl->bind($data)) {
             $this->setError($this->_db->getErrorMsg());
@@ -1038,8 +1065,7 @@ class YireoModel extends YireoCommonModel
 
             // Skip certain fields in frontend
             $skipFrontendFields = array('locked', 'published', 'published_up', 'published_down',
-                'checked_out', 'checked_out_time', 'created', 'created_by', 'created_by_alias', 
-                'modified', 'modified_by', 'modified_by_alias', 'ordering');
+                'checked_out', 'checked_out_time');
 
             // Build the fields-string to avoid a *
             $fields = $this->_tbl->getDatabaseFields();
