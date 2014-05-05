@@ -26,8 +26,12 @@ class MageBridgeImporterHelper
     static public function getWidgetData($name = null)
     {
         switch($name) {
-            case 'attributeset':
+            case 'attributesets':
                 $function = 'getAttributesets';
+                break;
+
+            case 'attributegroups':
+                $function = 'getAttributegroups';
                 break;
 
             case 'category':
@@ -56,6 +60,18 @@ class MageBridgeImporterHelper
     static public function getAttributesets()
     {
         $data = self::getApiData('magebridge_attribute.attributesets');
+        return $data;
+    }
+
+    /*
+     * Get a list of attributegroups from the API
+     *
+     * @param null
+     * @return array
+     */
+    static public function getAttributegroups()
+    {
+        $data = self::getApiData('magebridge_attribute.attributegroups');
         return $data;
     }
 
@@ -205,7 +221,10 @@ class MageBridgeImporterHelper
 
         $required = ($attribute['required'] == 1) ? 'required="required" ' : '';
 
-        $elementXml = '<fieldset name="attributegroup'.$attribute['group_value'].'" label="'.$attribute['group_label'].'">
+        $elementXml = '<fieldset 
+            name="attributegroup'.$attribute['group_value'].'" 
+            description="'.$attribute['group_description'].'"
+            label="'.$attribute['group_label'].'">
             <field name="'.$name.'"
                type="'.$type.'"
                description="'.$description.'"

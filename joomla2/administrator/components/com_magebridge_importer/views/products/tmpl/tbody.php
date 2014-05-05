@@ -12,10 +12,10 @@
 defined('_JEXEC') or die('Restricted access');
 ?>
 <td>
-    <a href="<?php echo $item->custom_edit_link; ?>"><?php echo $item->name; ?></a>
+    <a href="<?php echo $item->edit_link; ?>"><?php echo $item->name; ?></a>
 </td>
 <td>
-    <a href="<?php echo $item->custom_edit_link; ?>"><?php echo $item->sku; ?></a>
+    <a href="<?php echo $item->edit_link; ?>"><?php echo $item->sku; ?></a>
 </td>
 <td>
     <?php echo JText::_('COM_MAGEBRIDGE_IMPORTER_MODEL_STATUS_'.$item->status); ?>

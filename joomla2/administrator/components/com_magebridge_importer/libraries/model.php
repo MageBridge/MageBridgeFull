@@ -243,6 +243,13 @@ class YireoModel extends YireoCommonModel
     protected $_orderby_title = null;
 
     /**
+     * List of fields to autoconvert into column-seperated fields
+     *
+     * @protected array
+     */
+    protected $_columnFields = array();
+
+    /**
      * Enable the limit in the query (or in the data-array)
      *
      * @protected string
@@ -285,6 +292,7 @@ class YireoModel extends YireoCommonModel
         if(empty($this->_orderby_default)) $this->_orderby_default = $this->_tbl->getDefaultOrderBy();
         if(empty($this->_orderby_title)) {
             if ($this->_tbl->hasField('title')) $this->_orderby_title = 'title';
+            if ($this->_tbl->hasField('label')) $this->_orderby_title = 'label';
             if ($this->_tbl->hasField('name')) $this->_orderby_title = 'name';
         }
 
@@ -1064,8 +1072,9 @@ class YireoModel extends YireoCommonModel
         if (empty($query)) {
 
             // Skip certain fields in frontend
-            $skipFrontendFields = array('locked', 'published', 'published_up', 'published_down',
-                'checked_out', 'checked_out_time');
+            $skipFrontendFields = array(
+                'locked', 'published', 'published_up', 'published_down', 'checked_out', 'checked_out_time'
+            );
 
             // Build the fields-string to avoid a *
             $fields = $this->_tbl->getDatabaseFields();

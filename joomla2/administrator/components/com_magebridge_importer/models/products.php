@@ -32,7 +32,9 @@ class MagebridgeImporterModelProducts extends YireoModel
 
         if ($this->application->isSite()) {
             $user = JFactory::getUser();
-            $this->addWhere('`created_by`='.(int)$user->id);
+            if($user->authorise('core.login', 'admin') == false) {
+                $this->addWhere('`created_by`='.(int)$user->id);
+            }
         }
     }
 

@@ -12,10 +12,10 @@
 defined('_JEXEC') or die('Restricted access');
 ?>
 <td>
-    <a href="<?php echo $item->custom_edit_link; ?>"><?php echo $item->label; ?></a>
+    <a href="<?php echo $item->edit_link; ?>"><?php echo $item->label; ?></a>
 </td>
 <td>
-    <a href="<?php echo $item->custom_edit_link; ?>"><?php echo $item->name; ?></a>
+    <a href="<?php echo $item->edit_link; ?>"><?php echo $item->name; ?></a>
 </td>
 <td>
     <?php echo $item->profile_id; ?>

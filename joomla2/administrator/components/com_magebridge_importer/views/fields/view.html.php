@@ -17,22 +17,4 @@ defined('_JEXEC') or die();
  */
 class MageBridgeImporterViewFields extends YireoViewList
 {
-    /*
-     * Method to prepare the content for display
-     */
-	public function display($tpl = null)
-	{
-        // Fetch the items
-        $this->fetchItems();
-
-        // Prepare the items for display
-        if (!empty($this->items)) {
-            foreach ($this->items as $index => $item) {
-                $item->custom_edit_link = 'index.php?option=com_magebridge_importer&view=field&cid[]='.$item->id;
-                $this->items[$index] = $item;
-            }
-        }
-
-		parent::display($tpl);
-	}
 }

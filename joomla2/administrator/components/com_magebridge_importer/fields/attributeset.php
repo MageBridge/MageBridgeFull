@@ -17,6 +17,7 @@ require_once JPATH_SITE.'/components/com_magebridge/helpers/loader.php';
 
 // Import other libraries
 require_once JPATH_ADMINISTRATOR.'/components/com_magebridge_importer/helpers/helper.php';
+include_once JPATH_LIBRARIES.'/joomla/form/fields/list.php';
 
 /*
  * Form Field-class for choosing a specific Magento attribute-set from a dropdown
@@ -53,7 +54,7 @@ class JFormFieldAttributeset extends JFormFieldList
         if (MagebridgeModelConfig::load('api_widgets') == true) {
 
             // Fetch the widget data from the API
-            $options = MageBridgeImporterHelper::getWidgetData('attributeset');
+            $options = MageBridgeImporterHelper::getWidgetData('attributesets');
 
             // Parse the result into an HTML form-field
             if (!empty($options) && is_array($options)) {

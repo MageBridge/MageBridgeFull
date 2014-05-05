@@ -25,12 +25,22 @@ $this->_task = 'store';
 <form method="post" name="importerForm" id="importerForm">
     
 <?php echo $this->loadTemplate('fieldset', array('fieldset' => 'category', 'legend' => JText::_('COM_MAGEBRIDGE_IMPORTER_MODEL_PRODUCT_FIELDSET_CATEGORY'))); ?>
+
 <?php foreach($this->form->getFieldsets() as $fieldsetCode => $fieldset): ?>
-    <?php if(in_array($fieldsetCode, array('attributeset', 'category', 'images', 'other'))) continue; ?>
-    <?php if(isset($fieldset->site) && $fieldset->site == 0) continue; ?>
+
+    <?php if(in_array($fieldsetCode, array('attributeset', 'category', 'images', 'other'))) : ?>
+        <?php continue; ?>
+    <?php endif; ?>
+
+    <?php if(isset($fieldset->site) && $fieldset->site == 0) : ?>
+        <?php continue; ?>
+    <?php endif; ?>
+
     <?php echo $this->loadTemplate('fieldset', array('fieldset' => $fieldsetCode, 'legend' => JText::_($fieldset->label))); ?>
 <?php endforeach; ?>
+
 <?php echo $this->loadTemplate('fieldset', array('fieldset' => 'images', 'legend' => JText::_('COM_MAGEBRIDGE_IMPORTER_MODEL_PRODUCT_FIELDSET_IMAGES'))); ?>
+
 <?php echo $this->loadTemplate('fieldset', array('fieldset' => 'other', 'legend' => JText::_('COM_MAGEBRIDGE_IMPORTER_MODEL_PRODUCT_FIELDSET_OTHER'))); ?>
 
 <input type="submit" value="<?php echo JText::_('JSAVE'); ?>">

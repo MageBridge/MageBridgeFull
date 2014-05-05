@@ -26,6 +26,7 @@ class HelperAbstract
             'menu' => array(
                 'products' => 'PRODUCTS',
                 'profiles' => 'PROFILES',
+                'fieldsets' => 'FIELDSETS',
                 'fields' => 'FIELDS',
             ),
             'views' => array(
@@ -33,6 +34,8 @@ class HelperAbstract
                 'product' => 'PRODUCT',
                 'profiles' => 'PROFILES',
                 'profile' => 'PROFILE',
+                'fieldsets' => 'FIELDSETS',
+                'fieldset' => 'FIELDSET',
                 'fields' => 'FIELDS',
                 'field' => 'FIELD',
             ),

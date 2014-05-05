@@ -25,17 +25,6 @@ class MageBridgeImporterViewProducts extends YireoViewList
         // Load toolbar
         JToolBarHelper::custom('approve', 'copy.png', 'copy.png', 'LIB_YIREO_VIEW_TOOLBAR_APPROVE', false, true);
 
-        // Fetch the items
-        $this->fetchItems();
-
-        // Prepare the items for display
-        if (!empty($this->items)) {
-            foreach ($this->items as $index => $item) {
-                $item->custom_edit_link = 'index.php?option=com_magebridge_importer&view=product&cid[]='.$item->id;
-                $this->items[$index] = $item;
-            }
-        }
-
 		parent::display($tpl);
 	}
 }

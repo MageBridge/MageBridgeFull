@@ -15,10 +15,14 @@ defined('JPATH_BASE') or die();
 // Import the MageBridge autoloader
 require_once JPATH_SITE.'/components/com_magebridge/helpers/loader.php';
 
+// Import other libraries
+require_once JPATH_ADMINISTRATOR.'/components/com_magebridge_importer/helpers/helper.php';
+include_once JPATH_LIBRARIES.'/joomla/form/fields/list.php';
+
 /*
  * Form Field-class for choosing a specific Magento attribute-set from a dropdown
  */
-class JFormFieldAttribute extends JFormFieldAbstract
+class JFormFieldAttribute extends JFormFieldList
 {
     /*
      * Form field type
@@ -76,6 +80,14 @@ class JFormFieldAttribute extends JFormFieldAbstract
 
                     // Add the option back to the list of options
                     $options[$index] = $option;
+                }
+
+                $parentOptions = parent::getOptions();
+                if(!empty($parentOptions)) {
+                    foreach($parentOptions as $parentOption) {
+                        $parentOption->label = $parentOption->text;
+                        $options[] = $parentOption;
+                    }
                 }
 
                 // Construct the extra arguments

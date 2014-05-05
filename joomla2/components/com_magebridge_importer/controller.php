@@ -46,8 +46,18 @@ class MageBridgeImporterController extends YireoController
      */
     public function display($cachable = false, $urlparams = false)
     {
+        $params = JFactory::getApplication()->getParams();
+        $profile_id = (int)$params->get('profile_id');
+        $attributeset_id = 0;
         $id = JRequest::getInt('id');
-        if($id > 0) {
+
+        if($profile_id > 0) {
+            $db = JFactory::getDBO();
+            $db->setQuery('SELECT `attributeset_id` FROM `#__magebridge_importer_profiles` WHERE `id`='.$profile_id.' AND `published`=1');
+            $attributeset_id = $db->loadResult();
+        }
+
+        if($id > 0 || $attributeset_id > 0) {
             JRequest::setVar('layout', 'attributes');
         }
 
