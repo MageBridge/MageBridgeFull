@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="MageBridge" default="build" basedir=".">
+
+    <!-- Pathing -->
+    <property name="magento_package" value="${root}/packages/magento" />
+    <property name="magento_patch" value="${root}/packages/magento_patch" />
+    <property name="magento" value="${MageBridgeCore}/magento" />
+
+    <!-- Public Target: build_magento -->
+    <target name="build_magentotheme" description="Build all Magento theme packages">
+        <phingcall target="build_magentotheme_all" />
+    </target>
+
+    <!-- Target: build_magentotheme_all -->
+    <target name="build_magentotheme_all" description="Build all Magento theme packages">
+        <phingcall target="cleanup_magentotheme" />
+        <phingcall target="build_magentotheme_xml" />
+        <phingcall target="build_magentotheme_patch" />
+        <phingcall target="build_magentotheme_package_mc2" />
+    </target>
+
+    <!-- Target: build_magentotheme_cleanup -->
+    <target name="cleanup_magentotheme" description="Cleanup Magento">
+        <exec command="cd ${magento_package}; rm -r Yireo_MageBridgeTheme*" />
+    </target>
+
+    <!-- Target: build_magentotheme_xml -->
+    <target name="build_magentotheme_xml" description="Build Magento XML">
+        <foreach param="file" absparam="filename" target="replace_xml_version">
+            <fileset dir="${magento}" expandsymboliclinks="true">
+                <include name="app/code/community/Yireo/MageBridgeTheme/etc/config.xml" />
+            </fileset>
+        </foreach>
+    </target>
+
+    <!-- Target: build_magentotheme_package_mc2 -->
+    <target name="build_magentotheme_package_mc2" description="Build a package-file for Magento (MagentoConnect 2.0)">
+        <echo>Magento Connect packaging</echo>
+        <property name="destination" value="${magento_package}" />
+        <exec command="mkdir -p ${MageBridgeFull}/magento/var/build" />
+        <copy todir="${MageBridgeFull}/magento/var/build" haltonerror="false" overwrite="true">
+            <fileset dir="${magento_patch}">
+                <include name="Yireo_MageBridgeTheme_patch.zip" />
+            </fileset>
+        </copy>
+        <copy file="${MageBridgeFull}/magento/var/build/Yireo_MageBridgeTheme_patch.zip" tofile="${MageBridgeFull}/magento/var/build/Yireo_MageBridgeTheme.zip" overwrite="true" />
+        <exec passthru="true" command="php ${MageBridgeFull}/magento/magento-tar-to-connect.php ${root}/build/includes/Yireo_MageBridgeTheme_connect.php" />
+        <copy file="${MageBridgeFull}/magento/var/build/Yireo_MageBridgeTheme-${version}.tgz" tofile="${destination}/Yireo_MageBridgeTheme-${version}.tgz" overwrite="true" />
+        <copy file="${MageBridgeFull}/magento/var/build/Yireo_MageBridgeTheme-${version}.tgz" tofile="${destination}/Yireo_MageBridgeTheme.tgz" overwrite="true" />
+    </target>
+
+    <!-- Target: build_magento_patch -->
+    <target name="build_magentotheme_patch" description="Build a patch-file for Magento">
+
+        <property name="tarfile" value="${magento_patch}/Yireo_MageBridgeTheme_${version}_patch.tar.gz" />
+        <exec command="rm ${tarfile}" />
+        <tar destfile="${tarfile}" compression="gzip">
+            <fileset dir="${magento}" expandsymboliclinks="true">
+                <include name="app/etc/modules/Yireo_MageBridgeTheme.xml" />
+                <include name="app/code/community/Yireo/MageBridgeTheme/" />
+                <include name="app/design/frontend/default/magebridge/" />
+            </fileset>
+        </tar>
+        <copy file="${magento_patch}/Yireo_MageBridgeTheme_${version}_patch.tar.gz" tofile="${magento_patch}/Yireo_MageBridgeTheme_patch.tar.gz" overwrite="true" />
+        <exec command="git add ${tarfile}" />
+
+        <property name="zipfile" value="${magento_patch}/Yireo_MageBridgeTheme_${version}_patch.zip" />
+        <exec command="rm ${zipfile}" />
+        <zip destfile="${zipfile}">
+            <fileset dir="${magento}" expandsymboliclinks="true">
+                <include name="app/etc/modules/Yireo_MageBridgeTheme.xml" />
+                <include name="app/code/community/Yireo/MageBridgeTheme/" />
+                <include name="app/design/frontend/default/magebridge/" />
+            </fileset>
+        </zip>
+        <copy file="${magento_patch}/Yireo_MageBridgeTheme_${version}_patch.zip" tofile="${magento_patch}/Yireo_MageBridgeTheme_patch.zip" overwrite="true" />
+        <exec command="git add ${zipfile}" />
+    </target>
+</project>
