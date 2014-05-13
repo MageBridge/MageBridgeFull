@@ -1,10 +1,8 @@
 <?php
 return array(
-'base_dir'               => '/apache/git/software/magebridge/MageBridgeFull/magento/var/build',
-'archive_files'          => 'Yireo_MageBridge.zip',
+'archive_files'          => 'Yireo_MageBridge_patch.zip',
 'extension_name'         => 'Yireo_MageBridge',
 'extension_version'      => null,
-'path_output'            => '/apache/git/software/magebridge/MageBridgeFull/magento/var/build',
 'stability'              => 'stable',
 'license'                => 'Open Source License',
 'channel'                => 'community',

@@ -165,6 +165,9 @@ function load_config($config_name=false)
         error("Could not find $config_name");
     }
     $config = include $config_name;
+    if(!isset($config['base_dir'])) $config['base_dir'] = dirname(__FILE__).'/var/build';
+    if(!isset($config['path_output'])) $config['path_output'] = dirname(__FILE__).'/var/build';
+    
     $config = validate_config($config);
     return $config;
 }
@@ -182,10 +185,9 @@ function get_module_version($files)
     
     foreach($configs as $file)
     {
-        $xml = simplexml_load_file($file);
-        $version_strings = $xml->xpath('//version');
-        foreach($version_strings as $version)
-        {
+        $contents = file_get_contents($file);
+        if(preg_match('/\<version\>([^\<]+)\<\/version\>/', $contents, $match)) {
+            $version = strip_tags($match[1]);
             if(!empty($version)) 
             {
                 return (string)$version;
@@ -228,7 +230,7 @@ function main($argv)
     $this_script = array_shift($argv);
     $config_file = array_shift($argv);    
     $config = load_config($config_file);
-    
+
     $base_dir           = $config['base_dir'];          //'/Users/alanstorm/Documents/github/Pulsestorm/var/build';
     $archive_files      = $config['archive_files'];     //'Pulsestorm_Modulelist.tar';    
     $path_output        = $config['path_output'];       //'/Users/alanstorm/Desktop/working';    
@@ -250,7 +252,7 @@ function main($argv)
     $dirs       = glob_recursive($temp_dir .'/*',GLOB_ONLYDIR);
     $files      = array_diff($all, $dirs);
 
-    if(isset($config['auto_detect_version']) && $config['auto_detect_version'] == true)
+    if(empty($config['extension_version']) || (isset($config['auto_detect_version']) && $config['auto_detect_version'] == true))
     {
         $config['extension_version'] = get_module_version($files);
         $archive_connect = $config['extension_name'] . '-' . $config['extension_version'] . '.tgz';

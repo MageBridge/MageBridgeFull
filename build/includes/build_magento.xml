@@ -111,15 +111,15 @@
         </zip>
 
         <echo>Magento Connect packaging</echo>
-        <exec command="mkdir -p ${MageBridgeFull}/magento/var/installer" />
-        <copy todir="${MageBridgeFull}/magento/var/installer" haltonerror="false" overwrite="true">
+        <exec command="mkdir -p ${MageBridgeFull}/magento/var/build" />
+        <copy todir="${MageBridgeFull}/magento/var/build" haltonerror="false" overwrite="true">
             <fileset dir="${magento_installer}">
                 <include name="Yireo_MageBridge_installer.zip" />
             </fileset>
         </copy>
-        <copy file="${MageBridgeFull}/magento/var/installer/Yireo_MageBridge_installer.zip" tofile="${MageBridgeFull}/magento/var/installer/Yireo_MageBridge.zip" overwrite="true" />
+        <copy file="${MageBridgeFull}/magento/var/build/Yireo_MageBridge_installer.zip" tofile="${MageBridgeFull}/magento/var/installer/Yireo_MageBridge.zip" overwrite="true" />
         <exec passthru="true" command="php ${MageBridgeFull}/magento/magento-tar-to-connect.php ${root}/build/includes/Yireo_MageBridge_installer.php" />
-        <copy file="${MageBridgeFull}/magento/var/installer/Yireo_MageBridge-${version}.tgz" tofile="${magento_installer}/Yireo_MageBridge_installer-${version}.tgz" overwrite="true" />
-        <copy file="${MageBridgeFull}/magento/var/installer/Yireo_MageBridge-${version}.tgz" tofile="${magento_installer}/Yireo_MageBridge_installer.tgz" overwrite="true" />
+        <copy file="${MageBridgeFull}/magento/var/build/Yireo_MageBridge-${version}.tgz" tofile="${magento_installer}/Yireo_MageBridge_installer-${version}.tgz" overwrite="true" />
+        <copy file="${MageBridgeFull}/magento/var/build/Yireo_MageBridge-${version}.tgz" tofile="${magento_installer}/Yireo_MageBridge_installer.tgz" overwrite="true" />
     </target>
 </project>
