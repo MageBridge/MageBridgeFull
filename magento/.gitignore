@@ -71,7 +71,7 @@ js/scriptaculous/
 js/spacer.gif
 js/tiny_mce/
 js/varien/
-lib/
+/lib/
 lib/3Dsecure/
 lib/Apache/
 lib/flex/
