@@ -47,7 +47,8 @@
 
     <!-- Target: gitpull -->
     <target name="gitpull" description="Update Git">
-        <exec command="cd ${root}; git pull > /dev/null" />
+        <exec command="cd ${MageBridgeCore}; git pull > /dev/null" />
+        <exec command="cd ${MageBridgeFull}; git pull > /dev/null" />
         <exec command="cd ${root}; githead=`git rev-list HEAD --count`; expr $githead + 4940" outputProperty="build_version" />
         <exec command="echo 'version = ${major}.${build_version}' > ${root}/build/build.version" />
         <property file="${root}/build/build.properties" />
