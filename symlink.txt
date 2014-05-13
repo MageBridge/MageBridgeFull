@@ -100,6 +100,7 @@ joomla2/templates/magebridge_root
 magento/skin/adminhtml/default/default/images/magebridge
 magento/magebridge.class.php
 magento/app/code/community/Yireo/MageBridge
+magento/app/code/community/Yireo/MageBridgeTheme
 magento/app/code/community/Yireo/MageBridgeRedirect
 magento/app/code/community/Yireo/JoomlaApi
 magento/app/design/frontend/default/default/template/magebridge
@@ -107,6 +108,7 @@ magento/app/design/frontend/default/magebridge
 magento/app/design/adminhtml/default/default/layout/magebridge.xml
 magento/app/design/adminhtml/default/default/template/magebridge
 magento/app/etc/modules/Yireo_MageBridge.xml
+magento/app/etc/modules/Yireo_MageBridgeTheme.xml
 magento/app/etc/modules/Yireo_MageBridgeRedirect.xml
 magento/app/etc/modules/Yireo_JoomlaApi.xml
 magento/js/magebridge

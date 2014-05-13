@@ -114,16 +114,20 @@ class MageBridgeImporterViewProduct extends YireoViewForm
                 // Skip attributes that are not in this profile
                 if(!empty($customProfile)) {
 
-                    $excludeFields = explode('|', $customProfile->exclude_fields);
-                    if(isset($excludeFields[0]) && empty($excludeFields[0])) unset($excludeFields[0]);
-                    if(!empty($excludeFields) && in_array($attribute['code'], $excludeFields)) {
-                        continue;
+                    if(isset($customProfile->exclude_fields)) {
+                        $excludeFields = explode('|', $customProfile->exclude_fields);
+                        if(isset($excludeFields[0]) && empty($excludeFields[0])) unset($excludeFields[0]);
+                        if(!empty($excludeFields) && in_array($attribute['code'], $excludeFields)) {
+                            continue;
+                        }
                     }
 
-                    $includeFields = explode('|', $customProfile->include_fields);
-                    if(isset($includeFields[0]) && empty($includeFields[0])) unset($includeFields[0]);
-                    if(!empty($includeFields) && !in_array($attribute['code'], $includeFields)) {
-                        continue;
+                    if(isset($customProfile->include_fields)) {
+                        $includeFields = explode('|', $customProfile->include_fields);
+                        if(isset($includeFields[0]) && empty($includeFields[0])) unset($includeFields[0]);
+                        if(!empty($includeFields) && !in_array($attribute['code'], $includeFields)) {
+                            continue;
+                        }
                     }
                 }
 

@@ -31,6 +31,7 @@
     <!-- Import other files -->
     <import file="./includes/build_joomla.xml"/>
     <import file="./includes/build_magento.xml"/>
+    <import file="./includes/build_magentotheme.xml"/>
     <import file="./includes/com_magebridge_importer.xml"/>
 
     <!-- Public Target: build -->
@@ -40,6 +41,7 @@
         <phingcall target="build_xml" />
         <phingcall target="build_joomla_all" />
         <phingcall target="build_magento_all" />
+        <phingcall target="build_magentotheme_all" />
         <phingcall target="gitcommit" />
     </target>
 

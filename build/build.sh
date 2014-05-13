@@ -25,6 +25,9 @@ case $target in
     'magento_installer') 
         phing build_magento_installer
         ;;
+    'magentotheme') 
+        phing build_magentotheme
+        ;;
     *)
         echo ""
         echo "Usage:"
@@ -33,6 +36,7 @@ case $target in
         echo " ./build.sh magento           = Build all Magento packages"
         echo " ./build.sh magento_patch     = Build only Magento patch"
         echo " ./build.sh magento_installer = Build only Magento Installer"
+        echo " ./build.sh magentotheme      = Build only Magento Theme"
         echo ""
         ;;
 esac 

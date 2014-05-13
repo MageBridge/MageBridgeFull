@@ -213,6 +213,13 @@ class MageBridgeImporterHelper
             $optionsXml = '';
             foreach($options as $optionValue => $optionLabel) {
                 if(empty($optionValue) && empty($optionLabel) && count($options) == 1) break;
+                if(empty($optionValue)) {
+                    if($attribute['required'] == 1) {
+                        $optionLabel = 'COM_MAGEBRIDGE_IMPORTER_SELECT_REQUIRED';
+                    } else {
+                        $optionLabel = 'COM_MAGEBRIDGE_IMPORTER_SELECT_OPTIONAL';
+                    }
+                }
                 if(!empty($optionLabel)) $optionLabel = htmlentities($optionLabel);
                 $optionLabel = '<![CDATA['.$optionLabel.']]>';
                 $optionsXml .= '<option value="'.$optionValue.'">'.$optionLabel.'</option>'."\n";
