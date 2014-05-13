@@ -49,7 +49,6 @@ app/locale/
 app/Mage.php
 cron.php
 cron.sh
-downloader/
 errors/
 favicon.ico
 get.php
