@@ -189,13 +189,16 @@ class YireoHelper
             return $params;
         }
 
+        if (is_string($params)) $params = trim($params);
+
         if (self::isJoomla15()) {
             jimport('joomla.html.parameter');
             $params = @new JParameter($params, $file);
         } else {
             jimport('joomla.registry.registry');
             $registry = @new JRegistry();
-            if(!empty($params)) $registry->loadString($params);
+            if(!empty($params) && is_string($params)) $registry->loadString($params);
+            if(!empty($params) && is_array($params)) $registry->loadArray($params);
 
             $fileContents = @file_get_contents($file);
             if(preg_match('/\.xml$/', $fileContents)) {
@@ -220,6 +223,47 @@ class YireoHelper
     static public function toParameter($params = null, $file = null)
     {
         return self::toRegistry($params, $file);
+    }
+
+    /*
+     * Add in Bootstrap
+     *
+     * @access public
+     * @subpackage Yireo
+     * @param null
+     * @return null
+     */
+    static public function bootstrap()
+    {
+        if (self::isJoomla25()) {
+
+            // Check if bootstrap is loaded already
+            $application = JFactory::getApplication();
+            if(method_exists($application, 'set')) $application->set('bootstrap', true);
+
+            $document = JFactory::getDocument();
+            $document->addStyleSheet('//netdna.bootstrapcdn.com/bootstrap/2.3.2/css/bootstrap.min.css');
+            $document->addStyleSheet('//netdna.bootstrapcdn.com/bootstrap/2.3.2/js/bootstrap.min.js');
+        } else {
+          JHtml::_('bootstrap.framework');
+        }
+    }
+
+    /*
+     * Method to check whether Bootstrap is used
+     *
+     * @access public
+     * @subpackage Yireo
+     * @param null
+     * @return boolean
+     */
+    static public function hasBootstrap()
+    {
+        $application = JFactory::getApplication();
+        if (method_exists($application, 'get') && $application->get('bootstrap') == true) {
+            return true;
+        }
+        return false;
     }
 
     /*
