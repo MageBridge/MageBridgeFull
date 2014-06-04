@@ -570,3 +570,6 @@ media/com_magebridge
 components/com_magebridge
 images
 templates/magebridge_root
+magebridgefirstlast
+administrator/language/en-GB/en-GB.plg_user_magebridgefirstlast.sys.ini
+administrator/language/en-GB/en-GB.plg_user_magebridgefirstlast.ini
