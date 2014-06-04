@@ -20,6 +20,7 @@ joomla2/plugins/system/magebridgeyoo
 joomla2/plugins/system/magebridget3
 joomla2/plugins/system/magebridgepre
 joomla2/plugins/user/magebridge
+joomla2/plugins/user/magebridgefirstlast
 joomla2/plugins/finder/magebridge
 joomla2/plugins/search/magebridge
 joomla2/plugins/magebridge/magebridge
@@ -96,6 +97,8 @@ joomla2/administrator/language/en-GB/en-GB.plg_system_magebridgezoo.ini
 joomla2/administrator/language/en-GB/en-GB.plg_system_magebridgezoo.sys.ini
 joomla2/administrator/language/en-GB/en-GB.plg_user_magebridge.ini
 joomla2/administrator/language/en-GB/en-GB.plg_user_magebridge.sys.ini
+joomla2/administrator/language/en-GB/en-GB.plg_user_magebridgefirstlast.ini
+joomla2/administrator/language/en-GB/en-GB.plg_user_magebridgefirstlast.sys.ini
 joomla2/templates/magebridge_root
 magento/skin/adminhtml/default/default/images/magebridge
 magento/magebridge.class.php
