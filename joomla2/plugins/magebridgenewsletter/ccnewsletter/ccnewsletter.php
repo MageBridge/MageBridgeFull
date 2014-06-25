@@ -74,17 +74,5 @@ class plgMageBridgeNewsletterCcnewsletter extends MageBridgePluginMagento
     {
         return $this->checkComponent('com_ccnewsletter');
     }
-
-    /**
-     * Load the parameters
-     * 
-     * @access private
-     * @param null
-     * @return JParameter
-     */
-    private function getParams()
-    {
-        return $this->params;
-    }
 }
 

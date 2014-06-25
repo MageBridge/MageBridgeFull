@@ -8,7 +8,7 @@
  * @license GNU Public License
  * @link http://www.yireo.com
  */
-
+        
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die( 'Restricted access' );
 
@@ -18,7 +18,7 @@ require_once JPATH_SITE.'/components/com_magebridge/helpers/loader.php';
 /**
  * MageBridge Newsletter Plugin for Acymailing
  */
-class plgMageBridgeNewsletterAcymailing extends MageBridgePluginMagento
+class plgMageBridgenewsletterAcymailing extends MageBridgePluginMagento
 {
     /**
      * Event "onNewsletterSubscribe"
@@ -33,7 +33,7 @@ class plgMageBridgeNewsletterAcymailing extends MageBridgePluginMagento
             return false;
         }
 
-        $list_id = $this->getParams()->get('newsletter');
+        $list_id = $this->params->get('newsletter');
         if (empty($list_id)) {
             return true;
         }
@@ -42,17 +42,28 @@ class plgMageBridgeNewsletterAcymailing extends MageBridgePluginMagento
             return false;
         }
 
-        // See if the user exists in the database
-        $acyUser = null;
-        $acyUser->email = $user->email;
-        $acyUser->name = $user->name;
-        $acyUser->userid = $user->id;
-
+        // Get the subscriber class
         $subscriberClass = acymailing::get('class.subscriber');
-        $subscriberClass->checkVisitor = false;
-        $subid = $subscriberClass->save($acyUser);
+        if (empty($subscriberClass)) {
+            return false;
+        }
+
+        // See if the user exists in the database
+        $subid = $subscriberClass->subid($user->email);
+        if (empty($subid)) {
+            $acyUser = null;
+            $acyUser->email = $user->email;
+            $acyUser->name = $user->name;
+            $acyUser->userid = $user->id;
+
+            $subscriberClass->checkVisitor = false;
+            $subid = $subscriberClass->save($acyUser);
+        }
+
+        // Do not continue with invalid $subid
         if (empty($subid)) return false;
 
+        // Subscribe the subscriber to the newsletter
         $newSubscription = array();
         $newList = array();
         $newList['status'] = ($state == 0) ? 0 : 1;
@@ -72,18 +83,6 @@ class plgMageBridgeNewsletterAcymailing extends MageBridgePluginMagento
     public function isEnabled()
     {
         return $this->checkComponent('com_acymailing');
-    }
-
-    /**
-     * Load the parameters
-     * 
-     * @access private
-     * @param null
-     * @return JParameter
-     */
-    private function getParams()
-    {
-        return $this->params;
     }
 }
 

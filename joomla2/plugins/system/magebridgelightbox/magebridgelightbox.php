@@ -86,7 +86,7 @@ class plgSystemMageBridgeLightbox extends JPlugin
      */
     protected function jquery()
     {
-        if($this->getParams()->get('load_jquery', 1) == 0) return false;
+        if($this->params->get('load_jquery', 1) == 0) return false;
         MageBridgeTemplateHelper::load('jquery');
     }
 
@@ -132,24 +132,5 @@ class plgSystemMageBridgeLightbox extends JPlugin
     {
         $document = JFactory::getDocument();
         $document->addScriptDeclaration($js);
-    }
-
-    /**
-     * Load the parameters
-     *
-     * @access private
-     * @param null
-     * @return JParameter
-     */
-    private function getParams()
-    {
-        if (!MageBridgeHelper::isJoomla15()) {
-            return $this->params;
-        } else {
-            jimport('joomla.html.parameter');
-            $plugin = JPluginHelper::getPlugin('system', 'magebridgelightbox');
-            $params = new JParameter($plugin->params);
-            return $params;
-        }
     }
 }

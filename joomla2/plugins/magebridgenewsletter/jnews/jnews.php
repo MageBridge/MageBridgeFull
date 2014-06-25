@@ -33,7 +33,7 @@ class plgMageBridgeNewsletterJnews extends MageBridgePluginMagento
             return false;
         }
 
-        $list_id = $this->getParams()->get('newsletter');
+        $list_id = $this->params->get('newsletter');
         if (empty($list_id)) {
             return true;
         }
@@ -105,18 +105,6 @@ class plgMageBridgeNewsletterJnews extends MageBridgePluginMagento
     public function isEnabled()
     {
         return $this->checkComponent('com_jnews');
-    }
-
-    /**
-     * Load the parameters
-     * 
-     * @access private
-     * @param null
-     * @return JParameter
-     */
-    private function getParams()
-    {
-        return $this->params;
     }
 }
 
