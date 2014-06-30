@@ -24,6 +24,7 @@ class plgMageBridgeStoreGet extends MageBridgePluginStore
      * 
      * @access public
      * @param array $actions
+     * @param object $condition
      * @return bool
      */
     public function onMageBridgeValidate($actions = null, $condition = null)
