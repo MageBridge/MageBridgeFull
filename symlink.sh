@@ -2,6 +2,8 @@
 #
 # Script to set symbolic links from MageBridgeCore-repo to MageBridgeFull-repo
 #
+echo "First make sure to get this right, Jisse\n"
+exit;
 
 # Variables
 destinationDir=`pwd`
