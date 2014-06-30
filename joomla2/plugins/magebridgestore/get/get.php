@@ -26,14 +26,30 @@ class plgMageBridgeStoreGet extends MageBridgePluginStore
      * @param array $actions
      * @return bool
      */
-    public function onMageBridgeValidate($actions = null)
+    public function onMageBridgeValidate($actions = null, $condition = null)
     {
         // Make sure this plugin is enabled
         if ($this->isEnabled() == false) {
             return false;
         }
 
-        // Return false by default
+        // Check for the GET checkbox
+        if (empty($actions['get'])) {
+            return false;
+        }
+
+        // Fetch actual GET parameters
+        $store = JRequest::getCmd('__store');
+
+        // Match the parameters
+        if ($condition->name == $store && $condition->type == 'storeview') {
+            return true;
+
+        } elseif (is_numeric($condition->name) && $condition->type == 'storegroup') {
+            return array('type' => 'store', 'name' => $store);
+        }
+        
+        // Return true by default
         return false;
     }
 

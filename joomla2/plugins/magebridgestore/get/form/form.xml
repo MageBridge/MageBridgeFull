@@ -2,6 +2,8 @@
 <form>
     <fields name="actions">
         <fieldset name="actions">
+            <field type="checkbox" name="get" label="PLG_MAGEBRIDGESTORE_GET_FIELD_GET" value="1" 
+                description="PLG_MAGEBRIDGESTORE_GET_FIELD_GET_DESC" />
         </fieldset>
     </fields>
 </form>
