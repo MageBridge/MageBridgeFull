@@ -220,13 +220,19 @@ class MageBridgeImporterHelper
                         $optionLabel = 'COM_MAGEBRIDGE_IMPORTER_SELECT_OPTIONAL';
                     }
                 }
+
                 if(!empty($optionLabel)) $optionLabel = htmlentities($optionLabel);
+                if(function_exists('utf8_encode')) $optionLabel = utf8_encode($optionLabel);
                 $optionLabel = '<![CDATA['.$optionLabel.']]>';
                 $optionsXml .= '<option value="'.$optionValue.'">'.$optionLabel.'</option>'."\n";
             }
         }
 
         $required = ($attribute['required'] == 1) ? 'required="required" ' : '';
+
+        if(empty($attribute['group_value'])) $attribute['group_value'] = 'global';
+        if(empty($attribute['group_label'])) $attribute['group_label'] = 'COM_MAGEBRIDGE_IMPORTER_FIELDSET_GLOBAL';
+        if(empty($attribute['group_description'])) $attribute['group_description'] = 'COM_MAGEBRIDGE_IMPORTER_FIELDSET_GLOBAL_DESC';
 
         $elementXml = '<fieldset 
             name="attributegroup'.$attribute['group_value'].'" 
