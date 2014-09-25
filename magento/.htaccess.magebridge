@@ -1,0 +1,107 @@
+#
+# Generic .htaccess file for Magento
+# (optimized by Yireo)
+# @version 0.8.4
+
+# General options
+#AddDefaultCharset Off
+AddDefaultCharset UTF-8
+FileETag None
+DirectoryIndex index.php
+
+# Set additional PHP5 values
+<IfModule mod_php5.c>
+    php_value display_errors off
+    php_value memory_limit 256M
+    php_value max_execution_time 1800
+    php_flag magic_quotes_gpc off
+    php_flag session.auto_start off
+    php_flag zlib.output_compression off
+    php_flag suhosin.session.cryptua off
+    php_flag zend.ze1_compatibility_mode Off
+</IfModule>
+
+# Disable ModSecurity if available
+<IfModule mod_security.c>
+    SecFilterEngine Off
+    SecFilterScanPOST Off
+</IfModule>
+
+# Compress output using mod_deflate
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript
+    AddOutputFilterByType DEFLATE application/xml application/xhtml+xml application/rss+xml
+    AddOutputFilterByType DEFLATE application/javascript application/x-javascript
+
+    BrowserMatch ^Mozilla/4 gzip-only-text/html
+    BrowserMatch ^Mozilla/4\.0[678] no-gzip
+    BrowserMatch \bMSI[E] !no-gzip !gzip-only-text/html
+
+    SetEnvIfNoCase Request_URI \.(?:gif|jpe?g|png)$ no-gzip dont-vary
+    SetEnvIfNoCase Request_URI \.(?:exe|t?gz|zip|bz2|sit|rar)$ no-gzip dont-vary
+    SetEnvIfNoCase Request_URI \.(?:pdf|doc)$ no-gzip dont-vary
+    SetEnvIfNoCase Request_URI \.(?:avi|mov|mp3|mp4|rm)$ no-gzip dont-vary
+</IfModule>
+
+# Extra SSL options
+<IfModule mod_ssl.c>
+    SSLOptions StdEnvVars
+</IfModule>
+
+# Rewrite rules
+<IfModule mod_rewrite.c>
+    Options +FollowSymLinks
+
+    RewriteEngine on
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+    #RewriteBase /magento/
+
+    # always send 404 on missing files in these folders
+    RewriteCond %{REQUEST_URI} !^/(media|skin|js)/
+
+    # rewrite non-existing files/directories that are not the admin
+    #RewriteCond %{REQUEST_FILENAME} !-f
+    #RewriteCond %{REQUEST_FILENAME} !-d
+    #RewriteCond %{REQUEST_FILENAME} !-l
+    #RewriteCond %{REQUEST_URI} !/admin/
+    #RewriteCond %{REQUEST_URI} !/admin$
+    #RewriteRule ^(.*)$ http://JOOMLA/shop/$1 [R=301,L]
+
+    # rewrite requests for the default homepage
+    #RewriteCond %{REQUEST_URI} ^/$
+    #RewriteRule ^(.*)$ http://JOOMLA/shop/ [R=301,L]
+
+    # rewrite requests for /index.php/ pages except for admin-pages
+    #RewriteCond %{THE_REQUEST} /index.php 
+    #RewriteCond %{REQUEST_URI} !/admin/
+    #RewriteCond %{REQUEST_URI} !/admin$
+    #RewriteCond %{REQUEST_URI} !^/js/
+    #RewriteCond %{REQUEST_URI} !^/skin/
+    #RewriteCond %{REQUEST_URI} !^/media/
+    #RewriteRule ^(.*)$ http://JOOMLA/shop/ [R=301,L]
+
+    # rewrite everything else to index.php
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-l
+    RewriteRule .* index.php [L]
+</IfModule>
+
+# Setting Expired-headers
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresDefault A0
+    ExpiresByType application/x-javascript A4838400
+    ExpiresByType text/css A4838400
+    ExpiresByType image/gif A4838400
+    ExpiresByType image/png A4838400
+    ExpiresByType image/x-icon A4838400
+    ExpiresByType image/ico A4838400
+    ExpiresByType image/jpeg A4838400
+    ExpiresByType text/plain A4838400
+    ExpiresByType application/x-shockwave-flash A4838400
+    ExpiresByType video/x-flv A4838400
+    ExpiresByType application/pdf A4838400
+    ExpiresByType text/html A0
+</IfModule>
+
