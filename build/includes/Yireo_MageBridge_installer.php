@@ -1,5 +1,8 @@
 <?php
+$root = dirname($_SERVER['SCRIPT_FILENAME']);
 return array(
+'base_dir'               => $root.'/var/build',
+'path_output'            => $root.'/var/build',
 'archive_files'          => 'Yireo_MageBridge.zip',
 'extension_name'         => 'Yireo_MageBridge',
 'extension_version'      => null,

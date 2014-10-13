@@ -18,7 +18,7 @@
         <phingcall target="build_magento_xml" />
         <phingcall target="build_magento_patch" />
         <phingcall target="build_magento_package_mc2" />
-        <phingcall target="build_magento_installer" />
+        <!--<phingcall target="build_magento_installer" />-->
     </target>
 
     <!-- Target: build_magento_cleanup -->
@@ -42,16 +42,16 @@
     <target name="build_magento_package_mc2" description="Build a package-file for Magento (MagentoConnect 2.0)">
         <echo>Magento Connect packaging</echo>
         <property name="destination" value="${magento_package}" />
-        <exec command="mkdir -p ${MageBridgeFull}/magento/var/build" />
-        <copy todir="${MageBridgeFull}/magento/var/build" haltonerror="false" overwrite="true">
+        <exec command="mkdir -p ${localMagento}/var/build" />
+        <copy todir="${localMagento}/var/build" haltonerror="false" overwrite="true">
             <fileset dir="${magento_patch}">
                 <include name="Yireo_MageBridge_patch.zip" />
             </fileset>
         </copy>
-        <copy file="${MageBridgeFull}/magento/var/build/Yireo_MageBridge_patch.zip" tofile="${MageBridgeFull}/magento/var/build/Yireo_MageBridge.zip" overwrite="true" />
-        <exec passthru="true" command="php ${MageBridgeFull}/magento/magento-tar-to-connect.php ${root}/build/includes/Yireo_MageBridge_connect.php" />
-        <copy file="${MageBridgeFull}/magento/var/build/Yireo_MageBridge-${version}.tgz" tofile="${destination}/Yireo_MageBridge-${version}.tgz" overwrite="true" />
-        <copy file="${MageBridgeFull}/magento/var/build/Yireo_MageBridge-${version}.tgz" tofile="${destination}/Yireo_MageBridge.tgz" overwrite="true" />
+        <copy file="${localMagento}/var/build/Yireo_MageBridge_patch.zip" tofile="${localMagento}/var/build/Yireo_MageBridge.zip" overwrite="true" />
+        <exec passthru="true" command="cd ${localMagento}; php ${localMagento}/magento-tar-to-connect.php ${root}/build/includes/Yireo_MageBridge_connect.php" />
+        <copy file="${localMagento}/var/build/Yireo_MageBridge-${version}.tgz" tofile="${destination}/Yireo_MageBridge-${version}.tgz" overwrite="true" />
+        <copy file="${localMagento}/var/build/Yireo_MageBridge-${version}.tgz" tofile="${destination}/Yireo_MageBridge.tgz" overwrite="true" />
     </target>
 
     <!-- Target: build_magento_patch -->

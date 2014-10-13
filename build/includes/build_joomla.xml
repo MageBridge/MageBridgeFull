@@ -250,7 +250,7 @@
         </if>
 
         <!-- Call tasks -->
-        <phingcall target="generic_joomla_module_j25" />
+        <phingcall target="generic_joomla_module" />
     </target>
 
     <!-- Target: build_joomla_patch -->

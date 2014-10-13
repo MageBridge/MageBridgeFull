@@ -4,6 +4,7 @@
     <!-- General variables -->
     <property file="./build.properties" />
     <property file="./build.version" />
+    <property file="./local.properties" />
 
     <exec command="date +%Y-%m-%d" outputProperty="date" />
     <exec command="date '+%B %Y'" outputProperty="creationDate" />
