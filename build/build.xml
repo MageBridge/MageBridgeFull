@@ -2,6 +2,7 @@
 <project name="MageBridge" default="build" basedir=".">
 
     <!-- General variables -->
+    <property file="./global.properties" />
     <property file="./build.properties" />
     <property file="./build.version" />
     <property file="./local.properties" />
