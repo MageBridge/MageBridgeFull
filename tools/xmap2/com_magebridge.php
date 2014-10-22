@@ -4,7 +4,7 @@
  *
  * @author Yireo (info@yireo.com)
  * @package MageBridge
- * @copyright Copyright 2011
+ * @copyright Copyright 2014
  * @license GNU Public License
  * @link http://www.yireo.com
  */
@@ -155,7 +155,9 @@ class xmap_com_magebridge {
                     if(MagebridgeModelConfig::load('use_rootmenu') == 0) {
                         $node->link = 'index.php?option=com_magebridge&amp;view=root&amp;request='.$category['url'].'&Itemid='.$parent_menuitem->id;
                     } else {
-                        $node->link = 'index.php?option=com_magebridge&amp;view=root&amp;request='.$category['url'];
+                        $root_item = MageBridgeUrlHelper::getRootItem();
+                        $root_itemid = (!empty($root_item) && $root_item->id > 0) ? $root_item->id : 0;
+                        $node->link = 'index.php?option=com_magebridge&amp;view=root&amp;request='.$category['url'].'&Itemid='.$root_itemid;
                     }
                     $node->expandible = true;
                     $rs = $xmap->printNode($node);
@@ -201,11 +203,15 @@ class xmap_com_magebridge {
                 $node->name = $product['name'];
                 $node->priority = (isset($params['product_priority'])) ? $params['product_priority'] : -1;
                 $node->changefreq = (isset($params['product_changefreq'])) ? $params['product_changefreq'] : -1;
+
                 if(MagebridgeModelConfig::load('use_rootmenu') == 0) {
                     $node->link = 'index.php?option=com_magebridge&amp;view=root&amp;request='.$product['url_key'].'&Itemid='.$parent->id;
                 } else {
-                    $node->link = 'index.php?option=com_magebridge&amp;view=root&amp;request='.$product['url_key'];
+                    $root_item = MageBridgeUrlHelper::getRootItem();
+                    $root_itemid = (!empty($root_item) && $root_item->id > 0) ? $root_item->id : 0;
+                    $node->link = 'index.php?option=com_magebridge&amp;view=root&amp;request='.$product['url_key'].'&Itemid='.$root_itemid;
                 }
+
                 $node->expandible = true;
                 $rs = $xmap->printNode($node);
             }

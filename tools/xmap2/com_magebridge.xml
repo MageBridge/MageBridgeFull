@@ -2,12 +2,12 @@
 <extension type="plugin" group="xmap" version="1.6" method="upgrade">
     <name>Xmap - MageBridge Plugin</name>
     <author>Yireo</author>
-    <creationDate>March 2011</creationDate>
+    <creationDate>October 2014</creationDate>
     <copyright>GNU/GPL</copyright>
     <license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
     <authorEmail>info@yireo.com</authorEmail>
     <authorUrl>www.yireo.com</authorUrl>
-    <version>2.0.0</version>
+    <version>2.0.1</version>
     <description>Xmap plugin for MageBridge component</description>
     <files>
         <filename plugin="com_magebridge">com_magebridge.php</filename>
