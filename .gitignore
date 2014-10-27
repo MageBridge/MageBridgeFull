@@ -1,4 +1,5 @@
 packages/joomla/source
 packages/source
+build/local.properties
 joomla3
 .idea
