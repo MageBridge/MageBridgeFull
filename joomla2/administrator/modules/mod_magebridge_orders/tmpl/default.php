@@ -15,7 +15,7 @@ defined('_JEXEC') or die('Restricted access');
 // Get some variables
 $bridge = MageBridgeModelBridge::getInstance();
 ?>
-<table class="adminlist" width="100%">
+<table class="adminlist table table-striped" width="100%">
     <thead>
         <tr>
             <th class="title">
