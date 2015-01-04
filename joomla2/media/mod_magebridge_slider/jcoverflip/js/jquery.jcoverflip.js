@@ -1,7 +1,7 @@
 /*
  * jCoverflip - Present your featured content elegantly.
  * Version: 1.0.1
- * Copyright 2010 New Signature
+ * Copyright 2015 New Signature
  * 
  * This program is free software: you can redistribute it and/or modify it under the terms of the 
  * GNU General Public License as published by the Free Software Foundation, either version 3 of the 

@@ -6,7 +6,7 @@
 	http://demo.awkwardgroup.com/showcase
 	Version: 1.1.1
 
-	Copyright (C) 2011 Awkward Group (http://www.awkwardgroup.com)
+	Copyright 2015 Awkward Group (http://www.awkwardgroup.com)
 	Licensed under Attribution-ShareAlike 3.0 Unported
 	http://creativecommons.org/licenses/by-sa/3.0/
 

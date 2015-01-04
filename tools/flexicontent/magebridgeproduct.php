@@ -4,7 +4,7 @@
  *
  * @author Yireo
  * @package Magento Bridge
- * @copyright Copyright 2010
+ * @copyright Copyright 2015
  * @license Yireo EULA (www.yireo.com)
  * @link http://www.yireo.com
  */

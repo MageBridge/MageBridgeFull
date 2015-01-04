@@ -3,7 +3,7 @@
  * Joomla! component MageBridge
  *
  * @author Yireo
- * @copyright Yireo Copyright 2012
+ * @copyright Yireo Copyright 2015
  * @license GNU Public License
  * @link http://www.yireo.com
  */
