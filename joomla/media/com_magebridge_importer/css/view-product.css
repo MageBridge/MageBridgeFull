@@ -1,0 +1,9 @@
+/* Basic CSS */
+#importerForm fieldset {
+    border: 3px solid #ccc;
+    padding: 15px;
+}
+
+#importerForm fieldset legend {
+    font-weight: bold;
+}

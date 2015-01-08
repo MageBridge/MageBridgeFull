@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5" type="plugin" group="magebridgenewsletter" method="upgrade">
+	<name>PLG_MAGEBRIDGENEWSLETTER_JNEWS</name>
+	<author>Yireo</author>
+	<creationDate>December 2014</creationDate>
+	<copyright>Copyright 2015 Yireo.com. All rights reserved.</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<authorEmail>info@yireo.com</authorEmail>
+	<authorUrl>www.yireo.com</authorUrl>
+	<version>1.9.5261</version>
+	<description>PLG_MAGEBRIDGENEWSLETTER_JNEWS_DESC</description>
+
+	<files>
+		<filename plugin="jnews">jnews.php</filename>
+		<filename>index.html</filename>
+	</files>
+
+    <config>
+		<fields name="params">
+			<fieldset name="basic">
+        		<field name="newsletter" type="sql" label="PLG_MAGEBRIDGENEWSLETTER_JNEWS_FIELD_NEWSLETTER" key_field="value" value_field="title"
+                    query="SELECT `list_name` AS `title`, `id` AS `value` FROM `#__jnews_lists`" />
+	    	</fieldset>
+    	</fields>
+	</config>
+
+	<languages>
+		<language tag="en-GB">en-GB.plg_magebridgenewsletter_jnews.ini</language>
+		<language tag="en-GB">en-GB.plg_magebridgenewsletter_jnews.sys.ini</language>
+	</languages>
+</extension>

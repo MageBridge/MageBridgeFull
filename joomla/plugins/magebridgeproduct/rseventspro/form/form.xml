@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fields name="actions">
+        <fieldset name="rseventspro" addfieldpath="/administrator/components/com_magebridge/fields">
+            <field name="rseventspro_event" label="PLG_MAGEBRIDGEPRODUCT_RSEVENTSPRO_FIELD_RSEVENTSPRO_EVENT" type="sql" query="SELECT `name` AS `title`, `id` AS `value` FROM `#__rseventspro_events`" />
+        </fieldset>
+    </fields>
+</form>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5" type="plugin" group="content" method="upgrade">
+    <name>PLG_CONTENT_MAGEBRIDGETAGS</name>
+    <author>Yireo</author>
+    <creationDate>December 2014</creationDate>
+    <copyright>Copyright 2015 Yireo.com. All rights reserved.</copyright>
+    <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+    <authorEmail>info@yireo.com</authorEmail>
+    <authorUrl>www.yireo.com</authorUrl>
+    <version>1.9.5261</version>
+    <description>PLG_CONTENT_MAGEBRIDGETAGS_DESC</description>
+
+    <files>
+        <filename plugin="magebridgetags">magebridgetags.php</filename>
+        <filename>index.html</filename>
+        <folder>tmpl</folder>
+    </files>
+
+    <languages>
+        <language tag="en-GB">en-GB.plg_content_magebridgetags.ini</language>
+        <language tag="en-GB">en-GB.plg_content_magebridgetags.sys.ini</language>
+    </languages>
+
+    <config>
+        <fields name="params">
+            <fieldset name="basic">
+                <field name="tag_source" type="list" default="metakey" label="PLG_CONTENT_MAGEBRIDGETAGS_METAKEY" description="PLG_CONTENT_MAGEBRIDGETAGS_METAKEY_DESC">
+                    <option value="core">PLG_CONTENT_MAGEBRIDGETAGS_METAKEY_OPTION_CORE</option>
+                    <option value="metakey">PLG_CONTENT_MAGEBRIDGETAGS_METAKEY_OPTION_METAKEY</option>
+                    <option value="joomlatags">PLG_CONTENT_MAGEBRIDGETAGS_METAKEY_OPTION_JOOMLATAGS</option>
+                </field>
+                <field name="max_products" type="text" default="10" label="PLG_CONTENT_MAGEBRIDGETAGS_MAX_PRODUCTS" description="PLG_CONTENT_MAGEBRIDGETAGS_MAX_PRODUCTS_DESC" />
+            </fieldset>
+        </fields>
+    </config>
+</extension>

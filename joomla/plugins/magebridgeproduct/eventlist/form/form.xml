@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fields name="actions">
+        <fieldset name="eventlist" addfieldpath="/administrator/components/com_magebridge/fields">
+            <field name="eventlist_event_id" label="PLG_MAGEBRIDGEPRODUCT_EVENTLIST_FIELD_EVENTLIST_EVENT_ID" type="sql" query="SELECT `title`, `id` AS `value` FROM `#__eventlist_events`" />
+        </fieldset>
+    </fields>
+</form>

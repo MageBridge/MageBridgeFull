@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fields name="actions">
+        <fieldset name="acctexp" addfieldpath="/administrator/components/com_magebridge/fields">
+            <field name="acctexp_plan" label="PLG_MAGEBRIDGEPRODUCT_ACCTEXP_FIELD_ACCTEXP_PLAN" type="sql" query="SELECT `name` AS `title`, `id` AS `value` FROM `#__acctexp_plans`" />
+        </fieldset>
+    </fields>
+</form>
