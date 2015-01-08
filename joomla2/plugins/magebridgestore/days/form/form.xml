@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<form>
-    <fields name="actions">
-        <fieldset name="actions">
-            <field name="days_from" label="PLG_MAGEBRIDGESTORE_DAYS_FIELD_FROM" type="calendar" />
-            <field name="days_to" label="PLG_MAGEBRIDGESTORE_DAYS_FIELD_TO" type="calendar" />
-        </fieldset>
-    </fields>
-</form>

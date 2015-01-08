@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<form>
-    <fields name="actions">
-        <fieldset name="ohanah" addfieldpath="/administrator/components/com_magebridge/fields">
-            <field name="ohanah_event" label="PLG_MAGEBRIDGEPRODUCT_OHANAH_FIELD_OHANAH_EVENT" type="sql" query="SELECT `title`, `ohanah_event_id` AS `value` FROM `#__ohanah_events`" />
-        </fieldset>
-    </fields>
-</form>

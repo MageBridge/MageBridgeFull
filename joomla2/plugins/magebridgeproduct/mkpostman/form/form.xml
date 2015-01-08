@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<form>
-    <fields name="actions">
-        <fieldset name="mkpostman" addfieldpath="/administrator/components/com_magebridge/fields">
-            <field name="mkpostman_list" label="PLG_MAGEBRIDGEPRODUCT_MKPOSTMAN_FIELD_MKPOSTMAN_LIST" type="sql" query="SELECT `title`, `id` AS `value` FROM `#__mkpostman_lists`" />
-        </fieldset>
-    </fields>
-</form>

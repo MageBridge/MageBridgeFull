@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<form>
-    <fields name="actions">
-        <fieldset name="usergroup" addfieldpath="/administrator/components/com_magebridge/fields">
-            <field name="usergroup_id" label="PLG_MAGEBRIDGEPRODUCT_USERGROUP_FIELD_USERGROUP_ID" type="usergroup" allownone="1" />
-        </fieldset>
-    </fields>
-</form>

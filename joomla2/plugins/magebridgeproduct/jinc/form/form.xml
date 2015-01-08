@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<form>
-    <fields name="actions">
-        <fieldset name="actions" addfieldpath="/administrator/components/com_magebridge/fields">
-            <field name="jinc_group" label="PLG_MAGEBRIDGEPRODUCT_JINC_FIELD_JINC_GROUP" type="sql" query="SELECT `grp_name` AS `title`, `grp_id` AS `value` FROM `#__jinc_group`" />
-        </fieldset>
-    </fields>
-</form>

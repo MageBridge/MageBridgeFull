@@ -4,8 +4,8 @@
     <!-- Pathing -->
     <property name="joomla_package" value="${MageBridgeFull}/packages/joomla" />
     <property name="joomla_patch" value="${MageBridgeFull}/packages/joomla_patch" />
-    <property name="MageBridgeFullJoomla" value="${MageBridgeFull}/joomla2" />
-    <property name="MageBridgeCoreJoomla" value="${MageBridgeCore}/joomla2" />
+    <property name="MageBridgeFullJoomla" value="${MageBridgeFull}/joomla" />
+    <property name="MageBridgeCoreJoomla" value="${MageBridgeCore}/joomla" />
 
     <!-- Public Target: build_joomla -->
     <target name="build_joomla" description="Build all Joomla! packages">
@@ -52,7 +52,7 @@
 
         <exec command="mkdir -p ${joomla_package}/source/com_magebridge" />
         <copy todir="${joomla_package}/source/com_magebridge">
-            <fileset dir="${MageBridgeCore}/joomla2" expandsymboliclinks="true">
+            <fileset dir="${MageBridgeCore}/joomla" expandsymboliclinks="true">
                 <include name="administrator/components/com_magebridge/**" />
                 <include name="components/com_magebridge/**" />
                 <include name="language/en-GB/en-GB.com_magebridge.ini" />
@@ -258,7 +258,7 @@
         <exec command="mkdir -p ${joomla_patch}" />
         <property name="tarfile" value="${joomla_patch}/MageBridge_${version}_Joomla25_patch.tar.gz" />
         <tar destfile="${tarfile}" compression="gzip">
-            <fileset dir="${MageBridgeCore}/joomla2" expandsymboliclinks="true">
+            <fileset dir="${MageBridgeCore}/joomla" expandsymboliclinks="true">
                 <include name="components/com_magebridge/**" />
                 <include name="administrator/components/com_magebridge/**" />
                 <include name="administrator/modules/mod_magebridge**" />
