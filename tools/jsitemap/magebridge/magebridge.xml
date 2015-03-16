@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<datasource>
+	<name>MageBridge</name>
+	<description>JSitemap datasource for MageBridge</description>
+	
+	<config>
+		<fieldset name="params">
+            <!--<field name="expand_root" type="list" default="1" label="COM_JMAP_PLGMAGEBRIDGE_FIELD_EXPAND_ROOT" description="COM_JMAP_PLGMAGEBRIDGE_FIELD_EXPAND_ROOT_DESC">
+                <option value="0">No</option>
+                <option value="1">Yes</option>
+            </field>
+            <field name="expand_category" type="list" default="0" label="COM_JMAP_PLGMAGEBRIDGE_FIELD_EXPAND_CATEGORY" description="COM_JMAP_PLGMAGEBRIDGE_FIELD_EXPAND_CATEGORY_DESC">
+                <option value="0">No</option>
+                <option value="1">Yes</option>
+            </field>
+            <field name="enable_products" type="list" default="0" label="COM_JMAP_PLGMAGEBRIDGE_FIELD_ENABLE_PRODUCTS" description="COM_JMAP_PLGMAGEBRIDGE_FIELD_ENABLE_PRODUCTS_DESC">
+                <option value="0">No</option>
+                <option value="1">Yes</option>
+            </field>-->
+		</fieldset>
+	</config>
+</datasource>
