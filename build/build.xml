@@ -71,9 +71,23 @@
 
     <!-- Target: replace_xml_version -->
     <target name="replace_xml_version">
+        <exec command="cp ${filename} ${tmp};" />
+        <copy file="${tmp}" tofile="${filename}" overwrite="true">
+            <filterchain>
+                <replaceregexp>
+                    <regexp pattern="{VERSION}" replace="${version}" />
+                    <regexp pattern="&lt;version&gt;([^\&lt;]*)" replace="&lt;version&gt;${version}" />
+                    <regexp pattern="&lt;creationDate&gt;([^\&lt;]*)" replace="&lt;creationDate&gt;${creationDate}" />
+                    <regexp pattern="&lt;copyright&gt;([^\&lt;]*)" replace="&lt;copyright&gt;Copyright (C) ${creationYear} Yireo.com. All rights reserved." />
+                </replaceregexp>
+            </filterchain>
+        </copy>
+
+        <!--
         <exec command="cp ${filename} ${tmp}; cat ${tmp}|sed -e 's/&lt;version&gt;\([^\&lt;]*\)/&lt;version&gt;${version}/' &gt; ${filename}; rm ${tmp}" />
         <exec command="cp ${filename} ${tmp}; cat ${tmp}|sed -e 's/&lt;creationDate&gt;\([^\&lt;]*\)/&lt;creationDate&gt;${creationDate}/' &gt; ${filename}; rm ${tmp}" />
         <exec command="cp ${filename} ${tmp}; cat ${tmp}|sed -e 's/&lt;copyright&gt;\([^\&lt;]*\)/&lt;copyright&gt;Copyright (C) ${creationYear} Yireo.com. All rights reserved./' &gt; ${filename}; rm ${tmp}" />
+        -->
     </target>
 
     <!-- Target: gitcommit -->

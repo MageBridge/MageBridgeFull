@@ -40,7 +40,7 @@
 
     <!-- Target: build_magento_package_mc2 -->
     <target name="build_magento_package_mc2" description="Build a package-file for Magento (MagentoConnect 2.0)">
-        <echo>Magento Connect packaging</echo>
+        <echo>MageBridge MagentoConnect packaging</echo>
         <if><available file="${root}/build/includes/Yireo_MageBridge_connect.php" type="file" />
             <then>
                 <if><available file="${test.magento_dir}" type="dir" />
