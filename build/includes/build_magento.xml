@@ -41,17 +41,31 @@
     <!-- Target: build_magento_package_mc2 -->
     <target name="build_magento_package_mc2" description="Build a package-file for Magento (MagentoConnect 2.0)">
         <echo>Magento Connect packaging</echo>
-        <property name="destination" value="${magento_package}" />
-        <exec command="mkdir -p ${localMagento}/var/build" />
-        <copy todir="${localMagento}/var/build" haltonerror="false" overwrite="true">
-            <fileset dir="${magento_patch}">
-                <include name="Yireo_MageBridge_patch.zip" />
-            </fileset>
-        </copy>
-        <copy file="${localMagento}/var/build/Yireo_MageBridge_patch.zip" tofile="${localMagento}/var/build/Yireo_MageBridge.zip" overwrite="true" />
-        <exec passthru="true" command="cd ${localMagento}; php ${localMagento}/magento-tar-to-connect.php ${root}/build/includes/Yireo_MageBridge_connect.php" />
-        <copy file="${localMagento}/var/build/Yireo_MageBridge-${version}.tgz" tofile="${destination}/Yireo_MageBridge-${version}.tgz" overwrite="true" />
-        <copy file="${localMagento}/var/build/Yireo_MageBridge-${version}.tgz" tofile="${destination}/Yireo_MageBridge.tgz" overwrite="true" />
+        <if><available file="${root}/build/includes/Yireo_MageBridge_connect.php" type="file" />
+            <then>
+                <if><available file="${test.magento_dir}" type="dir" />
+                    <then>
+                        <echo>Magento Connect packaging</echo>
+                        <exec command="mkdir -p ${test.magento_dir}/var/build" />
+                        <copy todir="${test.magento_dir}/var/build" haltonerror="false" overwrite="true">
+                            <fileset dir="${magento_patch}">
+                                <include name="Yireo_MageBridge_patch.zip" />
+                            </fileset>
+                        </copy>
+                        <copy file="${test.magento_dir}/var/build/Yireo_MageBridge_patch.zip" tofile="${test.magento_dir}/var/build/Yireo_MageBridge.zip" overwrite="true" />
+                        <exec passthru="true" command="php ${test.magento_dir}/magento-tar-to-connect.php ${root}/build/includes/Yireo_MageBridge_connect.php" />
+                        <copy file="${test.magento_dir}/var/build/Yireo_MageBridge-${version}.tgz" tofile="${magento_package}/Yireo_MageBridge-${version}.tgz" overwrite="true" />
+                        <copy file="${test.magento_dir}/var/build/Yireo_MageBridge-${version}.tgz" tofile="${magento_package}/Yireo_MageBridge.tgz" overwrite="true" />
+                    </then>
+                    <else>
+                        <echo level="error">Magento environment "${test.magento_dir}" not available</echo>
+                    </else>
+                </if>
+            </then>
+            <else>
+                <echo level="warning">MagentoConnect build not available: ${test.magento_dir}</echo>
+            </else>
+        </if>
     </target>
 
     <!-- Target: build_magento_patch -->
