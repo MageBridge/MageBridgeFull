@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="2.5" client="site" method="upgrade">
+	<name>MOD_MAGEBRIDGE_SLIDER</name>
+	<author>Yireo</author>
+	<creationDate>March 2015</creationDate>
+	<copyright>Copyright (C) 2015 Yireo.com. All rights reserved.</copyright>
+	<license>GNU/GPL</license>
+	<authorEmail>development@yireo.com</authorEmail>
+	<authorUrl>www.yireo.com</authorUrl>
+	<version>1.9.5274</version>
+	<description>MOD_MAGEBRIDGE_SLIDER_DESC</description>
+
+	<files folder="site">
+		<filename module="mod_magebridge_slider">mod_magebridge_slider.php</filename>
+		<filename>helper.php</filename>
+		<filename>index.html</filename>
+		<folder>tmpl</folder>
+	</files>
+
+    <media folder="media">
+        <folder>mod_magebridge_slider</folder>
+    </media>
+
+    <languages folder="site/language">
+        <language tag="en-GB">en-GB.mod_magebridge_slider.ini</language>
+        <language tag="en-GB">en-GB.mod_magebridge_slider.sys.ini</language>
+    </languages>
+
+	<config>
+		<fields name="params">
+			<fieldset name="basic" addfieldpath="/administrator/components/com_magebridge/fields">
+        		<field name="ordering" type="list" default="1" label="MOD_MAGEBRIDGE_SLIDER_FIELD_ORDERING" description="MOD_MAGEBRIDGE_SLIDER_FIELD_ORDERING_DESC">
+		        	<option value="">MOD_MAGEBRIDGE_SLIDER_FIELD_ORDERING_OPTION_DEFAULT</option>
+        			<option value="newest">MOD_MAGEBRIDGE_SLIDER_FIELD_ORDERING_OPTION_NEWEST</option>
+		        	<option value="oldest">MOD_MAGEBRIDGE_SLIDER_FIELD_ORDERING_OPTION_OLDEST</option>
+        			<!--<option value="purchased">MOD_MAGEBRIDGE_SLIDER_FIELD_ORDERING_OPTION_PURCHASED</option>-->
+		        	<option value="random">MOD_MAGEBRIDGE_SLIDER_FIELD_ORDERING_OPTION_RANDOM</option>
+        			<option value="popular">MOD_MAGEBRIDGE_SLIDER_FIELD_ORDERING_OPTION_POPULAR</option>
+		        </field>
+        		<field name="count" type="text" default="5" label="MOD_MAGEBRIDGE_SLIDER_FIELD_COUNT" description="MOD_MAGEBRIDGE_SLIDER_FIELD_COUNT_DESC" />
+		        <field name="category_id" type="magebridge.category" return="id" default="" label="MOD_MAGEBRIDGE_SLIDER_FIELD_CATEGORY_ID" description="MOD_MAGEBRIDGE_SLIDER_FIELD_CATEGORY_ID_DESC" />
+        		<field name="tool" type="list" default="" label="MOD_MAGEBRIDGE_SLIDER_FIELD_TOOL" description="MOD_MAGEBRIDGE_SLIDER_FIELD_TOOL_DESC">
+		        	<option value="awkward">Awkward</option>
+		        	<option value="slidesjs">SlidesJS</option>
+		        	<option value="slidorion">Slidorion</option>
+		        	<option value="jcoverflip">jCoverflip</option>
+        		</field>
+        	</fieldset>
+        	<fieldset name="product" label="MOD_MAGEBRIDGE_SLIDER_FIELDSET_PRODUCT_OPTIONS">
+		        <field name="show_title" type="list" default="1" label="MOD_MAGEBRIDGE_SLIDER_FIELD_SHOW_TITLE" description="MOD_MAGEBRIDGE_SLIDER_FIELD_SHOW_TITLE_DESC">
+        			<option value="0">JHIDE</option>
+		        	<option value="1">JSHOW</option>
+        		</field>
+		        <field name="show_short_description" type="list" default="1" label="MOD_MAGEBRIDGE_SLIDER_FIELD_SHOW_SHORT_DESCRIPTION" description="MOD_MAGEBRIDGE_SLIDER_FIELD_SHOW_SHORT_DESCRIPTION_DESC">
+        			<option value="0">JHIDE</option>
+		        	<option value="1">JSHOW</option>
+        		</field>
+        		<field name="show_description" type="list" default="0" label="MOD_MAGEBRIDGE_SLIDER_FIELD_SHOW_DESCRIPTION" description="MOD_MAGEBRIDGE_SLIDER_FIELD_SHOW_DESCRIPTION_DESC">
+		        	<option value="0">JHIDE</option>
+        			<option value="1">JSHOW</option>
+		        </field>
+        		<field name="show_price" type="list" default="1" label="MOD_MAGEBRIDGE_SLIDER_FIELD_SHOW_PRICE" description="MOD_MAGEBRIDGE_SLIDER_FIELD_SHOW_PRICE_DESC">
+		        	<option value="0">JHIDE</option>
+        			<option value="1">JSHOW</option>
+		        </field>
+        		<field name="special_price" type="list" default="1" label="MOD_MAGEBRIDGE_SLIDER_FIELD_SPECIAL_PRICE" description="MOD_MAGEBRIDGE_SLIDER_FIELD_SPECIAL_PRICE_DESC">
+			        <option value="0">JHIDE</option>
+        			<option value="1">MOD_MAGEBRIDGE_SLIDER_FIELD_SPECIAL_PRICE_OPTION_1</option>
+		        	<option value="2">MOD_MAGEBRIDGE_SLIDER_FIELD_SPECIAL_PRICE_OPTION_2</option>
+		        </field>
+        		<field name="final_price" type="list" default="1" label="MOD_MAGEBRIDGE_SLIDER_FIELD_FINAL_PRICE" description="MOD_MAGEBRIDGE_SLIDER_FIELD_FINAL_PRICE_DESC">
+			        <option value="0">JHIDE</option>
+        			<option value="1">MOD_MAGEBRIDGE_SLIDER_FIELD_FINAL_PRICE_OPTION_1</option>
+		        	<option value="2">MOD_MAGEBRIDGE_SLIDER_FIELD_FINAL_PRICE_OPTION_2</option>
+		        </field>
+        		<field name="show_readmore" type="list" default="1" label="MOD_MAGEBRIDGE_SLIDER_FIELD_SHOW_READMORE" description="MOD_MAGEBRIDGE_SLIDER_FIELD_SHOW_READMORE_DESC">
+        			<option value="0">JHIDE</option>
+		        	<option value="1">JSHOW</option>
+        		</field>
+		        <field name="show_addtocart" type="list" default="1" label="MOD_MAGEBRIDGE_SLIDER_FIELD_SHOW_ADDTOCART" description="MOD_MAGEBRIDGE_SLIDER_FIELD_SHOW_ADDTOCART_DESC">
+        			<option value="0">JHIDE</option>
+		        	<option value="1">JSHOW</option>
+        		</field>
+        		<field name="image" type="list" default="image" label="MOD_MAGEBRIDGE_SLIDER_FIELD_IMAGE" description="MOD_MAGEBRIDGE_SLIDER_FIELD_IMAGE_DESC">
+		        	<option value="thumbnail">MOD_MAGEBRIDGE_SLIDER_FIELD_IMAGE_OPTION_THUMBNAIL</option>
+        			<option value="small_image">MOD_MAGEBRIDGE_SLIDER_FIELD_IMAGE_OPTION_SMALL_IMAGE</option>
+		        	<option value="image">MOD_MAGEBRIDGE_SLIDER_FIELD_IMAGE_OPTION_IMAGE</option>
+        		</field>
+		        <field name="image_size" type="text" default="100" label="MOD_MAGEBRIDGE_SLIDER_FIELD_IMAGE_SIZE" size="4" description="MOD_MAGEBRIDGE_SLIDER_FIELD_IMAGE_SIZE_DESC" />
+		        <field name="readmore" type="text" default="Read more about %s" label="MOD_MAGEBRIDGE_SLIDER_FIELD_READMORE" description="MOD_MAGEBRIDGE_SLIDER_FIELD_READMORE_DESC" />
+        		<field name="addtocart" type="text" default="Add %s to cart" label="MOD_MAGEBRIDGE_SLIDER_FIELD_ADDTOCART" description="MOD_MAGEBRIDGE_SLIDER_FIELD_ADDTOCART_DESC" />
+		        <field name="show_noitems" type="list" default="1" label="MOD_MAGEBRIDGE_SLIDER_FIELD_SHOW_NOITEMS" description="MOD_MAGEBRIDGE_SLIDER_FIELD_SHOW_NOITEMS_DESC">
+        			<option value="0">JHIDE</option>
+		        	<option value="1">JSHOW</option>
+        		</field>
+        	</fieldset>
+        	<fieldset name="other" label="MOD_MAGEBRIDGE_SLIDER_FIELDSET_OTHER">
+	        	<field name="interval" type="text" default="4000" label="MOD_MAGEBRIDGE_SLIDER_FIELD_INTERVAL" />
+        		<field name="speed" type="text" default="1000" label="MOD_MAGEBRIDGE_SLIDER_FIELD_SPEED" />
+        		<field name="load_jquery" type="list" default="1" label="MOD_MAGEBRIDGE_SLIDER_FIELD_LOAD_SLIDESHOW_JQUERY" description="MOD_MAGEBRIDGE_SLIDER_FIELD_LOAD_SLIDESHOW_JQUERY_DESC">
+	        		<option value="0">JNO</option>
+		        	<option value="1">JYES</option>
+        		</field>
+	        	<field name="load_jquery_easing" type="list" default="1" label="MOD_MAGEBRIDGE_SLIDER_FIELD_LOAD_SLIDESHOW_JQUERY_EASING" description="MOD_MAGEBRIDGE_SLIDER_FIELD_LOAD_SLIDESHOW_JQUERY_EASING_DESC">
+		        	<option value="0">JNO</option>
+        			<option value="1">JYES</option>
+	        	</field>
+        		<field name="load_jquery_cycle" type="list" default="1" label="MOD_MAGEBRIDGE_SLIDER_FIELD_LOAD_SLIDESHOW_JQUERY_CYCLE" description="MOD_MAGEBRIDGE_SLIDER_FIELD_LOAD_SLIDESHOW_JQUERY_CYCLE_DESC">
+	        		<option value="0">JNO</option>
+		        	<option value="1">JYES</option>
+        		</field>
+        	</fieldset>
+        	<fieldset name="awkward" label="MOD_MAGEBRIDGE_SLIDER_FIELDSET_AWKWARD">
+		        <field name="awkward_width" type="text" default="538" label="MOD_MAGEBRIDGE_SLIDER_FIELD_WIDTH" description="MOD_MAGEBRIDGE_SLIDER_FIELD_WIDTH_DESC" />
+		        <field name="awkward_height" type="text" default="370" label="MOD_MAGEBRIDGE_SLIDER_FIELD_HEIGHT" description="MOD_MAGEBRIDGE_SLIDER_FIELD_HEIGHT_DESC" />
+            </fieldset>
+        	<fieldset name="slidesjs" label="MOD_MAGEBRIDGE_SLIDER_FIELDSET_SLIDESJS">
+		        <field name="slidesjs_width" type="text" default="470" label="MOD_MAGEBRIDGE_SLIDER_FIELD_WIDTH" description="MOD_MAGEBRIDGE_SLIDER_FIELD_WIDTH_DESC" />
+		        <field name="slidesjs_height" type="text" default="380" label="MOD_MAGEBRIDGE_SLIDER_FIELD_HEIGHT" description="MOD_MAGEBRIDGE_SLIDER_FIELD_HEIGHT_DESC" />
+        		<field name="slidesjs_hoverpause" type="list" default="1" label="MOD_MAGEBRIDGE_SLIDER_FIELD_HOVERPAUSE" description="MOD_MAGEBRIDGE_SLIDER_FIELD_HOVERPAUSE_DESC">
+	        		<option value="0">JNO</option>
+		        	<option value="1">JYES</option>
+        		</field>
+            </fieldset>
+        	<fieldset name="slidorion" label="MOD_MAGEBRIDGE_SLIDER_FIELDSET_SLIDORION">
+		        <field name="slidorion_width" type="text" default="628" label="MOD_MAGEBRIDGE_SLIDER_FIELD_WIDTH" description="MOD_MAGEBRIDGE_SLIDER_FIELD_WIDTH_DESC" />
+		        <field name="slidorion_height" type="text" default="420" label="MOD_MAGEBRIDGE_SLIDER_FIELD_HEIGHT" description="MOD_MAGEBRIDGE_SLIDER_FIELD_HEIGHT_DESC" />
+		        <field name="slidorion_accordionwidth" type="text" default="240" label="MOD_MAGEBRIDGE_SLIDER_FIELD_ACCORDIONWIDTH" description="MOD_MAGEBRIDGE_SLIDER_FIELD_ACCORDIONWIDTH_DESC" />
+        		<field name="slidorion_autoplay" type="list" default="1" label="MOD_MAGEBRIDGE_SLIDER_FIELD_AUTOPLAY" description="MOD_MAGEBRIDGE_SLIDER_FIELD_AUTOPLAY_DESC">
+	        		<option value="0">JNO</option>
+		        	<option value="1">JYES</option>
+        		</field>
+        		<field name="slidorion_hoverpause" type="list" default="1" label="MOD_MAGEBRIDGE_SLIDER_FIELD_HOVERPAUSE" description="MOD_MAGEBRIDGE_SLIDER_FIELD_HOVERPAUSE_DESC">
+	        		<option value="0">JNO</option>
+		        	<option value="1">JYES</option>
+        		</field>
+        		<field name="slidorion_effect" type="list" default="fade" label="MOD_MAGEBRIDGE_SLIDER_FIELD_EFFECT" description="MOD_MAGEBRIDGE_SLIDER_FIELD_EFFECT_DESC">
+		        	<option value="fade">fade</option>
+		        	<option value="slideRandom">slideRandom</option>
+		        	<option value="overRandom">overRandom</option>
+		        	<option value="slideUp">slideUp</option>
+		        	<option value="slideRight">slideRight</option>
+		        	<option value="slideDown">slideDown</option>
+		        	<option value="slideLeft">slideLeft</option>
+		        	<option value="overUp">overUp</option>
+		        	<option value="overRight">overRight</option>
+		        	<option value="overDown">overDown</option>
+		        	<option value="overLeft">overLeft</option>
+		        	<option value="none">none</option>
+        		</field>
+        	</fieldset>
+			<fieldset name="advanced">
+				<field name="layout" type="modulelayout" label="JFIELD_ALT_LAYOUT_LABEL" description="JFIELD_ALT_MODULE_LAYOUT_DESC" />
+        		<field name="moduleclass_sfx" type="text" default="" label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL" description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC" />
+        		<field name="cache" type="list" default="1" label="COM_MODULES_FIELD_CACHING_LABEL" description="COM_MODULES_FIELD_CACHING_DESC">
+		        	<option value="1">JGLOBAL_USE_GLOBAL</option>
+        			<option value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
+		        </field>
+        		<field name="cache_time" type="text" default="900" label="COM_MODULES_FIELD_CACHE_TIME_LABEL" description="COM_MODULES_FIELD_CACHE_TIME_DESC" />
+        	</fieldset>
+        </fields>
+	</config>
+</extension>
