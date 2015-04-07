@@ -18,7 +18,9 @@
     <config>
 		<fields name="params">
 			<fieldset name="basic">
-        		<field name="newsletter" type="sql" label="PLG_MAGEBRIDGENEWSLETTER_ACYMAILING_FIELD_NEWSLETTER" key_field="value" value_field="title"
+        		<field name="newsletter" 
+                    label="PLG_MAGEBRIDGENEWSLETTER_ACYMAILING_FIELD_NEWSLETTER" 
+                    type="sql" key_field="value" value_field="title" multiple="multiple"
                     query="SELECT `name` AS `title`, `listid` AS `value` FROM `#__acymailing_list`" />
 	    	</fieldset>
     	</fields>
