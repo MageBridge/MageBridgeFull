@@ -89,7 +89,7 @@ class plgMageBridgenewsletterAcymailing extends MageBridgePluginMagento
         return (int) $subid;
     }
 
-    private function subscribeNewsletter($subid, $list_id);
+    private function subscribeNewsletter($subid, $list_id)
     {
         // Get the subscriber class
         $subscriberClass = acymailing::get('class.subscriber');
