@@ -84,7 +84,7 @@ class plgMageBridgeProductOsemsc6 extends MageBridgePluginProduct
 
         // Get system variables
         $db = JFactory::getDBO();
-        $user = JFactory::getUser()->load($user_id);
+        $user = JFactory::getUser($user_id);
 
         // Import the JDate-library
         jimport('joomla.utilities.date');

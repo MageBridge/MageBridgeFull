@@ -46,8 +46,7 @@ require_once JPATH_SITE.'/components/com_magebridge/helpers/loader.php';
 /*
  * Run a product-connector
  */
-$user = JFactory::getUser();
-$user->load($user_id);
+$user = JFactory::getUser($user_id);
 if(!empty($user) && $user->id > 0) {
     echo "Running product-relation for SKU '".$product_sku."' on user ".$user->email."\n";
     MageBridgeConnectorProduct::getInstance()->runOnPurchase($product_sku, 1, $user, 'complete');
