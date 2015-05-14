@@ -10,12 +10,12 @@
  */
 
 // User settings
-define('mbSupportKey', 'DhiYmMwNWE5ODUyY2Y4Yzc4NWUyYjA1Y');
-define('mbSupportDomain', 'dynamicearth.net');
-define('mbApiHost', 'store.dynamicearth.net');
-define('mbApiBasedir', 'magento');
-define('mbApiUsername', 'magebridge938843');
-define('mbApiPassword', 'S12lz00Z1lAm20ds89kkemY');
+define('mbSupportKey', 'zQ0ODJkYzdjNzU0YTMwYWJhOTcwNjVkM');
+define('mbSupportDomain', 'livakurser.dk');
+define('mbApiHost', 'www.forlagetliva.dk');
+define('mbApiBasedir', '');
+define('mbApiUsername', 'magebridge9103203');
+define('mbApiPassword', 'Azp3zDfdf8Smm3cc00');
 define('mbTemplatePatch', 0);
     
 // Detect the Joomla! directory
@@ -165,8 +165,13 @@ class MageBridgeInstallerJoomla extends MageBridgeInstaller
             if(file_exists(DOCUMENT_ROOT.'.htaccess')) {
                 copy(DOCUMENT_ROOT.'.htaccess', DOCUMENT_ROOT.'.htaccess.orig');
             }
+
             $this->downloadFile('http://www.yireo.com/documents/htaccess_joomla.txt', DOCUMENT_ROOT.'.htaccess');
             $this->downloadFile('http://www.yireo.com/documents/htaccess_joomla.txt', DOCUMENT_ROOT.'.htaccess.yireo');
+
+            if(!file_exists(DOCUMENT_ROOT.'.htaccess.yireo')) {
+                die('No .htaccess.yireo after download');
+            }
         }
     }
 
@@ -176,14 +181,14 @@ class MageBridgeInstallerJoomla extends MageBridgeInstaller
     protected function initJoomla()
     {
         // Change the path to the JPATH_BASE
-        if(!is_file(JPATH_BASE.DS.'includes'.DS.'framework.php')) {
+        if(!is_file(JPATH_BASE.'/includes/framework.php')) {
             die('Incorrect Joomla! base-path');
         }
         chdir(JPATH_BASE);
 
         // Include the framework
-        require_once ( JPATH_BASE .DS.'includes'.DS.'defines.php' );
-        require_once ( JPATH_BASE .DS.'includes'.DS.'framework.php' );
+        require_once ( JPATH_BASE .'/includes/defines.php' );
+        require_once ( JPATH_BASE .'/includes/framework.php' );
         jimport('joomla.environment.request');
         jimport('joomla.database.database');
 
@@ -208,7 +213,7 @@ class MageBridgeInstallerJoomla extends MageBridgeInstaller
     {
         $this->feedback('Replacing the Global Configuration');
 
-        $configuration = JPATH_BASE.DS.'configuration.php';
+        $configuration = JPATH_BASE.'/configuration.php';
         $contents = file_get_contents($configuration);
         if(empty($contents)) {
             $this->feedback('ERROR: Empty file');
@@ -233,24 +238,28 @@ class MageBridgeInstallerJoomla extends MageBridgeInstaller
      */
     protected function installMageBridge()
     {
-        if(!is_dir(JPATH_BASE.DS.'components'.DS.'com_magebridge')) {
+        if(!is_dir(JPATH_BASE.'/components/com_magebridge')) {
             $this->feedback('Downloading MageBridge component');
 
-            $file = ($this->isJoomla15()) ? 'com_magebridge_j15.zip' : 'com_magebridge_j25.zip';
+            $file = 'com_magebridge_j25.zip';
             $url = 'http://api.yireo.com/key,'.mbSupportKey.'/domain,'.mbSupportDomain.'/resource,download/request,'.$file;
-            $this->downloadFile($url, JPATH_BASE.DS.'tmp'.DS.'com_magebridge.zip');
+            $this->downloadFile($url, JPATH_BASE.'/tmp/com_magebridge.zip');
 
             jimport('joomla.application.component.model');
             jimport('joomla.installer.installer');
             jimport('joomla.installer.helper');
 
             $this->feedback('Unpacking MageBridge component');
-            $package = JInstallerHelper::unpack(JPATH_BASE.DS.'tmp'.DS.'com_magebridge.zip');
+            $package = JInstallerHelper::unpack(JPATH_BASE.'/tmp/com_magebridge.zip');
 
             $this->feedback('Installing MageBridge component');
             $installer = JInstaller::getInstance();
             $installer->install($package['dir']);
             @JInstallerHelper::cleanupInstall($package['packagefile'], $package['extractdir']);
+        }
+
+        if(!is_dir(JPATH_BASE.'/components/com_magebridge')) {
+            die('No components/com_magebridge after installing');
         }
     }
 
@@ -318,13 +327,13 @@ class MageBridgeInstallerJoomla extends MageBridgeInstaller
     }
 
     /*
-     * Check whether the current Joomla! version is 1.5
+     * Check whether the current Joomla! version is 2.5
      */
-    protected function isJoomla15()
+    protected function isJoomla25()
     {
         JLoader::import( 'joomla.version' );
         $version = new JVersion();
-        if(!version_compare($version->RELEASE, '1.5', 'eq')) {
+        if(!version_compare($version->RELEASE, '2.5', 'eq')) {
             return false;
         }
 
