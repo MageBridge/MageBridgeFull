@@ -35,11 +35,20 @@ defined('_JEXEC') or die('Restricted access');
 					<?php if($i == 1) $itemClass[] = 'active'; ?>
 					<div class="<?php echo implode(' ', $itemClass); ?>">
 						<?php $image = $params->get('image', 'image'); ?>
-						<img src="<?php echo $product[$image]; ?>" title="<?php echo $product['label']; ?>" alt="<?php echo $product['label']; ?>" />
+						<a href="<?php echo $product['url']; ?>">
+							<img src="<?php echo $product[$image]; ?>" title="<?php echo $product['label']; ?>" alt="<?php echo $product['label']; ?>" />
+						</a>
 
 						<?php if ($params->get('show_title',1)) : ?>
 							<div class="carousel-caption">
-								<span class="title"><a href="<?php echo $product['url']; ?>"><?php echo $product['name']; ?></a></span>
+								<span class="title">
+									<a href="<?php echo $product['url']; ?>">
+										<?php echo $product['name']; ?>
+										<?php if ($params->get('show_price',1)) : ?>
+											&nbsp; (<?php echo $product['price']; ?>)
+										<?php endif; ?>
+									</a>
+								</span>
 							</div>
 						<?php endif; ?>
 					</div>
