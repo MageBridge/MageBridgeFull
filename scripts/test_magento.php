@@ -1,3 +1,3 @@
 <?php 
-$string = 'aHR0cHM6Ly9pcm9uc2hpcnRvZmdvbGYuY29tL3N0b3JlL2NhdGFsb2cvcHJvZHVjdC92aWV3L2Zvcm1fa2V5L002QzMwYXhWd3JjSDh0Zk0vaWQvMi8v';
+$string = 'aHR0cDovL21hZ2VicmlkZ2UxLnlpcmVvLWRldi5jb20vc2hvcC9jYXRhbG9nc2VhcmNoL3Jlc3VsdD9xPXBob25lLw,,';
 echo base64_decode(strtr($string, '-_,', '+/='))."\n";
