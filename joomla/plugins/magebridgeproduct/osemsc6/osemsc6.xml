@@ -2,12 +2,12 @@
 <extension version="2.5" type="plugin" group="magebridgeproduct" method="upgrade">
 	<name>PLG_MAGEBRIDGEPRODUCT_OSEMSC6</name>
 	<author>Yireo</author>
-	<creationDate>February 2014</creationDate>
-	<copyright>Copyright 2015 Yireo.com. All rights reserved.</copyright>
+	<creationDate>June 2015</creationDate>
+	<copyright>Copyright (C) 2015 Yireo.com. All rights reserved.</copyright>
 	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
 	<authorEmail>info@yireo.com</authorEmail>
 	<authorUrl>www.yireo.com</authorUrl>
-	<version>1.8.5067</version>
+	<version>1.9.5312</version>
 	<description>PLG_MAGEBRIDGEPRODUCT_OSEMSC6_DESC</description>
 
 	<files>
