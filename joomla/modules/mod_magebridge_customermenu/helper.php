@@ -2,11 +2,11 @@
 /**
  * Joomla! module MageBridge: Customer Menu
  *
- * @author Yireo (info@yireo.com)
- * @package MageBridge
+ * @author    Yireo (info@yireo.com)
+ * @package   MageBridge
  * @copyright Copyright 2015
- * @license GNU Public License
- * @link http://www.yireo.com
+ * @license   GNU Public License
+ * @link      http://www.yireo.com
  */
 
 // No direct access
@@ -15,92 +15,100 @@ defined('_JEXEC') or die('Restricted access');
 /*
  * Helper-class for the module
  */
-class modMageBridgeCustomermenuHelper
+
+class ModMageBridgeCustomermenuHelper
 {
-    /*
-     * Method to be called as soon as MageBridge is loaded
-     * 
-     * @access public
-     * @param JParameter $params
-     * @return array
-     */
-    static public function register($params = null)
-    {
-        // Don't register anything, if the user is not logged in
-        $user = JFactory::getUser();
-        if((bool)$user->guest == true) {
-            return false;
-        }
+	/**
+	 * Method to be called as soon as MageBridge is loaded
+	 *
+	 * @access public
+	 * @param JRegistry $params
+	 * @return array
+	 */
+	static public function register($params = null)
+	{
+		// Don't register anything, if the user is not logged in
+		$user = JFactory::getUser();
 
-        // Get the block name
-        $blockName = 'customer_account_navigation';
+		if ((bool) $user->guest == true)
+		{
+			return false;
+		}
 
-        // Initialize the register 
-        $register = array();
-        $register[] = array('block', $blockName);
+		// Get the block name
+		$blockName = 'customer_account_navigation';
 
-        if ($params->get('load_css', 1) == 1) {
-            $register[] = array('headers');
-        }
-        return $register;
-    }
+		// Initialize the register
+		$register = array();
+		$register[] = array('block', $blockName);
 
-    /*
-     * Build output for the AJAX-layout
-     * 
-     * @access public
-     * @param JParameter $params
-     * @return string
-     */
-    static public function ajaxbuild($params = null)
-    {
-        // Get the block name
-        $blockName = 'customer_account_navigation';
+		if ($params->get('load_css', 1) == 1)
+		{
+			$register[] = array('headers');
+		}
 
-        // Include the MageBridge bridge
-        $bridge = MageBridgeModelBridge::getInstance();
+		return $register;
+	}
 
-        // Load CSS if needed
-        if ($params->get('load_css', 1) == 1) {
-            $bridge->setHeaders('css');
-        }
+	/**
+	 * Build output for the AJAX-layout
+	 *
+	 * @access public
+	 * @param JRegistry $params
+	 * @return string
+	 */
+	static public function ajaxbuild($params = null)
+	{
+		// Get the block name
+		$blockName = 'customer_account_navigation';
 
-        // Load the Ajax script
-        $script = MageBridgeAjaxHelper::getScript($blockName, 'magebridge-'.$blockName);
-        $document = JFactory::getDocument();
-        $document->addCustomTag( '<script type="text/javascript">'.$script.'</script>');
-    }
+		// Include the MageBridge bridge
+		$bridge = MageBridgeModelBridge::getInstance();
 
-    /*
-     * Fetch the content from the bridge
-     * 
-     * @access public
-     * @param JParameter $params
-     * @return string
-     */
-    static public function build($params = null)
-    {
-        // Get the block name
-        $blockName = 'customer_account_navigation';
+		// Load CSS if needed
+		if ($params->get('load_css', 1) == 1)
+		{
+			$bridge->setHeaders('css');
+		}
 
-        // Include the MageBridge bridge
-        $bridge = MageBridgeModelBridge::getInstance();
+		// Load the Ajax script
+		$script = MageBridgeAjaxHelper::getScript($blockName, 'magebridge-' . $blockName);
+		$document = JFactory::getDocument();
+		$document->addCustomTag('<script type="text/javascript">' . $script . '</script>');
+	}
 
-        // Load CSS if needed
-        if ($params->get('load_css', 1) == 1) {
-            $bridge->setHeaders('css');
-        }
+	/**
+	 * Fetch the content from the bridge
+	 *
+	 * @access public
+	 * @param JRegistry $params
+	 * @return string
+	 */
+	static public function build($params = null)
+	{
+		// Get the block name
+		$blockName = 'customer_account_navigation';
 
-        // Disable for all pages except customer pages
-        if (MageBridgeTemplateHelper::isCustomerPage() == false) {
-            return null;
-        }
+		// Include the MageBridge bridge
+		$bridge = MageBridgeModelBridge::getInstance();
 
-        // Get the block
-        MageBridgeModelDebug::getInstance()->notice('Bridge called for block "'.$blockName.'"');
-        $block = $bridge->getBlock($blockName);
+		// Load CSS if needed
+		if ($params->get('load_css', 1) == 1)
+		{
+			$bridge->setHeaders('css');
+		}
 
-        // Return the output
-        return $block;
-    }
+		// Disable for all pages except customer pages
+		if (MageBridgeTemplateHelper::isCustomerPage() == false)
+		{
+			return null;
+		}
+
+		// Get the block
+		MageBridgeModelDebug::getInstance()->notice('Bridge called for block "' . $blockName . '"');
+		$block = $bridge->getBlock($blockName);
+
+		// Return the output
+		return $block;
+	}
 }
