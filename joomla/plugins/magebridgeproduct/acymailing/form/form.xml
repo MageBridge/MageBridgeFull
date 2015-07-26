@@ -3,8 +3,8 @@
     <fields name="actions">
         <fieldset name="acymailing" addfieldpath="/administrator/components/com_magebridge/fields">
             <field name="acymailing_list" label="PLG_MAGEBRIDGEPRODUCT_ACYMAILING_FIELD_ACYMAILING_LIST" 
-                type="sql" key_field="title" value_field="value"
-                query="SELECT `name` AS `title`, `listid` AS `value` FROM `#__acymailing_list`"
+                type="sql" value_field="name" key_field="listid"
+                query="SELECT `name`, `listid` FROM `#__acymailing_list` ORDER BY `ordering`"
                 />
         </fieldset>
     </fields>
