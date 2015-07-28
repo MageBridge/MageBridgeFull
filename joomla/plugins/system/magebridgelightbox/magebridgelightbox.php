@@ -2,55 +2,56 @@
 /**
  * Joomla! MageBridge - Lightbox System plugin
  *
- * @author Yireo (info@yireo.com)
+ * @author    Yireo (info@yireo.com)
  * @copyright Copyright 2015
- * @license GNU Public License
- * @link http://www.yireo.com
+ * @license   GNU Public License
+ * @link      http://www.yireo.com
  */
 
 // Check to ensure this file is included in Joomla!
-defined('_JEXEC') or die( 'Restricted access' );
+defined('_JEXEC') or die('Restricted access');
 
 // Import the parent class
-jimport( 'joomla.plugin.plugin' );
+jimport('joomla.plugin.plugin');
 
 // Import the MageBridge autoloader
-include_once JPATH_SITE.'/components/com_magebridge/helpers/loader.php';
+include_once JPATH_SITE . '/components/com_magebridge/helpers/loader.php';
 
 /**
  * MageBridge Lightbox System Plugin
  */
-class plgSystemMageBridgeLightbox extends JPlugin
+class PlgSystemMageBridgeLightbox extends JPlugin
 {
 	/**
 	 * Event onAfterRender
-	 *
-	 * @access public
-	 * @param null
-	 * @return null
 	 */
 	public function onAfterDispatch()
 	{
 		// Dot not load if this is not the right document-class
 		$document = JFactory::getDocument();
-		if(stristr(get_class($document), 'html') == false) {
+
+		if (stristr(get_class($document), 'html') == false)
+		{
 			return false;
 		}
 
 		// Only do this on the frontend
 		$application = JFactory::getApplication();
-		if($application->isSite() == false) {
+
+		if ($application->isSite() == false)
+		{
 			return false;
 		}
 
-		if (JFactory::getApplication()->input->getCmd('option') == 'com_magebridge') {
-
-			/**$body = JResponse::getBody();
+		if (JRequest::getCmd('option') == 'com_magebridge')
+		{
+			/*$body = JResponse::getBody();
 			if (!empty($body)) {
 				JResponse::setBody($body);
 			}*/
 			$library = $this->params->get('library');
-			switch($library) {
+			switch ($library)
+			{
 				case 'lightbox2':
 					$this->jquery();
 					$this->addJs('lightbox2/js/lightbox.js');
@@ -86,7 +87,10 @@ class plgSystemMageBridgeLightbox extends JPlugin
 	 */
 	protected function jquery()
 	{
-		if($this->params->get('load_jquery', 1) == 0) return false;
+		if ($this->params->get('load_jquery', 1) == 0)
+		{
+			return false;
+		}
 		MageBridgeTemplateHelper::load('jquery');
 	}
 
@@ -95,7 +99,7 @@ class plgSystemMageBridgeLightbox extends JPlugin
 	 */
 	protected function addCss($css)
 	{
-		$css = JURI::root().'media/plg_magebridgelightbox/'.$css;
+		$css = JURI::root() . 'media/plg_magebridgelightbox/' . $css;
 		$document = JFactory::getDocument();
 		$document->addStylesheet($css);
 	}
@@ -105,14 +109,17 @@ class plgSystemMageBridgeLightbox extends JPlugin
 	 */
 	protected function addJs($js, $prototype = false)
 	{
-		$js = JURI::root().'media/plg_magebridgelightbox/'.$js;
+		$js = JURI::root() . 'media/plg_magebridgelightbox/' . $js;
 
 		// Add the script to this document
-		if($prototype == false) {
+		if ($prototype == false)
+		{
 			$document = JFactory::getDocument();
 			$document->addScript($js);
-		} else {
-			$html = '<script type="text/javascript" src="'.$js.'"></script>';
+		}
+		else
+		{
+			$html = '<script type="text/javascript" src="' . $js . '"></script>';
 			$document = JFactory::getDocument();
 			$document->addCustomTag($html);
 		}
@@ -120,7 +127,10 @@ class plgSystemMageBridgeLightbox extends JPlugin
 		// Add the script to the whitelist so MageBridge doesn't strip it afterwards
 		$config = JFactory::getConfig();
 		$whitelist = $config->get('magebridge.script.whitelist');
-		if (empty($whitelist)) $whitelist = array();
+		if (empty($whitelist))
+		{
+			$whitelist = array();
+		}
 		$whitelist[] = $js;
 		$config->set('magebridge.script.whitelist', $whitelist);
 	}

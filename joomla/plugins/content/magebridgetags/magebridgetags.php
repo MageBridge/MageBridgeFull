@@ -2,41 +2,42 @@
 /**
  * Joomla! MageBridge Tags Content plugin
  *
- * @author Yireo (info@yireo.com)
- * @package MageBridge
+ * @author    Yireo (info@yireo.com)
+ * @package   MageBridge
  * @copyright Copyright 2015
- * @license GNU Public License
- * @link http://www.yireo.com
+ * @license   GNU Public License
+ * @link      http://www.yireo.com
  */
 
 // Check to ensure this file is included in Joomla!
-defined('_JEXEC') or die( 'Restricted access' );
+defined('_JEXEC') or die('Restricted access');
 
 // Import the parent class
-jimport( 'joomla.plugin.plugin' );
+jimport('joomla.plugin.plugin');
 
 // Import the MageBridge autoloader
-include_once JPATH_SITE.'/components/com_magebridge/helpers/loader.php';
+include_once JPATH_SITE . '/components/com_magebridge/helpers/loader.php';
 
 /**
  * MageBridge Tags Content Plugin
  */
-class plgContentMageBridgeTags extends JPlugin
+class PlgContentMageBridgeTags extends JPlugin
 {
 	/**
 	 * Handle the event that is generated when an user tries to login
-	 * 
-	 * @access public
+	 *
 	 * @param string $context
 	 * @param object $row
 	 * @param string $params
-	 * @param mixed $page
-	 * @return null
+	 * @param mixed  $page
+	 *
+	 * @return boolean
 	 */
 	public function onContentPrepare($context, $row, $params, $page)
 	{
 		// Do not continue if not enabled
-		if ($this->isEnabled() == false) {
+		if ($this->isEnabled() == false)
+		{
 			return false;
 		}
 
@@ -52,7 +53,8 @@ class plgContentMageBridgeTags extends JPlugin
 		$tags = $this->getTags($row);
 
 		// If there are no tags, don't do anything
-		if (empty($tags)) {
+		if (empty($tags))
+		{
 			return false;
 		}
 
@@ -62,34 +64,41 @@ class plgContentMageBridgeTags extends JPlugin
 		$products = $bridge->getSegmentData($segment_id);
 
 		// Do not continue if the result is empty
-		if (empty($products)) {
+		if (empty($products))
+		{
 			return false;
 		}
 
 		// Do not continue if the result is not an array
-		if (!is_array($products)) {
-			MageBridgeModelDebug::getInstance()->error( "Fetching tags resulted in non-array: ".var_export($products, true));
+		if (!is_array($products))
+		{
+			MageBridgeModelDebug::getInstance()->error("Fetching tags resulted in non-array: " . var_export($products, true));
+
 			return false;
 		}
 
 		// Only show the needed amount of tags
-		$products = array_slice( $products, 0, $max );
+		$products = array_slice($products, 0, $max);
 
 		// Load the template script (and allow for overrides)
 		jimport('joomla.filesystem.path');
-		$template_dir = JPATH_THEMES.'/'.JFactory::getApplication()->getTemplate();
+		$template_dir = JPATH_THEMES . '/' . JFactory::getApplication()->getTemplate();
 
 		// Determine the right folder
-		if (is_dir(dirname(__FILE__).'/tmpl')) {
+		if (is_dir(dirname(__FILE__) . '/tmpl'))
+		{
 			$tmplDir = 'tmpl';
-		} else {
+		}
+		else
+		{
 			$tmplDir = 'magebridgetags';
 		}
 
 		// Load the layout file
-		$layout = $template_dir.'/html/plg_magebridgetags/default.php';
-		if (!is_file($layout) || !is_readable($layout)) {
-			$layout = dirname(__FILE__).'/'.$tmplDir.'/default.php';
+		$layout = $template_dir . '/html/plg_magebridgetags/default.php';
+		if (!is_file($layout) || !is_readable($layout))
+		{
+			$layout = dirname(__FILE__) . '/' . $tmplDir . '/default.php';
 		}
 
 		// Prepare the variables
@@ -103,14 +112,15 @@ class plgContentMageBridgeTags extends JPlugin
 
 		// Append the result to the content
 		$row->text .= MageBridgeModelBridgeBlock::filterHtml($output);
+
 		return true;
 	}
 
 	/**
 	 * Method to get the tags from a specific resource
 	 *
-	 * @access private
 	 * @param object $content
+	 *
 	 * @return array
 	 */
 	private function getTags($content = null)
@@ -123,38 +133,60 @@ class plgContentMageBridgeTags extends JPlugin
 		$pluginParams = YireoHelper::toRegistry($plugin->params);
 		$source = $pluginParams->get('tag_source');
 
-		switch($source) {
-
+		switch ($source)
+		{
 			case 'joomlatags':
-				if (empty($content->id)) break;
-				$query = "SELECT t.name FROM `#__tag_term_content` AS c "
-					. " LEFT JOIN `#__tag_term` AS t ON t.id = c.tid "
-					. " WHERE cid = ".(int)$content->id;
-				$db = JFactory::getDBO();
+				if (empty($content->id))
+				{
+					break;
+				}
+
+				$db = JFactory::getDbo();
+				$query = $db->getQuery(true);
+				$query->select($db->quoteName('t.name'))
+					->from($db->quoteName('#__tag_term_content', 'c'))
+					->leftJoin($db->quoteName('#__tag_term') . ' AS t ON ' . $db->quoteName('t.id') . '=' . $db->quoteName('c.tid'))
+					->where($db->quoteName('cid') . '=' . (int)$content->id);
 				$db->setQuery($query);
-				$tags = (method_exists($db, 'loadColumn')) ? $db->loadColumn() : $db->loadResultArray(); 
+
+				$tags = $db->loadColumn();
+
 				break;
 
 			case 'core':
-				if (empty($content->id)) break;
-				$query = "SELECT t.title FROM `#__tags` AS t "
-					. " LEFT JOIN `#__contentitem_tag_map` AS m ON t.id = m.tag_id "
-					. " WHERE m.type_alias = 'com_content.article' AND m.content_item_id = ".(int)$content->id;
-				$db = JFactory::getDBO();
+				if (empty($content->id))
+				{
+					break;
+				}
+
+				$db = JFactory::getDbo();
+				$query = $db->getQuery(true);
+				$query->select($db->quoteName('t.title'))
+					->from($db->quoteName('#__tags', 't'))
+					->leftJoin($db->quoteName('#__contentitem_tag_map') . ' AS m ON ' . $db->quoteName('t.id') . '=' . $db->quoteName('m.tag_id'))
+					->where($db->quoteName('m.type_alias') . '=' . $db->quote('com_content.article'))
+					->where($db->quoteName('m.content_item_id') . '=' . (int) $content->id);
 				$db->setQuery($query);
-				$tags = (method_exists($db, 'loadColumn')) ? $db->loadColumn() : $db->loadResultArray(); 
+
+				$tags = $db->loadColumn();
+
 				break;
 
 			case 'metakey':
 			default:
-				if (!empty($content->metakey)) {
+				if (!empty($content->metakey))
+				{
 					$tags = explode(',', $content->metakey);
-					if (!empty($tags)) {
-						foreach ($tags as $index => $tag) {
+
+					if (!empty($tags))
+					{
+						foreach ($tags as $index => $tag)
+						{
 							$tags[$index] = trim($tag);
 						}
 					}
 				}
+
 				break;
 		}
 
@@ -162,33 +194,20 @@ class plgContentMageBridgeTags extends JPlugin
 	}
 
 	/**
-	 * Joomla! 1.5 alias
-	 * 
-	 * @access public
-	 * @param object $article
-	 * @param JParameter $params
-	 * @param mixed $limitstart
-	 * @return null
-	 */
-	public function onPrepareContent(&$article, &$params, $limitstart)
-	{
-		$this->onContentPrepare('content', $article, $params, $limitstart);
-	}
-
-	/**
 	 * Return whether MageBridge is available or not
-	 * 
-	 * @access private
-	 * @param null
-	 * @return mixed $value
+	 *
+	 * @return boolean
 	 */
 	private function isEnabled()
 	{
-		if (class_exists('MageBridgeModelBridge')) {
-			if (MageBridgeModelBridge::getInstance()->isOffline() == false) {
+		if (class_exists('MageBridgeModelBridge'))
+		{
+			if (MageBridgeModelBridge::getInstance()->isOffline() == false)
+			{
 				return true;
 			}
 		}
+
 		return false;
 	}
 }
