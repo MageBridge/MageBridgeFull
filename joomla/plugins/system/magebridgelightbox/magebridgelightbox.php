@@ -43,7 +43,7 @@ class plgSystemMageBridgeLightbox extends JPlugin
 			return false;
 		}
 
-		if (JRequest::getCmd('option') == 'com_magebridge') {
+		if (JFactory::getApplication()->input->getCmd('option') == 'com_magebridge') {
 
 			/**$body = JResponse::getBody();
 			if (!empty($body)) {

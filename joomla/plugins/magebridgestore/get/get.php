@@ -40,7 +40,7 @@ class plgMageBridgeStoreGet extends MageBridgePluginStore
 		}
 
 		// Fetch actual GET parameters
-		$store = JRequest::getCmd('__store');
+		$store = JFactory::getApplication()->input->getCmd('__store');
 
 		// Match the parameters
 		if ($condition->name == $store && $condition->type == 'storeview') {
