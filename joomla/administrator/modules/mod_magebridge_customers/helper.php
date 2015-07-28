@@ -12,26 +12,26 @@
 // No direct access
 defined('_JEXEC') or die('Restricted access');
 
-/*
+/**
  * Helper-class for the module
  */
 class modMageBridgeCustomersHelper extends MageBridgeModuleHelper
 {
-    /*
-     * Method to be called once the MageBridge is loaded
-     */
-    static public function register($params = null)
-    {
-        return array(
-            array('api', 'magebridge_customer.list'),
-        );
-    }
+	/**
+	 * Method to be called once the MageBridge is loaded
+	 */
+	static public function register($params = null)
+	{
+		return array(
+			array('api', 'magebridge_customer.list'),
+		);
+	}
 
-    /*
-     * Fetch the content from the bridge
-     */
-    static public function build()
-    {
-        return parent::getCall('getAPI', 'magebridge_customer.list');
-    }
+	/**
+	 * Fetch the content from the bridge
+	 */
+	static public function build()
+	{
+		return parent::getCall('getAPI', 'magebridge_customer.list');
+	}
 }

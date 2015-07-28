@@ -19,49 +19,49 @@ defined('_JEXEC') or die('Restricted access');
  */
 class plgMageBridgeStoreDomain extends MageBridgePluginStore
 {
-    /*
-     * Deprecated variable to migrate from the original connector-architecture to new Store Plugins
-     */
-    protected $connector_field = 'domain_name';
+	/**
+	 * Deprecated variable to migrate from the original connector-architecture to new Store Plugins
+	 */
+	protected $connector_field = 'domain_name';
 
-    /**
-     * Event "onMageBridgeValidate"
-     * 
-     * @access public
-     * @param array $actions
-     * @param object $condition
-     * @return bool
-     */
-    public function onMageBridgeValidate($actions = null, $condition = null)
-    {
-        // Make sure this plugin is enabled
-        if ($this->isEnabled() == false) {
-            return false;
-        }
+	/**
+	 * Event "onMageBridgeValidate"
+	 * 
+	 * @access public
+	 * @param array $actions
+	 * @param object $condition
+	 * @return bool
+	 */
+	public function onMageBridgeValidate($actions = null, $condition = null)
+	{
+		// Make sure this plugin is enabled
+		if ($this->isEnabled() == false) {
+			return false;
+		}
 
-        // Make sure to check upon the $actions array to see if it contains what we need
-        if(empty($actions['domain_name'])) {
-            return false;
-        }
+		// Make sure to check upon the $actions array to see if it contains what we need
+		if(empty($actions['domain_name'])) {
+			return false;
+		}
 
-        // Check for the domain-name
-        $domain_name = $actions['domain_name'];
-        if (!empty($domain_name) && $domain_name == $_SERVER['HTTP_HOST']) {
-        }
+		// Check for the domain-name
+		$domain_name = $actions['domain_name'];
+		if (!empty($domain_name) && $domain_name == $_SERVER['HTTP_HOST']) {
+		}
 
-        // Return false by default
-        return false;
-    }
+		// Return false by default
+		return false;
+	}
 
-    /*
-     * Method to check whether this plugin is enabled or not
-     *
-     * @param null
-     * @return bool
-     */
-    public function isEnabled()
-    {
-        return true;
-    }
+	/**
+	 * Method to check whether this plugin is enabled or not
+	 *
+	 * @param null
+	 * @return bool
+	 */
+	public function isEnabled()
+	{
+		return true;
+	}
 }
 

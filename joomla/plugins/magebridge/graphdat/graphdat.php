@@ -17,49 +17,49 @@ defined('_JEXEC') or die( 'Restricted access' );
 
 // Import the parent class
 jimport( 'joomla.plugin.plugin' );
-        
+		
 /**
  * MageBridge Graphdat Plugin
  */
 class plgMagebridgeGraphdat extends JPlugin
 {
-    /**
-     * Wrapper function for graphdat_begin
-     * 
-     * @access private
-     * @param string $name
-     * @return null
-     */
-    private function graphdatBegin($timer = null)
-    {
-        if(function_exists('graphdat_begin')) {
-            graphdat_begin($timer);
-        }
-    }
+	/**
+	 * Wrapper function for graphdat_begin
+	 * 
+	 * @access private
+	 * @param string $name
+	 * @return null
+	 */
+	private function graphdatBegin($timer = null)
+	{
+		if(function_exists('graphdat_begin')) {
+			graphdat_begin($timer);
+		}
+	}
 
-    /**
-     * Wrapper function for graphdat_end
-     * 
-     * @access private
-     * @param string $name
-     * @return null
-     */
-    private function graphdatEnd($timer = null)
-    {
-        if(function_exists('graphdat_end')) {
-            graphdat_end($timer);
-        }
-    }
+	/**
+	 * Wrapper function for graphdat_end
+	 * 
+	 * @access private
+	 * @param string $name
+	 * @return null
+	 */
+	private function graphdatEnd($timer = null)
+	{
+		if(function_exists('graphdat_end')) {
+			graphdat_end($timer);
+		}
+	}
 
-    /**
-     * Event onBeforeBuildMageBridge
-     *
-     * @access public
-     * @param null
-     * @return null
-     */
-    public function onBeforeBuildMageBridge()
-    {
-        $this->graphdatBegin('onBeforeBuildMageBridge');
-    }
+	/**
+	 * Event onBeforeBuildMageBridge
+	 *
+	 * @access public
+	 * @param null
+	 * @return null
+	 */
+	public function onBeforeBuildMageBridge()
+	{
+		$this->graphdatBegin('onBeforeBuildMageBridge');
+	}
 }

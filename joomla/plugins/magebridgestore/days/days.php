@@ -19,48 +19,48 @@ defined('_JEXEC') or die('Restricted access');
  */
 class plgMageBridgeStoreDays extends MageBridgePluginStore
 {
-    /**
-     * Event "onMageBridgeValidate"
-     * 
-     * @access public
-     * @param array $actions
-     * @param object $condition
-     * @return bool
-     */
-    public function onMageBridgeValidate($actions = null, $condition = null)
-    {
-        // Make sure this plugin is enabled
-        if ($this->isEnabled() == false) {
-            return false;
-        }
+	/**
+	 * Event "onMageBridgeValidate"
+	 * 
+	 * @access public
+	 * @param array $actions
+	 * @param object $condition
+	 * @return bool
+	 */
+	public function onMageBridgeValidate($actions = null, $condition = null)
+	{
+		// Make sure this plugin is enabled
+		if ($this->isEnabled() == false) {
+			return false;
+		}
 
-        // Make sure to check upon the $actions array to see if it contains what we need
-        if(empty($actions['days_from'])) {
-            return false;
-        }
+		// Make sure to check upon the $actions array to see if it contains what we need
+		if(empty($actions['days_from'])) {
+			return false;
+		}
 
-        // Check if the condition applies
-        $from = explode('-', $actions['days_from']);
-        $to = explode('-', $actions['days_to']);
-        $from_stamp = mktime(0, 0, 0, $from[1], $from[2], $from[0]);
-        $to_stamp = mktime(0, 0, 0, $to[1], $to[2], $to[0]);
-        if (time() > $from_stamp && time() < $to_stamp) {
-            return true;
-        }
+		// Check if the condition applies
+		$from = explode('-', $actions['days_from']);
+		$to = explode('-', $actions['days_to']);
+		$from_stamp = mktime(0, 0, 0, $from[1], $from[2], $from[0]);
+		$to_stamp = mktime(0, 0, 0, $to[1], $to[2], $to[0]);
+		if (time() > $from_stamp && time() < $to_stamp) {
+			return true;
+		}
 
-        // Return false by default
-        return false;
-    }
+		// Return false by default
+		return false;
+	}
 
-    /*
-     * Method to check whether this plugin is enabled or not
-     *
-     * @param null
-     * @return bool
-     */
-    public function isEnabled()
-    {
-        return true;
-    }
+	/**
+	 * Method to check whether this plugin is enabled or not
+	 *
+	 * @param null
+	 * @return bool
+	 */
+	public function isEnabled()
+	{
+		return true;
+	}
 }
 

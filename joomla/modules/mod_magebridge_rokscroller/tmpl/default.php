@@ -42,19 +42,19 @@ window.addEvent((window.safari) ? 'load' : 'domready', function() {
 						<!-- Content START -->
 							<div id="<?php echo $direction; ?>-rokvmscroller" class="<?php echo $params->get('moduleclass_sfx'); ?>">
 							<?php foreach ($products as $product) :  ?>
-                            <?php 
-                            $product['addtocart_url'] = MageBridgeUrlHelper::route('checkout/cart/add/product/'.$product['product_id'].'/');
-                            ?>
-					        <div><div class="scroll-item1"><div class="scroll-item2"><div class="scroll-item3">
-                                <span class="product-name"><?php echo $product['name']; ?></span><br/>
-                                <a href="<?php echo $product['url']; ?>" title="<?php echo $product['label']; ?>"><img src="<?php 
-                                    echo $product['thumbnail']; ?>" title="<?php echo $product['label']; ?>" alt="<?php 
-                                    echo $product['label']; ?>" /></a><br/>
-                                <span class="productPrice"><?php echo $product['price']; ?></span><br/>
-                                <button onClick="window.location = '<?php echo $product['addtocart_url']; ?>';" class="button"><span>Add
+							<?php 
+							$product['addtocart_url'] = MageBridgeUrlHelper::route('checkout/cart/add/product/'.$product['product_id'].'/');
+							?>
+							<div><div class="scroll-item1"><div class="scroll-item2"><div class="scroll-item3">
+								<span class="product-name"><?php echo $product['name']; ?></span><br/>
+								<a href="<?php echo $product['url']; ?>" title="<?php echo $product['label']; ?>"><img src="<?php 
+									echo $product['thumbnail']; ?>" title="<?php echo $product['label']; ?>" alt="<?php 
+									echo $product['label']; ?>" /></a><br/>
+								<span class="productPrice"><?php echo $product['price']; ?></span><br/>
+								<button onClick="window.location = '<?php echo $product['addtocart_url']; ?>';" class="button"><span>Add
 to cart</span></button>
-					        </div></div></div></div>
-					    	<?php endforeach; ?>
+							</div></div></div></div>
+							<?php endforeach; ?>
 							<!-- Content END -->		
 
 

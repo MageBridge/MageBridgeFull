@@ -8,19 +8,19 @@
  * @license GNU Public License
  * @link http://www.yireo.com/
  */
-        
+		
 // No direct access
 defined('_JEXEC') or die('Restricted access');
 ?>
 <?php if ($magebridge->hasPrototypeJs() == true) : ?>
 <script language="javascript" type="text/javascript">
 $('login-button').observe('click', function() { 
-    if ($('login-panel-surround').getStyle('visibility') == 'hidden' || $('login-panel-surround').getStyle('display') == 'none') {
-        new Effect.SlideDown('login-panel-surround', {duration: 0.3});
-        $('login-panel-surround').setStyle({visibility:'visible'});
-    } else {
-        new Effect.SlideUp('login-panel-surround', {duration: 0.3});
-    }
+	if ($('login-panel-surround').getStyle('visibility') == 'hidden' || $('login-panel-surround').getStyle('display') == 'none') {
+		new Effect.SlideDown('login-panel-surround', {duration: 0.3});
+		$('login-panel-surround').setStyle({visibility:'visible'});
+	} else {
+		new Effect.SlideUp('login-panel-surround', {duration: 0.3});
+	}
 });
 </script>
 <?php endif; ?>
@@ -40,10 +40,10 @@ $('login-button').observe('click', function() {
 		</ul>
 		<?php endif; ?>
 		<input type="submit" name="Submit" class="button" value="<?php echo JText::_('Logout') ?>" />
-	    <input type="hidden" name="option" value="com_user" />
-    	<input type="hidden" name="task" value="logout" />
+		<input type="hidden" name="option" value="com_user" />
+		<input type="hidden" name="task" value="logout" />
 		<input type="hidden" name="return" value="<?php echo $return_url ?>" />
-	    <?php echo JHTML::_( 'form.token' ); ?>
+		<?php echo JHTML::_( 'form.token' ); ?>
 	</form>
 </div>
 <?php else : ?> 
@@ -62,7 +62,7 @@ $('login-button').observe('click', function() {
 			<input type="password" class="inputbox" id="password_login" size="12" name="passwd" />
 		</div>
 		<div class="login-extras">
-	        <?php if (JPluginHelper::isEnabled('system', 'remember')) : ?>
+			<?php if (JPluginHelper::isEnabled('system', 'remember')) : ?>
 			<label for="remember_login"><?php echo JText::_('Remember me') ?></label>
 			<input type="checkbox" name="remember" id="remember_login" value="yes" checked="checked" />
 			<?php endif; ?>
@@ -70,14 +70,14 @@ $('login-button').observe('click', function() {
 			<ul>
 				<li><a href="<?php echo JRoute::_( 'index.php?option=com_user&view=reset' ); ?>"><?php echo JText::_('Forgot your password'); ?></a></li>
 				<li><a href="<?php echo JRoute::_( 'index.php?option=com_user&view=remind' ); ?>"><?php echo JText::_('Forgot your username'); ?></a></li>
-		        <?php if (JComponentHelper::getParams( 'com_users' )->get('allowUserRegistration')) : ?>
-		        <li><a href="<?php echo JRoute::_( 'index.php?option=com_user&view=register' ); ?>"><?php echo JText::_('Register'); ?></a></li>
-		        <?php endif; ?>
+				<?php if (JComponentHelper::getParams( 'com_users' )->get('allowUserRegistration')) : ?>
+				<li><a href="<?php echo JRoute::_( 'index.php?option=com_user&view=register' ); ?>"><?php echo JText::_('Register'); ?></a></li>
+				<?php endif; ?>
 			</ul>
-	        <input type="hidden" name="option" value="com_user" />
-        	<input type="hidden" name="task" value="login" />
+			<input type="hidden" name="option" value="com_user" />
+			<input type="hidden" name="task" value="login" />
 			<input type="hidden" name="return" value="<?php echo $return_url ?>" />
-	        <?php echo JHTML::_( 'form.token' ); ?>
+			<?php echo JHTML::_( 'form.token' ); ?>
 		</div>
 	</form>
 </div>

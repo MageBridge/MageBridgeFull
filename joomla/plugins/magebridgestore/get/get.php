@@ -19,50 +19,50 @@ defined('_JEXEC') or die('Restricted access');
  */
 class plgMageBridgeStoreGet extends MageBridgePluginStore
 {
-    /**
-     * Event "onMageBridgeValidate"
-     * 
-     * @access public
-     * @param array $actions
-     * @param object $condition
-     * @return bool
-     */
-    public function onMageBridgeValidate($actions = null, $condition = null)
-    {
-        // Make sure this plugin is enabled
-        if ($this->isEnabled() == false) {
-            return false;
-        }
+	/**
+	 * Event "onMageBridgeValidate"
+	 * 
+	 * @access public
+	 * @param array $actions
+	 * @param object $condition
+	 * @return bool
+	 */
+	public function onMageBridgeValidate($actions = null, $condition = null)
+	{
+		// Make sure this plugin is enabled
+		if ($this->isEnabled() == false) {
+			return false;
+		}
 
-        // Check for the GET checkbox
-        if (empty($actions['get'])) {
-            return false;
-        }
+		// Check for the GET checkbox
+		if (empty($actions['get'])) {
+			return false;
+		}
 
-        // Fetch actual GET parameters
-        $store = JRequest::getCmd('__store');
+		// Fetch actual GET parameters
+		$store = JRequest::getCmd('__store');
 
-        // Match the parameters
-        if ($condition->name == $store && $condition->type == 'storeview') {
-            return true;
+		// Match the parameters
+		if ($condition->name == $store && $condition->type == 'storeview') {
+			return true;
 
-        } elseif (is_numeric($condition->name) && $condition->type == 'storegroup') {
-            return array('type' => 'store', 'name' => $store);
-        }
-        
-        // Return true by default
-        return false;
-    }
+		} elseif (is_numeric($condition->name) && $condition->type == 'storegroup') {
+			return array('type' => 'store', 'name' => $store);
+		}
+		
+		// Return true by default
+		return false;
+	}
 
-    /*
-     * Method to check whether this plugin is enabled or not
-     *
-     * @param null
-     * @return bool
-     */
-    public function isEnabled()
-    {
-        return true;
-    }
+	/**
+	 * Method to check whether this plugin is enabled or not
+	 *
+	 * @param null
+	 * @return bool
+	 */
+	public function isEnabled()
+	{
+		return true;
+	}
 }
 

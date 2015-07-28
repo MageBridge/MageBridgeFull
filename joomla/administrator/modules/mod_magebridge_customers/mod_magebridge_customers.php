@@ -8,7 +8,7 @@
  * @license GNU Public License
  * @link http://www.yireo.com
  */
-        
+		
 // No direct access
 defined('_JEXEC') or die('Restricted access');
 

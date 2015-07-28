@@ -13,6 +13,6 @@
 defined('_JEXEC') or die('Restricted access'); 
 ?>
 <div id="magebridge-customermenu" class="magebridge-module">
-    <?php echo $block; ?>
+	<?php echo $block; ?>
 </div>
 <div style="clear:both"></div>

@@ -19,69 +19,69 @@ defined('_JEXEC') or die('Restricted access');
  */
 class plgMageBridgeProductCcnewsletter extends MageBridgePluginProduct
 {
-    /*
-     * Method to check whether this connector is enabled or not
-     *
-     * @param null
-     * @return bool
-     */
-    public function isEnabled()
-    {
-        return $this->checkComponent('com_ccnewsletter');
-    }
+	/**
+	 * Method to check whether this connector is enabled or not
+	 *
+	 * @param null
+	 * @return bool
+	 */
+	public function isEnabled()
+	{
+		return $this->checkComponent('com_ccnewsletter');
+	}
 
-    /*
-     * Event "onMageBridgeProductPurchase"
-     * 
-     * @access public
-     * @param array $actions
-     * @param object $user Joomla! user object
-     * @param tinyint $status Status of the current order
-     * @param string $sku Magento SKU
-     */
-    public function onMageBridgeProductPurchase($actions = null, $user = null, $status = null, $sku = null)
-    {
-        // Make sure this event is allowed
-        if($this->isEnabled() == false) {
-            return false;
-        }
+	/**
+	 * Event "onMageBridgeProductPurchase"
+	 * 
+	 * @access public
+	 * @param array $actions
+	 * @param object $user Joomla! user object
+	 * @param tinyint $status Status of the current order
+	 * @param string $sku Magento SKU
+	 */
+	public function onMageBridgeProductPurchase($actions = null, $user = null, $status = null, $sku = null)
+	{
+		// Make sure this event is allowed
+		if($this->isEnabled() == false) {
+			return false;
+		}
 
-        // See if the user is already there
-        $query = 'SELECT * FROM `#__ccnewsletter_subscribers` WHERE `email`='.$this->db->Quote($user->email);
-        $this->db->setQuery($query);
-        $rows = $this->db->loadObjectList();
+		// See if the user is already there
+		$query = 'SELECT * FROM `#__ccnewsletter_subscribers` WHERE `email`='.$this->db->Quote($user->email);
+		$this->db->setQuery($query);
+		$rows = $this->db->loadObjectList();
 
-        // Add the customer email to the subscribers list
-        if (empty($rows)) {
-            $query = 'INSERT INTO `#__ccnewsletter_subscribers` SET `name`='.$this->db->Quote($user->name).', `email`='.$this->db->Quote($user->email).', `sdate`=NOW()';
-            $this->db->setQuery($query);
-            $this->db->query();
-        }
+		// Add the customer email to the subscribers list
+		if (empty($rows)) {
+			$query = 'INSERT INTO `#__ccnewsletter_subscribers` SET `name`='.$this->db->Quote($user->name).', `email`='.$this->db->Quote($user->email).', `sdate`=NOW()';
+			$this->db->setQuery($query);
+			$this->db->query();
+		}
 
-        return true;
-    }
+		return true;
+	}
 
-    /*
-     * Event "onMageBridgeProductReverse"
-     * 
-     * @param array $actions
-     * @param JUser $user
-     * @param string $sku Magento SKU
-     * @return bool
-     */
-    public function onMageBridgeProductReverse($actions = null, $user = null, $sku = null)
-    {
-        // Make sure this event is allowed
-        if($this->isEnabled() == false) {
-            return false;
-        }
+	/**
+	 * Event "onMageBridgeProductReverse"
+	 * 
+	 * @param array $actions
+	 * @param JUser $user
+	 * @param string $sku Magento SKU
+	 * @return bool
+	 */
+	public function onMageBridgeProductReverse($actions = null, $user = null, $sku = null)
+	{
+		// Make sure this event is allowed
+		if($this->isEnabled() == false) {
+			return false;
+		}
 
-        // See if the user is already there
-        $query = 'DELETE FROM `#__ccnewsletter_subscribers` WHERE `email`='.$this->db->Quote($user->email);
-        $this->db->setQuery($query);
-        $this->db->query();
+		// See if the user is already there
+		$query = 'DELETE FROM `#__ccnewsletter_subscribers` WHERE `email`='.$this->db->Quote($user->email);
+		$this->db->setQuery($query);
+		$this->db->query();
 
-        return true;
-    }
+		return true;
+	}
 }
 
