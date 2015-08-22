@@ -40,3 +40,6 @@ case $target in
         echo ""
         ;;
 esac 
+
+notify-send "MageBridge build done"
+
