@@ -53,9 +53,16 @@ defined('_JEXEC') or die('Restricted access');
 
 			<?php if ($params->get('show_thumb', 1)) : ?>
 				<?php $thumb = $params->get('thumb', 'thumbnail'); ?>
-				<p><a href="<?php echo $product['url']; ?>" title="<?php echo $product['label']; ?>"><img src="<?php
-						echo $product[$thumb]; ?>" title="<?php echo $product['label']; ?>" alt="<?php
-						echo $product['label']; ?>"/></a></p>
+				<p>
+                    <a href="<?php echo $product['url']; ?>" title="<?php echo $product['label']; ?>">
+                        <img src="<?php echo $product[$thumb]; ?>" title="<?php echo $product['label']; ?>" 
+                        <?php if (isset($product[$thumb . '_data'])) : ?>
+                        height="<?php echo $product[$thumb . '_data']['height']; ?>"
+                        width="<?php echo $product[$thumb . '_data']['width']; ?>"
+                        <?php endif; ?>
+                        alt="<?php echo $product['label']; ?>"/>
+                    </a>
+                </p>
 			<?php endif; ?>
 
 			<?php if ($params->get('show_readmore', 1) || $params->get('show_addtocart')) : ?>
