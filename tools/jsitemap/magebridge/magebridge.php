@@ -102,10 +102,13 @@ class JMapFilePluginMageBridge implements JMapFilePlugin {
     {
         $data = (object)null;
         $data->title = $product['name'];
-        $data->link = MageBridgeUrlHelper::route($product['url']);
         $data->lastmod = $product['updated_at'];
         $data->metakey = $product['meta_keyword'];
-        $data->link = str_replace(JURI::root(), '/', $data->link);
+        $data->link = MageBridgeUrlHelper::route($product['url']);
+        $data->link = str_replace(JURI::root(), '', $data->link);
+        if (preg_match('/^\//', $data->link) == false) {
+            $data->link = '/' . $data->link;
+        }
 
         $productId = $product['product_id'];
         $this->returndata['items'][$productId] = $data;

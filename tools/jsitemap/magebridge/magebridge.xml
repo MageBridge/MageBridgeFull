@@ -2,7 +2,7 @@
 <datasource>
 	<name>MageBridge</name>
 	<description>JSitemap datasource for MageBridge</description>
-	
+    <version>1.2.6</version>
 	<config>
 		<fieldset name="params">
             <!--<field name="expand_root" type="list" default="1" label="COM_JMAP_PLGMAGEBRIDGE_FIELD_EXPAND_ROOT" description="COM_JMAP_PLGMAGEBRIDGE_FIELD_EXPAND_ROOT_DESC">
