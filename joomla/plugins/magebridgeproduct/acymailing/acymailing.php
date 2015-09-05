@@ -65,10 +65,11 @@ class plgMageBridgeProductAcymailing extends MageBridgePluginProduct
 		}
 
 		// Make sure it is not empty
-		$list_id = (int)$actions['acymailing_list'];
-		if(!$list_id > 0) {
-			return false;
-		}
+		$list_ids = $this->getListIds($actions['acymailing_list']);
+
+        if (empty($list_ids)) {
+            return false;
+        }
 
 		// See if the user exists in the database
 		$acyUser = null;
@@ -80,16 +81,19 @@ class plgMageBridgeProductAcymailing extends MageBridgePluginProduct
 		$subscriberClass->checkVisitor = false;
 		$subid = $subscriberClass->save($acyUser);
 
-		if (empty($subid)) return false;
-		if (empty($list_id)) return true;
+		if (empty($subid)) {
+            return false;
+        }
 
-		$newSubscription = array();
+        foreach($list_ids as $list_id) {
 
-		$newList = null;
-		$newList['status'] = 1;
-		$newSubscription[intval($list_id)] = $newList;
+    		$newSubscription = array();
+	    	$newList = null;
+		    $newList['status'] = 1;
+    		$newSubscription[intval($list_id)] = $newList;
 
-		$subscriberClass->saveSubscription($subid, $newSubscription);
+		    $subscriberClass->saveSubscription($subid, $newSubscription);
+        }
 
 		return true;
 	}
@@ -115,24 +119,58 @@ class plgMageBridgeProductAcymailing extends MageBridgePluginProduct
 		}
 
 		// Make sure it is not empty
-		$list_id = (int)$actions['acymailing_list'];
-		if(!$list_id > 0) {
+		$list_ids = $this->getListIds($actions['acymailing_list']);
+
+        if (empty($list_ids))
+        {
 			return false;
 		}
 
 		$subscriberClass = acymailing::get('class.subscriber');
 		$subid = $subscriberClass->get($user->id);
 
-		$newSubscription = array();
+        foreach ($list_ids as $list_id)
+        {
+		    $newSubscription = array();
+    		$newList = null;
+	    	$newList['status'] = 0;
+		    $newSubscription[intval($list_id)] = $newList;
 
-		$newList = null;
-		$newList['status'] = 0;
-		$newSubscription[intval($list_id)] = $newList;
-
-		$subscriberClass->saveSubscription($subid,$newSubscription);
+    		$subscriberClass->saveSubscription($subid, $newSubscription);
+        }
 
 		return true;
 	}
+
+    protected function getListIds($param)
+    {
+		$list_ids = array();
+
+        if (!is_array($param))
+        {
+		    $list_id = (int)$param;
+
+		    if(!$list_id > 0)
+            {
+			    return $list_ids;
+    		}
+
+            $list_ids[] = $list_id;
+            return $list_ids;
+        }
+            
+        foreach($param) as $list_id)
+        {
+            if(!(int)$list_id > 0)
+            {
+                continue;
+            }
+
+            $list_ids[] = $list_id;
+        }
+
+        return $list_ids;
+    }
 }
 
 
