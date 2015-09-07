@@ -159,7 +159,7 @@ class plgMageBridgeProductAcymailing extends MageBridgePluginProduct
             return $list_ids;
         }
             
-        foreach($param) as $list_id)
+        foreach($param as $list_id)
         {
             if(!(int)$list_id > 0)
             {
