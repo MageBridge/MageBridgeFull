@@ -33,9 +33,9 @@ class plgMageBridgenewsletterAcymailing extends MageBridgePluginMagento
 			return false;
 		}
 
-		$list_id = $this->params->get('newsletter');
+		$list_ids = $this->params->get('newsletter');
 
-		if (empty($list_id)) {
+		if (empty($list_ids)) {
 			return true;
 		}
 		
@@ -51,13 +51,10 @@ class plgMageBridgenewsletterAcymailing extends MageBridgePluginMagento
 			return false;
 		}
 
-		// Explode the list_id
-		$list_ids = explode(',' , $list_id);
-
 		foreach($list_ids as $list_id)
 		{
 			$list_id = intval(trim($list_id));
-			$this->subscribeNewsletter($subid, $list_id);
+			$this->subscribeNewsletter($subid, $list_id, $state);
 		}
 
 		return true;
@@ -89,7 +86,7 @@ class plgMageBridgenewsletterAcymailing extends MageBridgePluginMagento
 		return (int) $subid;
 	}
 
-	private function subscribeNewsletter($subid, $list_id)
+	private function subscribeNewsletter($subid, $list_id, $state)
 	{
 		// Get the subscriber class
 		$subscriberClass = acymailing::get('class.subscriber');
@@ -104,7 +101,9 @@ class plgMageBridgenewsletterAcymailing extends MageBridgePluginMagento
 		$newList['status'] = ($state == 0) ? 0 : 1;
 		$newSubscription[intval($list_id)] = $newList;
 
-		return (bool) $subscriberClass->saveSubscription($subid, $newSubscription);
+		$rt = (bool) $subscriberClass->saveSubscription($subid, $newSubscription);
+
+        return $rt;
 	}
 
 	/**
