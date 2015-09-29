@@ -136,6 +136,9 @@ class plgMageBridgeProductAcymailing extends MageBridgePluginProduct
 	    	$newList['status'] = 0;
 		    $newSubscription[intval($list_id)] = $newList;
 
+            $subscriberClass->sendConf = false;
+            $subscriberClass->sendNotif = false;
+            $subscriberClass->sendWelcome = false;
     		$subscriberClass->saveSubscription($subid, $newSubscription);
         }
 

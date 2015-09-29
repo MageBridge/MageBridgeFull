@@ -79,6 +79,9 @@ class plgMageBridgenewsletterAcymailing extends MageBridgePluginMagento
 			$acyUser->name = $user->name;
 			$acyUser->userid = $user->id;
 
+            $subscriberClass->sendConf = false;
+            $subscriberClass->sendNotif = false;
+            $subscriberClass->sendWelcome = false;
 			$subscriberClass->checkVisitor = false;
 			$subid = $subscriberClass->save($acyUser);
 		}
@@ -101,6 +104,9 @@ class plgMageBridgenewsletterAcymailing extends MageBridgePluginMagento
 		$newList['status'] = ($state == 0) ? 0 : 1;
 		$newSubscription[intval($list_id)] = $newList;
 
+        $subscriberClass->sendConf = false;
+        $subscriberClass->sendNotif = false;
+        $subscriberClass->sendWelcome = false;
 		$rt = (bool) $subscriberClass->saveSubscription($subid, $newSubscription);
 
         return $rt;
