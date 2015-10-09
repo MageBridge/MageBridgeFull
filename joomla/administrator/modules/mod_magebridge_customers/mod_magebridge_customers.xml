@@ -19,6 +19,7 @@
 
     <languages folder="admin/language">
         <language tag="en-GB">en-GB.mod_magebridge_customers.ini</language>
+        <language tag="en-GB">en-GB.mod_magebridge_customers.sys.ini</language>
     </languages>
 
     <config>
