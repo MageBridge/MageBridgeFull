@@ -17,11 +17,12 @@
 
     <config>
 		<fields name="params">
-			<fieldset name="basic">
+            <fieldset name="basic" addfieldpath="administrator/components/com_magebridge/fields">
         		<field name="newsletter" 
                     label="PLG_MAGEBRIDGENEWSLETTER_ACYMAILING_FIELD_NEWSLETTER" 
                     type="sql" key_field="value" value_field="title" multiple="multiple"
                     query="SELECT `name` AS `title`, `listid` AS `value` FROM `#__acymailing_list`" />
+                <field name="send_email" type="magebridge.boolean" default="0" label="PLG_MAGEBRIDGENEWSLETTER_ACYMAILING_SEND_EMAIL" description="PLG_MAGEBRIDGENEWSLETTER_ACYMAILING_SEND_EMAIL_DESC" />
 	    	</fieldset>
     	</fields>
 	</config>
