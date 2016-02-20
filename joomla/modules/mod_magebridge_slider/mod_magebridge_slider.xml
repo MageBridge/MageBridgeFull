@@ -58,19 +58,19 @@
                     <option value="0">JHIDE</option>
                     <option value="1">JSHOW</option>
                 </field>
-                <field name="show_short_description" type="list" default="1"
+                <field name="show_short_description" type="radio" class="btn-group" default="1"
                        label="MOD_MAGEBRIDGE_SLIDER_FIELD_SHOW_SHORT_DESCRIPTION"
                        description="MOD_MAGEBRIDGE_SLIDER_FIELD_SHOW_SHORT_DESCRIPTION_DESC">
                     <option value="0">JHIDE</option>
                     <option value="1">JSHOW</option>
                 </field>
-                <field name="show_description" type="list" default="0"
+                <field name="show_description" type="radio" class="btn-group" default="0"
                        label="MOD_MAGEBRIDGE_SLIDER_FIELD_SHOW_DESCRIPTION"
                        description="MOD_MAGEBRIDGE_SLIDER_FIELD_SHOW_DESCRIPTION_DESC">
                     <option value="0">JHIDE</option>
                     <option value="1">JSHOW</option>
                 </field>
-                <field name="show_price" type="list" default="1" label="MOD_MAGEBRIDGE_SLIDER_FIELD_SHOW_PRICE"
+                <field name="show_price" type="radio" class="btn-group" default="1" label="MOD_MAGEBRIDGE_SLIDER_FIELD_SHOW_PRICE"
                        description="MOD_MAGEBRIDGE_SLIDER_FIELD_SHOW_PRICE_DESC">
                     <option value="0">JHIDE</option>
                     <option value="1">JSHOW</option>
@@ -87,12 +87,12 @@
                     <option value="1">MOD_MAGEBRIDGE_SLIDER_FIELD_FINAL_PRICE_OPTION_1</option>
                     <option value="2">MOD_MAGEBRIDGE_SLIDER_FIELD_FINAL_PRICE_OPTION_2</option>
                 </field>
-                <field name="show_readmore" type="list" default="1" label="MOD_MAGEBRIDGE_SLIDER_FIELD_SHOW_READMORE"
+                <field name="show_readmore" type="radio" class="btn-group" default="1" label="MOD_MAGEBRIDGE_SLIDER_FIELD_SHOW_READMORE"
                        description="MOD_MAGEBRIDGE_SLIDER_FIELD_SHOW_READMORE_DESC">
                     <option value="0">JHIDE</option>
                     <option value="1">JSHOW</option>
                 </field>
-                <field name="show_addtocart" type="list" default="1" label="MOD_MAGEBRIDGE_SLIDER_FIELD_SHOW_ADDTOCART"
+                <field name="show_addtocart" type="radio" class="btn-group" default="1" label="MOD_MAGEBRIDGE_SLIDER_FIELD_SHOW_ADDTOCART"
                        description="MOD_MAGEBRIDGE_SLIDER_FIELD_SHOW_ADDTOCART_DESC">
                     <option value="0">JHIDE</option>
                     <option value="1">JSHOW</option>
@@ -111,7 +111,7 @@
                 <field name="addtocart" type="text" default="Add %s to cart"
                        label="MOD_MAGEBRIDGE_SLIDER_FIELD_ADDTOCART"
                        description="MOD_MAGEBRIDGE_SLIDER_FIELD_ADDTOCART_DESC"/>
-                <field name="show_noitems" type="list" default="1" label="MOD_MAGEBRIDGE_SLIDER_FIELD_SHOW_NOITEMS"
+                <field name="show_noitems" type="radio" class="btn-group" default="1" label="MOD_MAGEBRIDGE_SLIDER_FIELD_SHOW_NOITEMS"
                        description="MOD_MAGEBRIDGE_SLIDER_FIELD_SHOW_NOITEMS_DESC">
                     <option value="0">JHIDE</option>
                     <option value="1">JSHOW</option>
@@ -120,19 +120,19 @@
             <fieldset name="other" label="MOD_MAGEBRIDGE_SLIDER_FIELDSET_OTHER">
                 <field name="interval" type="text" default="4000" label="MOD_MAGEBRIDGE_SLIDER_FIELD_INTERVAL"/>
                 <field name="speed" type="text" default="1000" label="MOD_MAGEBRIDGE_SLIDER_FIELD_SPEED"/>
-                <field name="load_jquery" type="list" default="1"
+                <field name="load_jquery" type="radio" class="btn-group" default="1"
                        label="MOD_MAGEBRIDGE_SLIDER_FIELD_LOAD_SLIDESHOW_JQUERY"
                        description="MOD_MAGEBRIDGE_SLIDER_FIELD_LOAD_SLIDESHOW_JQUERY_DESC">
                     <option value="0">JNO</option>
                     <option value="1">JYES</option>
                 </field>
-                <field name="load_jquery_easing" type="list" default="1"
+                <field name="load_jquery_easing" type="radio" class="btn-group" default="1"
                        label="MOD_MAGEBRIDGE_SLIDER_FIELD_LOAD_SLIDESHOW_JQUERY_EASING"
                        description="MOD_MAGEBRIDGE_SLIDER_FIELD_LOAD_SLIDESHOW_JQUERY_EASING_DESC">
                     <option value="0">JNO</option>
                     <option value="1">JYES</option>
                 </field>
-                <field name="load_jquery_cycle" type="list" default="1"
+                <field name="load_jquery_cycle" type="radio" class="btn-group" default="1"
                        label="MOD_MAGEBRIDGE_SLIDER_FIELD_LOAD_SLIDESHOW_JQUERY_CYCLE"
                        description="MOD_MAGEBRIDGE_SLIDER_FIELD_LOAD_SLIDESHOW_JQUERY_CYCLE_DESC">
                     <option value="0">JNO</option>
@@ -150,7 +150,7 @@
                        description="MOD_MAGEBRIDGE_SLIDER_FIELD_WIDTH_DESC"/>
                 <field name="slidesjs_height" type="text" default="380" label="MOD_MAGEBRIDGE_SLIDER_FIELD_HEIGHT"
                        description="MOD_MAGEBRIDGE_SLIDER_FIELD_HEIGHT_DESC"/>
-                <field name="slidesjs_hoverpause" type="list" default="1" label="MOD_MAGEBRIDGE_SLIDER_FIELD_HOVERPAUSE"
+                <field name="slidesjs_hoverpause" type="radio" class="btn-group" default="1" label="MOD_MAGEBRIDGE_SLIDER_FIELD_HOVERPAUSE"
                        description="MOD_MAGEBRIDGE_SLIDER_FIELD_HOVERPAUSE_DESC">
                     <option value="0">JNO</option>
                     <option value="1">JYES</option>
@@ -164,12 +164,12 @@
                 <field name="slidorion_accordionwidth" type="text" default="240"
                        label="MOD_MAGEBRIDGE_SLIDER_FIELD_ACCORDIONWIDTH"
                        description="MOD_MAGEBRIDGE_SLIDER_FIELD_ACCORDIONWIDTH_DESC"/>
-                <field name="slidorion_autoplay" type="list" default="1" label="MOD_MAGEBRIDGE_SLIDER_FIELD_AUTOPLAY"
+                <field name="slidorion_autoplay" type="radio" class="btn-group" default="1" label="MOD_MAGEBRIDGE_SLIDER_FIELD_AUTOPLAY"
                        description="MOD_MAGEBRIDGE_SLIDER_FIELD_AUTOPLAY_DESC">
                     <option value="0">JNO</option>
                     <option value="1">JYES</option>
                 </field>
-                <field name="slidorion_hoverpause" type="list" default="1"
+                <field name="slidorion_hoverpause" type="radio" class="btn-group" default="1"
                        label="MOD_MAGEBRIDGE_SLIDER_FIELD_HOVERPAUSE"
                        description="MOD_MAGEBRIDGE_SLIDER_FIELD_HOVERPAUSE_DESC">
                     <option value="0">JNO</option>

@@ -39,23 +39,23 @@
 				<field name="layout" type="modulelayout" label="JFIELD_ALT_LAYOUT_LABEL" description="JFIELD_ALT_MODULE_LAYOUT_DESC" />
         	</fieldset>
         	<fieldset name="product" label="MOD_MAGEBRIDGE_PRODUCTS_FIELDSET_PRODUCT_OPTIONS">
-		        <field name="show_title" type="list" default="1" label="MOD_MAGEBRIDGE_PRODUCTS_FIELD_SHOW_TITLE" description="MOD_MAGEBRIDGE_PRODUCTS_FIELD_SHOW_TITLE_DESC">
+		        <field name="show_title" type="radio" class="btn-group" default="1" label="MOD_MAGEBRIDGE_PRODUCTS_FIELD_SHOW_TITLE" description="MOD_MAGEBRIDGE_PRODUCTS_FIELD_SHOW_TITLE_DESC">
         			<option value="0">JHIDE</option>
 		        	<option value="1">JSHOW</option>
         		</field>
-		        <field name="show_short_description" type="list" default="1" label="MOD_MAGEBRIDGE_PRODUCTS_FIELD_SHOW_SHORT_DESCRIPTION" description="MOD_MAGEBRIDGE_PRODUCTS_FIELD_SHOW_SHORT_DESCRIPTION_DESC">
+		        <field name="show_short_description" type="radio" class="btn-group" default="1" label="MOD_MAGEBRIDGE_PRODUCTS_FIELD_SHOW_SHORT_DESCRIPTION" description="MOD_MAGEBRIDGE_PRODUCTS_FIELD_SHOW_SHORT_DESCRIPTION_DESC">
         			<option value="0">JHIDE</option>
 		        	<option value="1">JSHOW</option>
         		</field>
-        		<field name="show_description" type="list" default="0" label="MOD_MAGEBRIDGE_PRODUCTS_FIELD_SHOW_DESCRIPTION" description="MOD_MAGEBRIDGE_PRODUCTS_FIELD_SHOW_DESCRIPTION_DESC">
+        		<field name="show_description" type="radio" class="btn-group" default="0" label="MOD_MAGEBRIDGE_PRODUCTS_FIELD_SHOW_DESCRIPTION" description="MOD_MAGEBRIDGE_PRODUCTS_FIELD_SHOW_DESCRIPTION_DESC">
 		        	<option value="0">JHIDE</option>
         			<option value="1">JSHOW</option>
 		        </field>
-        		<field name="show_thumb" type="list" default="1" label="MOD_MAGEBRIDGE_PRODUCTS_FIELD_SHOW_THUMB" description="MOD_MAGEBRIDGE_PRODUCTS_FIELD_SHOW_THUMB_DESC">
+        		<field name="show_thumb" type="radio" class="btn-group" default="1" label="MOD_MAGEBRIDGE_PRODUCTS_FIELD_SHOW_THUMB" description="MOD_MAGEBRIDGE_PRODUCTS_FIELD_SHOW_THUMB_DESC">
 		        	<option value="0">JHIDE</option>
         			<option value="1">JSHOW</option>
         		</field>
-        		<field name="show_price" type="list" default="1" label="MOD_MAGEBRIDGE_PRODUCTS_FIELD_SHOW_PRICE" description="MOD_MAGEBRIDGE_PRODUCTS_FIELD_SHOW_PRICE_DESC">
+        		<field name="show_price" type="radio" class="btn-group" default="1" label="MOD_MAGEBRIDGE_PRODUCTS_FIELD_SHOW_PRICE" description="MOD_MAGEBRIDGE_PRODUCTS_FIELD_SHOW_PRICE_DESC">
 		        	<option value="0">JHIDE</option>
         			<option value="1">JSHOW</option>
 		        </field>
@@ -69,11 +69,11 @@
         			<option value="1">MOD_MAGEBRIDGE_PRODUCTS_FIELD_FINAL_PRICE_OPTION_1</option>
 		        	<option value="2">MOD_MAGEBRIDGE_PRODUCTS_FIELD_FINAL_PRICE_OPTION_2</option>
 		        </field>
-        		<field name="show_readmore" type="list" default="1" label="MOD_MAGEBRIDGE_PRODUCTS_FIELD_SHOW_READMORE" description="MOD_MAGEBRIDGE_PRODUCTS_FIELD_SHOW_READMORE_DESC">
+        		<field name="show_readmore" type="radio" class="btn-group" default="1" label="MOD_MAGEBRIDGE_PRODUCTS_FIELD_SHOW_READMORE" description="MOD_MAGEBRIDGE_PRODUCTS_FIELD_SHOW_READMORE_DESC">
         			<option value="0">JHIDE</option>
 		        	<option value="1">JSHOW</option>
         		</field>
-		        <field name="show_addtocart" type="list" default="1" label="MOD_MAGEBRIDGE_PRODUCTS_FIELD_SHOW_ADDTOCART" description="MOD_MAGEBRIDGE_PRODUCTS_FIELD_SHOW_ADDTOCART_DESC">
+		        <field name="show_addtocart" type="radio" class="btn-group" default="1" label="MOD_MAGEBRIDGE_PRODUCTS_FIELD_SHOW_ADDTOCART" description="MOD_MAGEBRIDGE_PRODUCTS_FIELD_SHOW_ADDTOCART_DESC">
         			<option value="0">JHIDE</option>
 		        	<option value="1">JSHOW</option>
         		</field>
@@ -85,18 +85,18 @@
 		        <field name="thumb_size" type="text" default="" label="MOD_MAGEBRIDGE_PRODUCTS_FIELD_THUMB_SIZE" size="4" description="MOD_MAGEBRIDGE_PRODUCTS_FIELD_THUMB_SIZE_DESC" />
 		        <field name="readmore" type="text" default="Read more about %s" label="MOD_MAGEBRIDGE_PRODUCTS_FIELD_READMORE" description="MOD_MAGEBRIDGE_PRODUCTS_FIELD_READMORE_DESC" />
         		<field name="addtocart" type="text" default="Add %s to cart" label="MOD_MAGEBRIDGE_PRODUCTS_FIELD_ADDTOCART" description="MOD_MAGEBRIDGE_PRODUCTS_FIELD_ADDTOCART_DESC" />
-		        <field name="show_noitems" type="list" default="1" label="MOD_MAGEBRIDGE_PRODUCTS_FIELD_SHOW_NOITEMS" description="MOD_MAGEBRIDGE_PRODUCTS_FIELD_SHOW_NOITEMS_DESC">
+		        <field name="show_noitems" type="radio" class="btn-group" default="1" label="MOD_MAGEBRIDGE_PRODUCTS_FIELD_SHOW_NOITEMS" description="MOD_MAGEBRIDGE_PRODUCTS_FIELD_SHOW_NOITEMS_DESC">
         			<option value="0">JHIDE</option>
 		        	<option value="1">JSHOW</option>
         		</field>
         	</fieldset>
         	<fieldset name="category" label="MOD_MAGEBRIDGE_PRODUCTS_FIELDSET_CATEGORY_OPTIONS">
-		        <field name="show_category_readmore" type="list" default="0" label="MOD_MAGEBRIDGE_PRODUCTS_FIELD_SHOW_CATEGORY_READMORE" description="MOD_MAGEBRIDGE_PRODUCTS_FIELD_SHOW_CATEGORY_READMORE_DESC">
+		        <field name="show_category_readmore" type="radio" class="btn-group" default="0" label="MOD_MAGEBRIDGE_PRODUCTS_FIELD_SHOW_CATEGORY_READMORE" description="MOD_MAGEBRIDGE_PRODUCTS_FIELD_SHOW_CATEGORY_READMORE_DESC">
         			<option value="0">JHIDE</option>
 		        	<option value="1">JSHOW</option>
         		</field>
 		        <field name="category_readmore" type="text" default="More products" label="MOD_MAGEBRIDGE_PRODUCTS_FIELD_CATEGORY_READMORE" description="MOD_MAGEBRIDGE_PRODUCTS_FIELD_CATEGORY_READMORE_DESC" />
-		        <field name="load_category_data" type="list" default="0" label="MOD_MAGEBRIDGE_PRODUCTS_FIELD_LOAD_CATEGORY_DATA" description="MOD_MAGEBRIDGE_PRODUCTS_FIELD_LOAD_CATEGORY_DATA_DESC">
+		        <field name="load_category_data" type="radio" class="btn-group" default="0" label="MOD_MAGEBRIDGE_PRODUCTS_FIELD_LOAD_CATEGORY_DATA" description="MOD_MAGEBRIDGE_PRODUCTS_FIELD_LOAD_CATEGORY_DATA_DESC">
         			<option value="0">JNO</option>
 		        	<option value="1">JYES</option>
         		</field>
@@ -147,25 +147,25 @@
 	        		<option value="easeInOutBack">Back</option>
 		        	<option value="easeInOutBounce">Bounce</option>
         		</field>
-        		<field name="load_slideshow_jquery" type="list" default="1" label="MOD_MAGEBRIDGE_PRODUCTS_FIELD_LOAD_SLIDESHOW_JQUERY" description="MOD_MAGEBRIDGE_PRODUCTS_FIELD_LOAD_SLIDESHOW_JQUERY_DESC">
+        		<field name="load_slideshow_jquery" type="radio" class="btn-group" default="1" label="MOD_MAGEBRIDGE_PRODUCTS_FIELD_LOAD_SLIDESHOW_JQUERY" description="MOD_MAGEBRIDGE_PRODUCTS_FIELD_LOAD_SLIDESHOW_JQUERY_DESC">
 	        		<option value="0">JNO</option>
 		        	<option value="1">JYES</option>
         		</field>
-	        	<field name="load_slideshow_jquery_easing" type="list" default="1" label="MOD_MAGEBRIDGE_PRODUCTS_FIELD_LOAD_SLIDESHOW_JQUERY_EASING" description="MOD_MAGEBRIDGE_PRODUCTS_FIELD_LOAD_SLIDESHOW_JQUERY_EASING_DESC">
+	        	<field name="load_slideshow_jquery_easing" type="radio" class="btn-group" default="1" label="MOD_MAGEBRIDGE_PRODUCTS_FIELD_LOAD_SLIDESHOW_JQUERY_EASING" description="MOD_MAGEBRIDGE_PRODUCTS_FIELD_LOAD_SLIDESHOW_JQUERY_EASING_DESC">
 		        	<option value="0">JNO</option>
         			<option value="1">JYES</option>
 	        	</field>
-        		<field name="load_slideshow_jquery_cycle" type="list" default="1" label="MOD_MAGEBRIDGE_PRODUCTS_FIELD_LOAD_SLIDESHOW_JQUERY_CYCLE" description="MOD_MAGEBRIDGE_PRODUCTS_FIELD_LOAD_SLIDESHOW_JQUERY_CYCLE_DESC">
+        		<field name="load_slideshow_jquery_cycle" type="radio" class="btn-group" default="1" label="MOD_MAGEBRIDGE_PRODUCTS_FIELD_LOAD_SLIDESHOW_JQUERY_CYCLE" description="MOD_MAGEBRIDGE_PRODUCTS_FIELD_LOAD_SLIDESHOW_JQUERY_CYCLE_DESC">
 	        		<option value="0">JNO</option>
 		        	<option value="1">JYES</option>
         		</field>
-	        	<field name="load_slideshow_css" type="list" default="1" label="MOD_MAGEBRIDGE_PRODUCTS_FIELD_LOAD_SLIDESHOW_CSS" description="MOD_MAGEBRIDGE_PRODUCTS_FIELD_LOAD_SLIDESHOW_CSS_DESC">
+	        	<field name="load_slideshow_css" type="radio" class="btn-group" default="1" label="MOD_MAGEBRIDGE_PRODUCTS_FIELD_LOAD_SLIDESHOW_CSS" description="MOD_MAGEBRIDGE_PRODUCTS_FIELD_LOAD_SLIDESHOW_CSS_DESC">
 		        	<option value="0">JNO</option>
         			<option value="1">JYES</option>
 	        	</field>
         	</fieldset>
 			<fieldset name="advanced">
-	        	<field name="override_product_url" type="list" default="0" label="MOD_MAGEBRIDGE_PRODUCTS_FIELD_OVERRIDE_PRODUCT_URL" description="MOD_MAGEBRIDGE_PRODUCTS_FIELD_OVERRIDE_PRODUCT_URL">
+	        	<field name="override_product_url" type="radio" class="btn-group" default="0" label="MOD_MAGEBRIDGE_PRODUCTS_FIELD_OVERRIDE_PRODUCT_URL" description="MOD_MAGEBRIDGE_PRODUCTS_FIELD_OVERRIDE_PRODUCT_URL">
 		        	<option value="0">JNO</option>
         			<option value="1">JYES</option>
 	        	</field>

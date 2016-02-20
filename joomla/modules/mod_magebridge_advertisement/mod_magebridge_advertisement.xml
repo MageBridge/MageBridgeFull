@@ -28,23 +28,23 @@
 		        <field name="product_id" type="magebridge.product" return="id" default="" label="MOD_MAGEBRIDGE_ADVERTISEMENT_FIELD_PRODUCT_ID" description="MOD_MAGEBRIDGE_ADVERTISEMENT_FIELD_PRODUCT_ID_DESC" />
         	</fieldset>
         	<fieldset name="product" label="MOD_MAGEBRIDGE_ADVERTISEMENT_FIELDSET_PRODUCT_OPTIONS">
-		        <field name="show_title" type="list" default="1" label="MOD_MAGEBRIDGE_ADVERTISEMENT_FIELD_SHOW_TITLE" description="MOD_MAGEBRIDGE_ADVERTISEMENT_FIELD_SHOW_TITLE_DESC">
+		        <field name="show_title" type="radio" class="btn-group" default="1" label="MOD_MAGEBRIDGE_ADVERTISEMENT_FIELD_SHOW_TITLE" description="MOD_MAGEBRIDGE_ADVERTISEMENT_FIELD_SHOW_TITLE_DESC">
         			<option value="0">JHIDE</option>
 		        	<option value="1">JSHOW</option>
         		</field>
-		        <field name="show_short_description" type="list" default="1" label="MOD_MAGEBRIDGE_ADVERTISEMENT_FIELD_SHOW_SHORT_DESCRIPTION" description="MOD_MAGEBRIDGE_ADVERTISEMENT_FIELD_SHOW_SHORT_DESCRIPTION_DESC">
+		        <field name="show_short_description" type="radio" class="btn-group" default="1" label="MOD_MAGEBRIDGE_ADVERTISEMENT_FIELD_SHOW_SHORT_DESCRIPTION" description="MOD_MAGEBRIDGE_ADVERTISEMENT_FIELD_SHOW_SHORT_DESCRIPTION_DESC">
         			<option value="0">JHIDE</option>
 		        	<option value="1">JSHOW</option>
         		</field>
-        		<field name="show_description" type="list" default="0" label="MOD_MAGEBRIDGE_ADVERTISEMENT_FIELD_SHOW_DESCRIPTION" description="MOD_MAGEBRIDGE_ADVERTISEMENT_FIELD_SHOW_DESCRIPTION_DESC">
+        		<field name="show_description" type="radio" class="btn-group" default="0" label="MOD_MAGEBRIDGE_ADVERTISEMENT_FIELD_SHOW_DESCRIPTION" description="MOD_MAGEBRIDGE_ADVERTISEMENT_FIELD_SHOW_DESCRIPTION_DESC">
 		        	<option value="0">JHIDE</option>
         			<option value="1">JSHOW</option>
 		        </field>
-        		<field name="show_thumb" type="list" default="1" label="MOD_MAGEBRIDGE_ADVERTISEMENT_FIELD_SHOW_THUMB" description="MOD_MAGEBRIDGE_ADVERTISEMENT_FIELD_SHOW_THUMB_DESC">
+        		<field name="show_thumb" type="radio" class="btn-group" default="1" label="MOD_MAGEBRIDGE_ADVERTISEMENT_FIELD_SHOW_THUMB" description="MOD_MAGEBRIDGE_ADVERTISEMENT_FIELD_SHOW_THUMB_DESC">
 		        	<option value="0">JHIDE</option>
         			<option value="1">JSHOW</option>
         		</field>
-        		<field name="show_price" type="list" default="1" label="MOD_MAGEBRIDGE_ADVERTISEMENT_FIELD_SHOW_PRICE" description="MOD_MAGEBRIDGE_ADVERTISEMENT_FIELD_SHOW_PRICE_DESC">
+        		<field name="show_price" type="radio" class="btn-group" default="1" label="MOD_MAGEBRIDGE_ADVERTISEMENT_FIELD_SHOW_PRICE" description="MOD_MAGEBRIDGE_ADVERTISEMENT_FIELD_SHOW_PRICE_DESC">
 		        	<option value="0">JHIDE</option>
         			<option value="1">JSHOW</option>
 		        </field>
@@ -58,11 +58,11 @@
         			<option value="1">MOD_MAGEBRIDGE_ADVERTISEMENT_FIELD_FINAL_PRICE_OPTION_1</option>
 		        	<option value="2">MOD_MAGEBRIDGE_ADVERTISEMENT_FIELD_FINAL_PRICE_OPTION_2</option>
 		        </field>
-        		<field name="show_readmore" type="list" default="1" label="MOD_MAGEBRIDGE_ADVERTISEMENT_FIELD_SHOW_READMORE" description="MOD_MAGEBRIDGE_ADVERTISEMENT_FIELD_SHOW_READMORE_DESC">
+        		<field name="show_readmore" type="radio" class="btn-group" default="1" label="MOD_MAGEBRIDGE_ADVERTISEMENT_FIELD_SHOW_READMORE" description="MOD_MAGEBRIDGE_ADVERTISEMENT_FIELD_SHOW_READMORE_DESC">
         			<option value="0">JHIDE</option>
 		        	<option value="1">JSHOW</option>
         		</field>
-		        <field name="show_addtocart" type="list" default="1" label="MOD_MAGEBRIDGE_ADVERTISEMENT_FIELD_SHOW_ADDTOCART" description="MOD_MAGEBRIDGE_ADVERTISEMENT_FIELD_SHOW_ADDTOCART_DESC">
+		        <field name="show_addtocart" type="radio" class="btn-group" default="1" label="MOD_MAGEBRIDGE_ADVERTISEMENT_FIELD_SHOW_ADDTOCART" description="MOD_MAGEBRIDGE_ADVERTISEMENT_FIELD_SHOW_ADDTOCART_DESC">
         			<option value="0">JHIDE</option>
 		        	<option value="1">JSHOW</option>
         		</field>
