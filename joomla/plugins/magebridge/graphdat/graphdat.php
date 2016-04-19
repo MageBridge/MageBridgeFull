@@ -3,9 +3,9 @@
  * Joomla! MageBridge plugin for Graphdat
  *
  * @author Yireo (info@yireo.com)
- * @copyright Copyright 2015
+ * @copyright Copyright 2016
  * @license GNU Public License
- * @link http://www.yireo.com
+ * @link https://www.yireo.com
  *
  * 1) Install Graphdat Agent (see graphdat.com)
  * 2) Install Graphdat PHP extension (pecl install graphdat)

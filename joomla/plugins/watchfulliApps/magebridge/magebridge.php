@@ -2,10 +2,10 @@
 /**
  * MageBridge App for Watchful
  *
- * @author      Yireo (http://www.yireo.com/)
- * @copyright   Copyright (c) 2014 Yireo (http://www.yireo.com/)
+ * @author      Yireo (https://www.yireo.com/)
+ * @copyright   Copyright 2016 Yireo (https://www.yireo.com/)
  * @license     GNU Public License (GPL) version 3 (http://www.gnu.org/licenses/gpl-3.0.html)
- * @link        http://www.yireo.com/
+ * @link        https://www.yireo.com/
  */
 
 // Check to ensure this file is included in Joomla!

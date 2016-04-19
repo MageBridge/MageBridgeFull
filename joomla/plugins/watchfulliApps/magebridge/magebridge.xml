@@ -3,10 +3,10 @@
 	<name>PLG_WATCHFULLIAPPS_MAGEBRIDGE</name>
 	<author>Yireo</author>
 	<creationDate>May 2014</creationDate>
-	<copyright>Copyright 2015 Yireo.com. All rights reserved.</copyright>
+	<copyright>Copyright 2016 Yireo.com. All rights reserved.</copyright>
 	<license>http://www.gnu.org/licenses/gpl-3.0.html GNU/GPL</license>
 	<authorEmail>support@yireo.com</authorEmail>
-	<authorUrl>http://www.yireo.com/</authorUrl>
+	<authorUrl>https://www.yireo.com/</authorUrl>
 	<version>1.0.0</version>
 	<description>PLG_WATCHFULLIAPPS_MAGEBRIDGE_DESC</description>
 
@@ -33,6 +33,6 @@
     </config>
 
     <updateservers>
-        <server type="extension" priority="1" name="plg_watchfulliapps_magebridge">http://www.yireo.com/updates/plg_watchfulliapps_magebridge.xml</server>
+        <server type="extension" priority="1" name="plg_watchfulliapps_magebridge">https://www.yireo.com/updates/plg_watchfulliapps_magebridge.xml</server>
     </updateservers>
 </extension>

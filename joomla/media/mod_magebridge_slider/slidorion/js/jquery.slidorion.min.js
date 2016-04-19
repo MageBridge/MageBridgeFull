@@ -3,7 +3,7 @@
 * Intructions: http://www.slidorion.com
 * Created by Ben Holland - http://www.ben-holland.co.uk
 * Version: 1.0
-* Copyright 2015 Ben Holland <benholland99@gmail.com>
+* Copyright 2016 Ben Holland <benholland99@gmail.com>
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
