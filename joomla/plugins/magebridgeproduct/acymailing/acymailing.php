@@ -2,11 +2,11 @@
 /**
  * Joomla! component MageBridge
  *
- * @author Yireo (info@yireo.com)
- * @package MageBridge
+ * @author    Yireo (info@yireo.com)
+ * @package   MageBridge
  * @copyright Copyright 2016
- * @license GNU Public License
- * @link https://www.yireo.com
+ * @license   GNU Public License
+ * @link      https://www.yireo.com
  */
 
 // No direct access
@@ -17,7 +17,7 @@ defined('_JEXEC') or die('Restricted access');
  *
  * @package MageBridge
  */
-class plgMageBridgeProductAcymailing extends MageBridgePluginProduct
+class PlgMageBridgeProductAcymailing extends MageBridgePluginProduct
 {
 	/**
 	 * Deprecated variable to migrate from the original connector-architecture to new Product Plugins
@@ -28,15 +28,18 @@ class plgMageBridgeProductAcymailing extends MageBridgePluginProduct
 	 * Method to check whether this connector is enabled or not
 	 *
 	 * @param null
+	 *
 	 * @return bool
 	 */
 	public function isEnabled()
 	{
-		if ($this->checkComponent('com_acymailing') == false) {
+		if ($this->checkComponent('com_acymailing') === false)
+		{
 			return false;
 		}
 
-		if (!include_once(JPATH_ADMINISTRATOR.'/components/com_acymailing/helpers/helper.php')){
+		if (!include_once(JPATH_ADMINISTRATOR . '/components/com_acymailing/helpers/helper.php'))
+		{
 			return false;
 		}
 
@@ -45,139 +48,227 @@ class plgMageBridgeProductAcymailing extends MageBridgePluginProduct
 
 	/**
 	 * Event "onMageBridgeProductPurchase"
-	 * 
-	 * @access public
-	 * @param array $actions
-	 * @param object $user Joomla! user object
-	 * @param tinyint $status Status of the current order
-	 * @param string $sku Magento SKU
+	 *
+	 * @param array  $actions
+	 * @param JUser  $user   Joomla! user object
+	 * @param int    $status Status of the current order
+	 * @param string $sku    Magento SKU
+	 *
+	 * @return bool
 	 */
 	public function onMageBridgeProductPurchase($actions = null, $user = null, $status = null, $sku = null)
 	{
-		// Make sure this event is allowed
-		if($this->isEnabled() == false) {
-			return false;
-		}
+		if ($this->allowPluginRun($actions) === false)
+		{
+			$this->debug('Purchase: Plugin not allowed');
 
-		// Check for the usergroup ID
-		if(!isset($actions['acymailing_list'])) {
 			return false;
 		}
 
 		// Make sure it is not empty
-		$list_ids = $this->getListIds($actions['acymailing_list']);
+		$listIds = $this->getListIdsFromMixed($actions['acymailing_list']);
 
-        if (empty($list_ids)) {
-            return false;
-        }
+		if (empty($listIds))
+		{
+			$this->debug('Reverse: Empty list ID', $actions);
+
+			return false;
+		}
 
 		// See if the user exists in the database
-		$acyUser = null;
-		$acyUser->email = $user->email;
-		$acyUser->name = $user->name;
-		$acyUser->userid = $user->id;
-
-		$subscriberClass = acymailing::get('class.subscriber');
+		$acyUser                       = $this->buildAcyUserObject($user);
+		$subscriberClass               = $this->getSubscriberClass();
 		$subscriberClass->checkVisitor = false;
-		$subid = $subscriberClass->save($acyUser);
+		$subId                         = $subscriberClass->save($acyUser);
 
-		if (empty($subid)) {
-            return false;
-        }
+		if (empty($subId))
+		{
+			return false;
+		}
 
-        foreach($list_ids as $list_id) {
+		foreach ($listIds as $listId)
+		{
+			$newSubscription          = [];
+			$newList                  = [];
+			$newList['status']        = 1;
+			$newSubscription[$listId] = $newList;
 
-    		$newSubscription = array();
-	    	$newList = null;
-		    $newList['status'] = 1;
-    		$newSubscription[intval($list_id)] = $newList;
+			$this->debug('Purchase: New subscription', $newSubscription);
 
-		    $subscriberClass->saveSubscription($subid, $newSubscription);
-        }
+			$subscriberClass->saveSubscription($subId, $newSubscription);
+		}
 
 		return true;
 	}
 
 	/**
 	 * Event "onMageBridgeProductReverse"
-	 * 
-	 * @param array $actions
-	 * @param JUser $user
+	 *
+	 * @param array  $actions
+	 * @param JUser  $user
 	 * @param string $sku Magento SKU
+	 *
 	 * @return bool
 	 */
 	public function onMageBridgeProductReverse($actions = null, $user = null)
 	{
-		// Make sure this event is allowed
-		if($this->isEnabled() == false) {
-			return false;
-		}
+		if ($this->allowPluginRun($actions) === false)
+		{
+			$this->debug('Reverse: Plugin not allowed');
 
-		// Check for the usergroup ID
-		if(!isset($actions['acymailing_list'])) {
 			return false;
 		}
 
 		// Make sure it is not empty
-		$list_ids = $this->getListIds($actions['acymailing_list']);
+		$listIds = $this->getListIdsFromMixed($actions['acymailing_list']);
 
-        if (empty($list_ids))
-        {
+		if (empty($listIds))
+		{
+			$this->debug('Reverse: Empty list ID', $actions);
+
 			return false;
 		}
 
-		$subscriberClass = acymailing::get('class.subscriber');
-		$subid = $subscriberClass->get($user->id);
+		$subscriberClass = $this->getSubscriberClass();
+		$subId           = $subscriberClass->get($user->id);
 
-        foreach ($list_ids as $list_id)
-        {
-		    $newSubscription = array();
-    		$newList = null;
-	    	$newList['status'] = 0;
-		    $newSubscription[intval($list_id)] = $newList;
+		foreach ($listIds as $listId)
+		{
+			$newSubscription          = [];
+			$newList                  = [];
+			$newList['status']        = 0;
+			$newSubscription[$listId] = $newList;
 
-            if ($this->params->get('send_emails', 0) == 0)
-            {
-                $subscriberClass->sendConf = false;
-                $subscriberClass->sendNotif = false;
-                $subscriberClass->sendWelcome = false;
-            }
+			if ($this->params->get('send_emails', 0) === 0)
+			{
+				$subscriberClass->sendConf    = false;
+				$subscriberClass->sendNotif   = false;
+				$subscriberClass->sendWelcome = false;
+			}
 
-    		$subscriberClass->saveSubscription($subid, $newSubscription);
-        }
+			$this->debug('Reverse: New subscription', $newSubscription);
+
+			$subscriberClass->saveSubscription($subId, $newSubscription);
+		}
 
 		return true;
 	}
 
-    protected function getListIds($param)
-    {
-		$list_ids = array();
+	/**
+	 * @param JUser $user
+	 *
+	 * @return object
+	 */
+	protected function buildAcyUserObject($user)
+	{
+		$acyUser         = (object) null;
+		$acyUser->email  = $user->email;
+		$acyUser->name   = $user->name;
+		$acyUser->userid = $user->id;
 
-        if (!is_array($param))
-        {
-		    $list_id = (int)$param;
+		return $acyUser;
+	}
 
-		    if(!$list_id > 0)
-            {
-			    return $list_ids;
-    		}
+	/**
+	 * @return subscriberClass
+	 */
+	protected function getSubscriberClass()
+	{
+		return acymailing::get('class.subscriber');
+	}
 
-            $list_ids[] = $list_id;
-            return $list_ids;
-        }
-            
-        foreach($param as $list_id)
-        {
-            if(!(int)$list_id > 0)
-            {
-                continue;
-            }
+	/**
+	 * @param $actions
+	 *
+	 * @return bool
+	 */
+	protected function allowPluginRun($actions)
+	{
+		// Make sure this event is allowed
+		if ($this->isEnabled() === false)
+		{
+			return false;
+		}
 
-            $list_ids[] = $list_id;
-        }
+		// Check for the usergroup ID
+		if (!isset($actions['acymailing_list']))
+		{
+			return false;
+		}
+	}
 
-        return $list_ids;
-    }
+	/**
+	 * Get a list of IDs
+	 *
+	 * @param mixed $param
+	 *
+	 * @return array
+	 */
+	protected function getListIdsFromMixed($param)
+	{
+		$listIds = array();
+
+		if (!is_array($param))
+		{
+			$listId = (int) $param;
+
+			if (!$listId > 0)
+			{
+				return $listIds;
+			}
+
+			$listIds[] = (int) $listId;
+
+			return $listIds;
+		}
+
+		foreach ($param as $listId)
+		{
+			if (!(int) $listId > 0)
+			{
+				continue;
+			}
+
+			$listIds[] = (int) $listId;
+		}
+
+		return $listIds;
+	}
+
+	/**
+	 * @return bool
+	 */
+	protected function allowDebug()
+	{
+		return (bool) $this->params->get('debug', 0);
+	}
+
+	/**
+	 * @param string $message
+	 * @param mixed $variable
+	 *
+	 * @return bool
+	 */
+	protected function debug($message, $variable = null)
+	{
+		if ($this->allowDebug() === false)
+		{
+			return false;
+		}
+
+		if (!empty($variable))
+		{
+			$message .= ' = ' . var_export($variable, true);
+		}
+
+		JLog::addLogger(array(
+			'text_file' => 'plg_magebridgeproduct_acymailing.debug.php'
+		), JLog::ALL, array('plg_magebridgeproduct_acymailing'));
+
+		JLog::add($message, JLog::WARNING, 'plg_magebridgeproduct_acymailing');
+
+		return true;
+	}
 }
 
 

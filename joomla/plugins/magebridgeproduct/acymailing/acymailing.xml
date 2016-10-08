@@ -1,31 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension version="2.5" type="plugin" group="magebridgeproduct" method="upgrade">
-	<name>PLG_MAGEBRIDGEPRODUCT_ACYMAILING</name>
-	<author>Yireo</author>
-	<creationDate>August 2016</creationDate>
-	<copyright>Copyright (C) 2016 Yireo.com. All rights reserved.</copyright>
-	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
-	<authorEmail>info@yireo.com</authorEmail>
-	<authorUrl>www.yireo.com</authorUrl>
-	<version>1.9.5403</version>
-	<description>PLG_MAGEBRIDGEPRODUCT_ACYMAILING_DESC</description>
+    <name>PLG_MAGEBRIDGEPRODUCT_ACYMAILING</name>
+    <author>Yireo</author>
+    <creationDate>August 2016</creationDate>
+    <copyright>Copyright (C) 2016 Yireo.com. All rights reserved.</copyright>
+    <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+    <authorEmail>info@yireo.com</authorEmail>
+    <authorUrl>www.yireo.com</authorUrl>
+    <version>1.9.5403</version>
+    <description>PLG_MAGEBRIDGEPRODUCT_ACYMAILING_DESC</description>
 
-	<files>
-		<filename plugin="acymailing">acymailing.php</filename>
-		<folder>form</folder>
-		<filename>index.html</filename>
-	</files>
+    <files>
+        <filename plugin="acymailing">acymailing.php</filename>
+        <folder>form</folder>
+        <filename>index.html</filename>
+    </files>
 
     <config>
         <fields name="params">
             <fieldset name="basic" addfieldpath="administrator/components/com_magebridge/fields">
-                <field name="send_email" type="magebridge.boolean" default="0" label="PLG_MAGEBRIDGEPRODUCT_ACYMAILING_SEND_EMAIL" description="PLG_MAGEBRIDGEPRODUCT_ACYMAILING_SEND_EMAIL_DESC" />
+                <field name="send_email" type="magebridge.boolean" default="0"
+                       label="PLG_MAGEBRIDGEPRODUCT_ACYMAILING_SEND_EMAIL"
+                       description="PLG_MAGEBRIDGEPRODUCT_ACYMAILING_SEND_EMAIL_DESC"/>
+                <field name="debug" type="magebridge.boolean" default="0" label="PLG_MAGEBRIDGEPRODUCT_ACYMAILING_DEBUG"
+                       description="PLG_MAGEBRIDGEPRODUCT_ACYMAILING_DEBUG_DESC"/>
             </fieldset>
         </fields>
     </config>
 
-	<languages>
-		<language tag="en-GB">en-GB.plg_magebridgeproduct_acymailing.ini</language>
-		<language tag="en-GB">en-GB.plg_magebridgeproduct_acymailing.sys.ini</language>
-	</languages>
+    <languages>
+        <language tag="en-GB">en-GB.plg_magebridgeproduct_acymailing.ini</language>
+        <language tag="en-GB">en-GB.plg_magebridgeproduct_acymailing.sys.ini</language>
+    </languages>
 </extension>
