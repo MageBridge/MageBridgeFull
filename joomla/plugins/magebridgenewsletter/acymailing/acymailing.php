@@ -36,10 +36,12 @@ class plgMageBridgenewsletterAcymailing extends MageBridgePluginMagento
 		$list_ids = $this->params->get('newsletter');
 
 		if (empty($list_ids)) {
+			$this->debug('onNewsletterSubscribe: No lists configured');
 			return true;
 		}
 		
 		if (!include_once(rtrim(JPATH_ADMINISTRATOR,'/').'/components/com_acymailing/helpers/helper.php')){
+			$this->debug('onNewsletterSubscribe: Acymailing not found');
 			return false;
 		}
 
@@ -48,6 +50,7 @@ class plgMageBridgenewsletterAcymailing extends MageBridgePluginMagento
 
 		// Do not continue with invalid $subid
 		if (empty($subid)) {
+			$this->debug('onNewsletterSubscribe: No subid found');
 			return false;
 		}
 
@@ -66,6 +69,7 @@ class plgMageBridgenewsletterAcymailing extends MageBridgePluginMagento
 		$subscriberClass = acymailing::get('class.subscriber');
 
 		if (empty($subscriberClass)) {
+			$this->debug('onNewsletterSubscribe: Acymailing not found');
 			return false;
 		}
 
@@ -99,6 +103,7 @@ class plgMageBridgenewsletterAcymailing extends MageBridgePluginMagento
 		$subscriberClass = acymailing::get('class.subscriber');
 
 		if (empty($subscriberClass)) {
+			$this->debug('onNewsletterSubscribe: Acymailing not found');
 			return false;
 		}
 
@@ -129,6 +134,41 @@ class plgMageBridgenewsletterAcymailing extends MageBridgePluginMagento
 	public function isEnabled()
 	{
 		return $this->checkComponent('com_acymailing');
+	}
+
+	/**
+	 * @return bool
+	 */
+	protected function allowDebug()
+	{
+		return (bool) $this->params->get('debug', 0);
+	}
+
+	/**
+	 * @param string $message
+	 * @param mixed $variable
+	 *
+	 * @return bool
+	 */
+	protected function debug($message, $variable = null)
+	{
+		if ($this->allowDebug() === false)
+		{
+			return false;
+		}
+
+		if (!empty($variable))
+		{
+			$message .= ' = ' . var_export($variable, true);
+		}
+
+		JLog::addLogger(array(
+			'text_file' => 'plg_magebridgenewsletter_acymailing.debug.php'
+		), JLog::ALL, array('plg_magebridgenewsletter_acymailing'));
+
+		JLog::add($message, JLog::WARNING, 'plg_magebridgenewsletter_acymailing');
+
+		return true;
 	}
 }
 
