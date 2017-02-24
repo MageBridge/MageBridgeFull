@@ -65,6 +65,8 @@ class PlgMageBridgeProductAcymailing extends MageBridgePluginProduct
 			return false;
 		}
 
+        $actionType = (!empty($actions['acymailing_type'])) ? $actions['acymailing_type'] : 1;
+
 		// Make sure it is not empty
 		$listIds = $this->getListIdsFromMixed($actions['acymailing_list']);
 
@@ -90,7 +92,7 @@ class PlgMageBridgeProductAcymailing extends MageBridgePluginProduct
 		{
 			$newSubscription          = [];
 			$newList                  = [];
-			$newList['status']        = 1;
+			$newList['status']        = $actionType;
 			$newSubscription[$listId] = $newList;
 
 			$this->debug('Purchase: New subscription', $newSubscription);
@@ -118,6 +120,11 @@ class PlgMageBridgeProductAcymailing extends MageBridgePluginProduct
 
 			return false;
 		}
+
+        if (isset($actions['acymailing_reverse']) && $actions['acymailing_reverse'] == 0)
+        {
+            return false;
+        }
 
 		// Make sure it is not empty
 		$listIds = $this->getListIdsFromMixed($actions['acymailing_list']);

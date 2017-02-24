@@ -5,7 +5,17 @@
             <field name="acymailing_list" label="PLG_MAGEBRIDGEPRODUCT_ACYMAILING_FIELD_ACYMAILING_LIST" 
                 type="sql" value_field="name" key_field="listid" multiple="multiple"
                 query="SELECT `name`, `listid` FROM `#__acymailing_list` ORDER BY `ordering`"
+                class="form-control"
                 />
+            <field name="acymailing_type" type="radio" default="subscribe" class="radio btn-group btn-group-yesno"
+                label="PLG_MAGEBRIDGEPRODUCT_ACYMAILING_TYPE"
+                description="PLG_MAGEBRIDGEPRODUCT_ACYMAILING_TYPE_DESC">
+                <option value="1">PLG_MAGEBRIDGEPRODUCT_ACYMAILING_TYPE_OPTION_SUBSCRIBE</option>
+                <option value="-1">PLG_MAGEBRIDGEPRODUCT_ACYMAILING_TYPE_OPTION_UNSUBSCRIBE</option>
+                <option value="0">PLG_MAGEBRIDGEPRODUCT_ACYMAILING_TYPE_OPTION_NOTSUBSCRIBED</option>
+            </field>
+            <field name="acymailing_reverse" type="magebridge.boolean" default="1" label="PLG_MAGEBRIDGEPRODUCT_ACYMAILING_REVERSE"
+                description="PLG_MAGEBRIDGEPRODUCT_ACYMAILING_REVERSE_DESC"/>
         </fieldset>
     </fields>
 </form>
