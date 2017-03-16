@@ -10,13 +10,13 @@
  */
 
 // User settings
-define('mbSupportKey', 'zQ0ODJkYzdjNzU0YTMwYWJhOTcwNjVkM');
-define('mbSupportDomain', 'livakurser.dk');
-define('mbApiHost', 'www.forlagetliva.dk');
+define('mbSupportKey', '2VmMWJiYmZlOTI4NDg3OTM1NzZlY2U0M');
+define('mbSupportDomain', 'magento-39318-83471-231567.cloudwaysapps.com');
+define('mbApiHost', 'magento-39318-83471-231567.cloudwaysapps.com');
 define('mbApiBasedir', '');
-define('mbApiUsername', 'magebridge9103203');
-define('mbApiPassword', 'Azp3zDfdf8Smm3cc00');
-define('mbTemplatePatch', 0);
+define('mbApiUsername', 'magebridge942309402342');
+define('mbApiPassword', 'Zm0423kdapAldoddiA3d9SkjfsdfA9F8fsd9320312');
+define('mbTemplatePatch', 1);
     
 // Detect the Joomla! directory
 define('DOCUMENT_ROOT', dirname(__FILE__).'/');
