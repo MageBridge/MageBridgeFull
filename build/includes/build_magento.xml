@@ -75,6 +75,7 @@
         <exec command="rm ${tarfile}" />
         <tar destfile="${tarfile}" compression="gzip">
             <fileset dir="${magento}" expandsymboliclinks="true">
+                <include name="lib/Yireo" />
                 <include name="app/etc/modules/Yireo_MageBridge.xml" />
                 <include name="magebridge.php" />
                 <include name="magebridge.class.php" />
@@ -95,7 +96,7 @@
         <exec command="rm ${zipfile}" />
         <zip destfile="${zipfile}">
             <fileset dir="${magento}" expandsymboliclinks="true">
-                <include name="app/etc/modules/Jira_MageBridge.xml" />
+                <include name="lib/Yireo" />
                 <include name="app/etc/modules/Yireo_MageBridge.xml" />
                 <include name="magebridge.php" />
                 <include name="magebridge.class.php" />
