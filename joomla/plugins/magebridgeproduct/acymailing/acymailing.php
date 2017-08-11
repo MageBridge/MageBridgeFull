@@ -181,6 +181,11 @@ class PlgMageBridgeProductAcymailing extends MageBridgePluginProduct
 	 */
 	protected function getSubscriberClass()
 	{
+		if (function_exists('acymailing_get'))
+		{
+			return acymailing_get('class.subscriber');
+		}
+
 		return acymailing::get('class.subscriber');
 	}
 

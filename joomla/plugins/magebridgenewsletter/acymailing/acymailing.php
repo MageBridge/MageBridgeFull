@@ -18,7 +18,7 @@ require_once JPATH_SITE.'/components/com_magebridge/helpers/loader.php';
 /**
  * MageBridge Newsletter Plugin for Acymailing
  */
-class plgMageBridgenewsletterAcymailing extends MageBridgePluginMagento
+class PlgMageBridgenewsletterAcymailing extends MageBridgePluginMagento
 {
 	/**
 	 * Event "onNewsletterSubscribe"
@@ -63,10 +63,15 @@ class plgMageBridgenewsletterAcymailing extends MageBridgePluginMagento
 		return true;
 	}
 
+	/**
+	 * @param $user
+	 *
+	 * @return bool|int
+	 */
 	private function returnOrGenerateSubid($user)
 	{
 		// Get the subscriber class
-		$subscriberClass = acymailing::get('class.subscriber');
+		$subscriberClass = $this->getSubscriberClass();
 
 		if (empty($subscriberClass)) {
 			$this->debug('onNewsletterSubscribe: Acymailing not found');
@@ -97,10 +102,30 @@ class plgMageBridgenewsletterAcymailing extends MageBridgePluginMagento
 		return (int) $subid;
 	}
 
+	/**
+	 * @return subscriberClass
+	 */
+	protected function getSubscriberClass()
+	{
+		if (function_exists('acymailing_get'))
+		{
+			return acymailing_get('class.subscriber');
+		}
+
+		return acymailing::get('class.subscriber');
+	}
+
+	/**
+	 * @param $subid
+	 * @param $list_id
+	 * @param $state
+	 *
+	 * @return bool
+	 */
 	private function subscribeNewsletter($subid, $list_id, $state)
 	{
 		// Get the subscriber class
-		$subscriberClass = acymailing::get('class.subscriber');
+		$subscriberClass = $this->getSubscriberClass();
 
 		if (empty($subscriberClass)) {
 			$this->debug('onNewsletterSubscribe: Acymailing not found');
